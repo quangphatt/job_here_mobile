@@ -1,14 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { MainScreen } from '@Layout';
+import 'react-native-gesture-handler';
+import { AppNavigation } from '@Navigation';
 
 const App = () => {
-  return (
-    <View>
-      <Text style={{ color: 'black' }}>App</Text>
-      <MainScreen />
-    </View>
-  );
+  return <AppNavigation />;
 };
 
 export default App;
