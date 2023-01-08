@@ -1,12 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text } from '@Components';
+import { Text, View } from '@Components';
 
 const MainScreen = () => {
-  return (
-    <View>
-    </View>
-  );
+  return <View.Container></View.Container>;
 };
 
 export default MainScreen;
