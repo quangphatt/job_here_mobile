@@ -11,6 +11,8 @@ module.exports = {
           '@Components': './src/Components',
           '@Layout': './src/Layout',
           '@Navigation': './src/Navigation',
+          '@Provider': './src/Config/Provider',
+          '@Theme': './src/Config/Theme',
         },
       },
     ],

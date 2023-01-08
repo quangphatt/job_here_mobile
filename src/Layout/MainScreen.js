@@ -1,15 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@Components';
 
 const MainScreen = () => {
   return (
     <View>
-      <Text style={{ color: 'red' }}>MainScreen</Text>
-      {_.map([1, 2, 3, 4], (item, index) => (
-        <Text key={index} style={{ color: '#000' }}>
-          {item}
-        </Text>
-      ))}
     </View>
   );
 };
