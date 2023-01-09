@@ -31,5 +31,5 @@ export default {
   Container,
   Row,
   Col,
-  Seperator,
+  Seperator
 };

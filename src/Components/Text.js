@@ -151,5 +151,5 @@ export default {
   BodyBold,
   SubBody,
   SubBodyBold,
-  TextInput,
+  TextInput
 };

@@ -1,6 +1,6 @@
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
 import { Dimensions, Platform, PixelRatio } from 'react-native';
@@ -39,7 +39,7 @@ const normalize_font_size = () => {
     x_large,
     xx_large,
     xxx_large,
-    be_vietnam,
+    be_vietnam
   };
 };
 
@@ -48,20 +48,20 @@ const theme = {
     primary_color: '#F55742',
     white_color: '#FFFFFF',
     dark_gray_color: '#999999',
-    black_color: '#000000',
+    black_color: '#000000'
   },
   text_colors: {
     primary_text_color: '#F55742',
-    secondary_text_color: '#1D232E',
+    secondary_text_color: '#1D232E'
   },
   border_colors: {
     primary_border_color: '#EEEEEE',
-    secondary_border_color: '#CED4DA',
+    secondary_border_color: '#CED4DA'
   },
   background_colors: {
     page_background_color: '#E5E5E5',
     box_background_color: '#00B14F0D',
-    item_background_color: '#E9F7EF',
+    item_background_color: '#E9F7EF'
   },
   font_size: {
     x_small: normalize_font_size().x_small,
@@ -71,14 +71,14 @@ const theme = {
     x_large: normalize_font_size().x_large,
     xx_large: normalize_font_size().xx_large,
     xxx_large: normalize_font_size().xxx_large,
-    be_vietnam: normalize_font_size().be_vietnam,
+    be_vietnam: normalize_font_size().be_vietnam
   },
   size: {
     parallax_header_height: 135,
     header_height: 45,
     screen_width: wp('100%'),
-    screen_height: hp('100%'),
-  },
+    screen_height: hp('100%')
+  }
 };
 
 export default theme;
