@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,22 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BeVietnam-Bold.ttf</string>
+		<string>BeVietnam-BoldItalic.ttf</string>
+		<string>BeVietnam-ExtraBold.ttf</string>
+		<string>BeVietnam-ExtraBoldItalic.ttf</string>
+		<string>BeVietnam-Italic.ttf</string>
+		<string>BeVietnam-Light.ttf</string>
+		<string>BeVietnam-LightItalic.ttf</string>
+		<string>BeVietnam-Medium.ttf</string>
+		<string>BeVietnam-MediumItalic.ttf</string>
+		<string>BeVietnam-Regular.ttf</string>
+		<string>BeVietnam-SemiBold.ttf</string>
+		<string>BeVietnam-SemiBoldItalic.ttf</string>
+		<string>BeVietnam-Thin.ttf</string>
+		<string>BeVietnam-ThinItalic.ttf</string>
+	</array>
 </dict>
 </plist>

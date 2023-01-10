@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import { AppNavigation } from '@Navigation';
 import SplashScreen from 'react-native-splash-screen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ThemeProvider } from 'styled-components/native';
+import GlobalContextProvider from '@Provider/GlobalContextProvider';
+
+import theme from '@Theme';
 
 const App = () => {
   useEffect(() => {
@@ -10,7 +15,13 @@ const App = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <AppNavigation />
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalContextProvider>
+            <AppNavigation />
+          </GlobalContextProvider>
+        </ThemeProvider>
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 };
