@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Icon, Image } from '@Components';
+import { Text, View, Icon, Image, Button } from '@Components';
 
 const MainScreen = () => {
   return (
