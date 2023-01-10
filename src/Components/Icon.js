@@ -1,17 +1,21 @@
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import theme from '@Theme';
 
 // https://oblador.github.io/react-native-vector-icons/ --> Ionicons
 
-const IonIcon = ({ name, size, color }) => {
-  return (
-    <Ionicons
-      name={name || 'football'}
-      size={size || 16}
-      color={color || theme.text_colors.secondary_text_color}
-    />
-  );
+const VectorIcon = ({ name, size, color, style = {}, type = 'Ionicons' }) => {
+  const iconProps = {
+    name,
+    size: size || 16,
+    color: color || theme.text_colors.secondary_text_color,
+    style
+  };
+
+  if (type === 'MaterialCommunityIcons')
+    return <MaterialCommunityIcons {...iconProps} />;
+  else return <Ionicons {...iconProps} />;
 };
 
-export default { IonIcon };
+export default { VectorIcon };
