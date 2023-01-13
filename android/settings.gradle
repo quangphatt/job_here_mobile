@@ -1,4 +1,6 @@
 rootProject.name = 'job_here_mobile'
+include ':@react-native-clipboard_clipboard'
+project(':@react-native-clipboard_clipboard').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-clipboard/clipboard/android')
 include ':react-native-fast-image'
 project(':react-native-fast-image').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fast-image/android')
 include ':@react-native-async-storage_async-storage'

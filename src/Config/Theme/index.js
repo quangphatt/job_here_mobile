@@ -48,7 +48,11 @@ const theme = {
     primary_color: '#F55742',
     white_color: '#FFFFFF',
     dark_gray_color: '#999999',
-    black_color: '#000000'
+    black_color: '#000000',
+    success: '#21AE40',
+    info: '#1C75BC',
+    warning: '#FFBF30',
+    danger: '#E04141'
   },
   text_colors: {
     primary_text_color: '#F55742',
