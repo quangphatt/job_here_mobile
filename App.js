@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 import GlobalContextProvider from '@Global';
 import { MagicModalPortal } from 'react-native-magic-modal';
+import NetInfo from '@Config/NetInfo';
 
 import theme from '@Theme';
 
@@ -18,6 +19,7 @@ const App = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
+          <NetInfo />
           <MagicModalPortal />
           <GlobalContextProvider>
             <AppNavigation />
