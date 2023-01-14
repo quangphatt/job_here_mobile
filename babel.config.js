@@ -6,16 +6,16 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
-          '@Alert': './src/Components/Modal/ModalAlert',
           '@Assets': './src/Assets',
           '@Business': './src/Business',
           '@Components': './src/Components',
+          '@Alert': './src/Components/Modal/ModalAlert',
           '@Config': './src/Config',
-          '@Layout': './src/Layout',
-          '@Navigation': './src/Navigation',
           '@Provider': './src/Config/Provider',
           '@Global': './src/Config/Provider/GlobalContextProvider',
-          '@Theme': './src/Config/Theme'
+          '@Theme': './src/Config/Theme',
+          '@Layout': './src/Layout',
+          '@Navigation': './src/Navigation'
         }
       }
     ],

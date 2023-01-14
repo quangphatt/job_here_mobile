@@ -31,6 +31,10 @@ target 'job_here_mobile' do
 
   pod 'RNCClipboard', :path => '../node_modules/@react-native-clipboard/clipboard'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
   target 'job_here_mobileTests' do
     inherit! :complete
     # Pods for testing

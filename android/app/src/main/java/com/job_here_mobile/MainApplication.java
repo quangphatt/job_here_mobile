@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
+import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.clipboard.ClipboardPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
@@ -35,6 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new NetInfoPackage(),
+            new ReanimatedPackage(),
             new ClipboardPackage(),
             new FastImageViewPackage(),
             new AsyncStoragePackage(),
