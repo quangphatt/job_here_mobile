@@ -4,6 +4,24 @@ import View from './View';
 import theme from '@Theme';
 import default_img from '@Assets/Images/avatar_jobhere.png';
 
+const Image = ({ source }) => {
+  return (
+    <View.Row
+      style={{
+        backgroundColor: theme.background_colors.item_background_color,
+        overflow: 'hidden',
+        ...style
+      }}
+    >
+      <FastImage
+        source={source}
+        defaultSource={default_img}
+        style={{ flex: 1 }}
+      />
+    </View.Row>
+  );
+};
+
 const ImageCircle = ({ source, size = 24, style = {} }) => {
   return (
     <View.Row
@@ -14,7 +32,8 @@ const ImageCircle = ({ source, size = 24, style = {} }) => {
         backgroundColor: theme.background_colors.item_background_color,
         overflow: 'hidden',
         ...style
-      }}>
+      }}
+    >
       <FastImage
         source={source}
         defaultSource={default_img}
@@ -34,7 +53,8 @@ const ImageSquare = ({ source, size = 24, style = {} }) => {
         backgroundColor: theme.background_colors.item_background_color,
         overflow: 'hidden',
         ...style
-      }}>
+      }}
+    >
       <FastImage
         source={source}
         defaultSource={default_img}
@@ -44,4 +64,4 @@ const ImageSquare = ({ source, size = 24, style = {} }) => {
   );
 };
 
-export default { ImageCircle, ImageSquare };
+export default { Image, ImageCircle, ImageSquare };

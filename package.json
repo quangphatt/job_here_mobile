@@ -29,6 +29,7 @@
     "react-i18next": "^12.1.1",
     "react-native": "0.68.2",
     "react-native-charts-wrapper": "^0.5.11",
+    "react-native-device-info": "^10.3.0",
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-magic-modal": "^0.2.19",

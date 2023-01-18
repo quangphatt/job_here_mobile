@@ -1,33 +1,33 @@
-import i18n from "i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import { en, vn } from "./translation";
+import i18n from 'i18next';
+import { initReactI18next, reactI18nextModule } from 'react-i18next';
+import { en, vn } from './translation';
 
-i18n.use(LanguageDetector).init({
-  // we init with resources
-  resources: {
-    en: {
-      translations: en,
+const languageDetector = {
+  type: 'languageDetector',
+  detect: () => 'vn',
+  init: () => {},
+  cacheUserLanguage: () => {}
+};
+
+i18n
+  .use(initReactI18next)
+  .use(languageDetector)
+  .init({
+    compatibilityJSON: 'v3',
+    fallbackLng: 'en',
+    resources: {
+      en: {
+        translations: en
+      },
+      vn: {
+        translations: vn
+      }
     },
-    vn: {
-      translations: vn,
-    },
-  },
-  fallbackLng: "en",
-
-  // have a common namespace used around the full app
-  ns: ["translations"],
-  defaultNS: "translations",
-
-  keySeparator: false, // we use content as keys
-
-  interpolation: {
-    escapeValue: false, // not needed for react!!
-    formatSeparator: ",",
-  },
-
-  react: {
-    wait: true,
-  },
-});
+    ns: ['translations'],
+    defaultNS: 'translations',
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 export default i18n;

@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components/native';
 import GlobalContextProvider from '@Global';
 import { MagicModalPortal } from 'react-native-magic-modal';
 import NetInfo from '@Config/NetInfo';
+import '@Config/Translate/i18n';
 
 import theme from '@Theme';
 
