@@ -7,16 +7,7 @@ import SignInScreen from './Authentication/SignInScreen';
 import { useTranslation } from 'react-i18next';
 
 const MainScreen = () => {
-  const { t } = useTranslation();
-
-  return (
-    <View.Container>
-      <Text.Body secondary style={{ padding: 15 }}>
-        {t('English')}
-      </Text.Body>
-      <Button.ButtonChangeLanguage />
-    </View.Container>
-  );
+  return <SignInScreen />;
 };
 
 export default MainScreen;

@@ -4,10 +4,11 @@ import View from './View';
 import theme from '@Theme';
 import default_img from '@Assets/Images/avatar_jobhere.png';
 
-const Image = ({ source }) => {
+const Image = ({ source, size = 60, style = {} }) => {
   return (
     <View.Row
       style={{
+        width: size,
         backgroundColor: theme.background_colors.item_background_color,
         overflow: 'hidden',
         ...style

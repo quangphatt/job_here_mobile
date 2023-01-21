@@ -1,14 +1,11 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { preventDoubleClick } from '@Config/Common';
 import View from './View';
 import Text from './Text';
 import Icon from './Icon';
 import Image from './Image';
+import Button from './Button';
 import styled from 'styled-components/native';
 import RenderHTML from 'react-native-render-html';
-
-const TouchPreventDouble = preventDoubleClick(TouchableOpacity);
 
 const RenderHTMLJobHere = styled(RenderHTML).attrs(props => ({
   baseStyle: {
@@ -36,7 +33,7 @@ const BasicItem = ({
   style
 }) => {
   return (
-    <TouchPreventDouble
+    <Button.ButtonPreventDouble
       activeOpacity={0.6}
       onPress={onPress}
       style={{ flexDirection: 'row', ...style }}
@@ -104,7 +101,7 @@ const BasicItem = ({
           </View.Col>
         )}
       </View.Row>
-    </TouchPreventDouble>
+    </Button.ButtonPreventDouble>
   );
 };
 

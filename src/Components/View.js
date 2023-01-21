@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 const Container = styled.View`
   flex: 1;
   background-color: ${props =>
-    props.background || props.theme.colors.white_color};
+    props.background || props.theme.background_colors.layout_background_color};
 `;
 
 const Row = styled(Animated.View)`
