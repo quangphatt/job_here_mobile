@@ -27,6 +27,8 @@ const Button = styled(TouchPreventDouble)`
   border: 1px solid ${props => props.theme.colors.primary_color};
 `;
 
+const ButtonPreventDouble = TouchPreventDouble;
+
 const _ButtonChangeLanguage = ({ i18n }) => {
   const onChangeLanguage = () => {
     if (i18n.language === 'en') {
@@ -93,4 +95,4 @@ const ButtonChangeLanguage = withTranslation('translations')(
   _ButtonChangeLanguage
 );
 
-export default { Button, ButtonChangeLanguage };
+export default { Button, ButtonPreventDouble, ButtonChangeLanguage };

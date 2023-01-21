@@ -81,7 +81,7 @@ const SubBodyBold = styled(_Text)`
 `;
 
 const TextInput = styled.TextInput`
-  color: ${props => props.color || props.theme.colors.secondary_text_color};
+  color: ${props => props.color || props.theme.text_colors.secondary_text_color};
   font-size: ${props => size(props.type, props.theme)};
   font-family: ${props => fontFamily(props.type, props.bold)};
   padding: 0px;

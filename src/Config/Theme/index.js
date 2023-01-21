@@ -56,13 +56,15 @@ const theme = {
   },
   text_colors: {
     primary_text_color: '#F55742',
-    secondary_text_color: '#1D232E'
+    secondary_text_color: '#1D232E',
+    gray_text_color: '#7A7F9E'
   },
   border_colors: {
     primary_border_color: '#EEEEEE',
     secondary_border_color: '#CED4DA'
   },
   background_colors: {
+    layout_background_color: '#F7F7FF',
     page_background_color: '#E5E5E5',
     box_background_color: '#00B14F0D',
     item_background_color: '#E9F7EF'
