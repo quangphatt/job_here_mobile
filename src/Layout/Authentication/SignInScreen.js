@@ -10,7 +10,7 @@ import logo_title from '@Assets/Images/title_light.png';
 const SignInScreen = () => {
   const { t } = useTranslation();
   const [account, setAccount] = useState({ email: '', password: '' });
-  const [showPassword, setShowpPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [rememberPassword, setRememberPasswrod] = useState(false);
 
   const onChangeEmail = email => {
@@ -22,7 +22,7 @@ const SignInScreen = () => {
   };
 
   const onToggleShowPassword = () => {
-    setShowpPassword(!showPassword);
+    setShowPassword(!showPassword);
   };
 
   const onToggleRememberPassword = value => {
@@ -44,9 +44,9 @@ const SignInScreen = () => {
           <Image source={logo_title} style={{ width: 160, height: 27 }} />
         </View.Row>
         <View.Col style={{ alignItems: 'center', marginTop: 5 }}>
-          <Text.H2_Bold secondary>{t('Sign In')}</Text.H2_Bold>
-          <Text.Body fontSize={18} secondary>
-            {t('Sign in to continue.')}
+          <Text.H2_Bold secondary>{t('jh.signIn')}</Text.H2_Bold>
+          <Text.Body fontSize={16} secondary>
+            {t('jh.signInSub')}
           </Text.Body>
         </View.Col>
       </View.Col>
@@ -65,15 +65,16 @@ const SignInScreen = () => {
             fontSize={16}
             color={theme.text_colors.gray_text_color}
           >
-            {t('Email')}
+            {t('jh.email')}
           </Text.BodyBold>
           <View.Row style={styles.text_input_wrapper}>
-            <Icon.VectorIcon name={'person'} style={{ padding: 10 }} />
+            <Icon.VectorIcon name={'mail'} style={{ padding: 10 }} />
             <Text.TextInput
               value={account.email}
               onChangeText={onChangeEmail}
-              placeholder={t('Enter Email')}
+              placeholder={t('jh.emailPlaceholder')}
               style={styles.text_input}
+              keyboardType={'email-address'}
             />
           </View.Row>
         </View.Col>
@@ -82,14 +83,14 @@ const SignInScreen = () => {
             fontSize={16}
             color={theme.text_colors.gray_text_color}
           >
-            {t('Password')}
+            {t('jh.password')}
           </Text.BodyBold>
           <View.Row style={styles.text_input_wrapper}>
             <Icon.VectorIcon name={'ios-lock-closed'} style={{ padding: 10 }} />
             <Text.TextInput
               value={account.password}
               onChangeText={onChangePassword}
-              placeholder={t('Enter Password')}
+              placeholder={t('jh.passwordPlaceholder')}
               secureTextEntry={!showPassword}
               style={[styles.text_input, { paddingRight: 36 }]}
             />
@@ -107,19 +108,21 @@ const SignInScreen = () => {
             value={rememberPassword}
             onValueChange={onToggleRememberPassword}
           />
-          <Text.BodyBold secondary>{t('Remember Password')}</Text.BodyBold>
+          <Text.BodyBold secondary>{t('jh.remembherPassword')}</Text.BodyBold>
         </View.Row>
         <View.Col style={{ marginTop: '5%' }}>
           <Button.Button onPress={onPressSignIn}>
-            <Text.Body>{t('Sign In')}</Text.Body>
+            <Text.Body style={{ textTransform: 'uppercase' }}>
+              {t('jh.signIn')}
+            </Text.Body>
           </Button.Button>
         </View.Col>
       </View.Col>
 
       <View.Row style={{ justifyContent: 'center', marginTop: '4%' }}>
-        <Text.Body secondary>{t("Don't have an account? ")}</Text.Body>
+        <Text.Body secondary>{t('jh.noAccount')}</Text.Body>
         <Button.ButtonPreventDouble onPress={onPressSignUp}>
-          <Text.BodyBold primary>{t('Sign Up Now')}</Text.BodyBold>
+          <Text.BodyBold primary>{t('jh.signUpNow')}</Text.BodyBold>
         </Button.ButtonPreventDouble>
       </View.Row>
     </View.Container>
