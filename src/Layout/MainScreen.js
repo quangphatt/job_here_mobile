@@ -4,10 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import alert from '@Alert';
 import Global from '@Global';
 import SignInScreen from './Authentication/SignInScreen';
+import SignUpScreen from './Authentication/SignUpScreen';
 import { useTranslation } from 'react-i18next';
 
 const MainScreen = () => {
-  return <SignInScreen />;
+  return <SignUpScreen />;
 };
 
 export default MainScreen;

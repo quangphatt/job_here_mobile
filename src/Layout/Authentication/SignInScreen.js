@@ -10,7 +10,7 @@ import logo_title from '@Assets/Images/title_light.png';
 const SignInScreen = () => {
   const { t } = useTranslation();
   const [account, setAccount] = useState({ email: '', password: '' });
-  const [showPassword, setShowpPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [rememberPassword, setRememberPasswrod] = useState(false);
 
   const onChangeEmail = email => {
@@ -22,7 +22,7 @@ const SignInScreen = () => {
   };
 
   const onToggleShowPassword = () => {
-    setShowpPassword(!showPassword);
+    setShowPassword(!showPassword);
   };
 
   const onToggleRememberPassword = value => {
@@ -68,12 +68,13 @@ const SignInScreen = () => {
             {t('jh.email')}
           </Text.BodyBold>
           <View.Row style={styles.text_input_wrapper}>
-            <Icon.VectorIcon name={'person'} style={{ padding: 10 }} />
+            <Icon.VectorIcon name={'mail'} style={{ padding: 10 }} />
             <Text.TextInput
               value={account.email}
               onChangeText={onChangeEmail}
               placeholder={t('jh.emailPlaceholder')}
               style={styles.text_input}
+              keyboardType={'email-address'}
             />
           </View.Row>
         </View.Col>

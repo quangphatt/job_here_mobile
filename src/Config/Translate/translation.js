@@ -9,7 +9,20 @@ export const en = {
   'jh.passwordPlaceholder': 'Enter Password',
   'jh.remembherPassword': 'Remember Password',
   'jh.noAccount': "Don't have an account? ",
-  'jh.signUpNow': 'Sign Up Now'
+  'jh.signUpNow': 'Sign Up Now',
+  'jh.signUp': 'Sign Up',
+  'jh.signUpSub': 'Get your Job Here account now.',
+  'jh.displayName': 'Display Name',
+  'jh.displayNamePlaceholder': 'Enter Display Name',
+  'jh.rePassword': 'Re-Password',
+  'jh.rePasswordPlaceholder': 'Re-Enter Password',
+  'jh.dateOfBirth': 'Date Of Birth',
+  'jh.phoneNumber': 'Phone Number',
+  'jh.phoneNumberPlaceholder': 'Enter Phone Number',
+  'jh.haveAccount': 'Already have an account? ',
+  'jh.signInNow': 'Sign In Now',
+  'jh.agreeTermOfService': "By registering you agree to the Job Here's ",
+  'jh.termOfService': 'Term Of Service'
 };
 
 export const vn = {
@@ -22,6 +35,19 @@ export const vn = {
   'jh.password': 'Mật khẩu',
   'jh.passwordPlaceholder': 'Nhập Mật khẩu',
   'jh.remembherPassword': 'Nhớ Mật khẩu',
-  'jh.noAccount': "Bạn chưa có tài khoản? ",
-  'jh.signUpNow': 'Đăng Ký Ngay'
+  'jh.noAccount': 'Bạn chưa có tài khoản? ',
+  'jh.signUpNow': 'Đăng Ký Ngay',
+  'jh.signUp': 'Đăng Ký',
+  'jh.signUpSub': 'Đăng ký tài khoản Job Here ngay hôm nay.',
+  'jh.displayName': 'Tên Hiển Thị',
+  'jh.displayNamePlaceholder': 'Nhập Tên Hiển Thị',
+  'jh.rePassword': 'Xác Nhận Mật Khẩu',
+  'jh.rePasswordPlaceholder': 'Nhập Lại Mật Khẩu',
+  'jh.dateOfBirth': 'Ngày Sinh',
+  'jh.phoneNumber': 'Số Điện Thoại',
+  'jh.phoneNumberPlaceholder': 'Nhập Số Điện Thoại',
+  'jh.haveAccount': 'Bạn đã có tài khoản? ',
+  'jh.signInNow': 'Đăng Nhập Ngay',
+  'jh.agreeTermOfService': 'Bằng việc đăng ký bạn đã đồng ý với ',
+  'jh.termOfService': 'Điều Khoản Dịch Vụ'
 };
