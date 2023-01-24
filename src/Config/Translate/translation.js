@@ -14,7 +14,7 @@ export const en = {
   'jh.signUpSub': 'Get your Job Here account now.',
   'jh.displayName': 'Display Name',
   'jh.displayNamePlaceholder': 'Enter Display Name',
-  'jh.rePassword': 'Re-Password',
+  'jh.rePassword': 'Confirm Password',
   'jh.rePasswordPlaceholder': 'Re-Enter Password',
   'jh.dateOfBirth': 'Date Of Birth',
   'jh.phoneNumber': 'Phone Number',
@@ -22,7 +22,14 @@ export const en = {
   'jh.haveAccount': 'Already have an account? ',
   'jh.signInNow': 'Sign In Now',
   'jh.agreeTermOfService': "By registering you agree to the Job Here's ",
-  'jh.termOfService': 'Term Of Service'
+  'jh.termOfService': 'Term Of Service',
+  'jh.authCode': 'Authentication Code',
+  'jh.authCodeSub':
+    'Enter Authentication Code which has been sent to your email!',
+  'jh.authCodePlaceholder': 'Enter Authentication Code',
+  'jh.submit': 'Submit',
+  'jh.noSent': "Didn't receiver authentication code? ",
+  'jh.resend': 'Resend'
 };
 
 export const vn = {
@@ -49,5 +56,11 @@ export const vn = {
   'jh.haveAccount': 'Bạn đã có tài khoản? ',
   'jh.signInNow': 'Đăng Nhập Ngay',
   'jh.agreeTermOfService': 'Bằng việc đăng ký bạn đã đồng ý với ',
-  'jh.termOfService': 'Điều Khoản Dịch Vụ'
+  'jh.termOfService': 'Điều Khoản Dịch Vụ',
+  'jh.authCode': 'Mã Xác Thực',
+  'jh.authCodeSub': 'Nhập Mã Xác Thực đã được gửi đến email của bạn!',
+  'jh.authCodePlaceholder': 'Nhập Mã Xác Thực',
+  'jh.submit': 'Xác Nhận',
+  'jh.noSent': 'Chưa nhận được Mã Xác Thực? ',
+  'jh.resend': 'Gửi lại'
 };
