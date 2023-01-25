@@ -29,7 +29,10 @@ export const en = {
   'jh.authCodePlaceholder': 'Enter Authentication Code',
   'jh.submit': 'Submit',
   'jh.noSent': "Didn't receiver authentication code? ",
-  'jh.resend': 'Resend'
+  'jh.resend': 'Resend',
+  'jh.deadline': 'Deadline',
+  'jh.applyNow': 'Apply Now',
+  'jh.saveJob': 'Save Job'
 };
 
 export const vn = {
@@ -62,5 +65,8 @@ export const vn = {
   'jh.authCodePlaceholder': 'Nhập Mã Xác Thực',
   'jh.submit': 'Xác Nhận',
   'jh.noSent': 'Chưa nhận được Mã Xác Thực? ',
-  'jh.resend': 'Gửi lại'
+  'jh.resend': 'Gửi lại',
+  'jh.deadline': 'Hạn Cuối',
+  'jh.applyNow': 'Ứng Tuyển Ngay',
+  'jh.saveJob': 'Lưu Việc Làm'
 };
