@@ -66,8 +66,8 @@ const theme = {
   background_colors: {
     layout_background_color: '#F7F7FF',
     page_background_color: '#E5E5E5',
-    box_background_color: '#00B14F0D',
-    item_background_color: '#E9F7EF'
+    box_background_color: '#00B14F0E',
+    item_background_color: '#E3D8D8'
   },
   font_size: {
     x_small: normalize_font_size().x_small,
