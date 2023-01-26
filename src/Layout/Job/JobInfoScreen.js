@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ScrollView } from 'react-native';
 import { View, Text, Button, Icon, Common } from '@Components';
 import { JobHeader, JobInfo, JobShare } from '@Components/Job';
 import { useTranslation } from 'react-i18next';
@@ -35,7 +36,27 @@ const _testData = {
   createdDate: '2022-12-29T21:21:36.691+07:00',
   gender: 'MALE',
   amount: 10,
-  active: true
+  active: true,
+  unitName: '$',
+  experienceNames: [
+    {
+      experience: 'NO_EXPERIENCE',
+      experienceName: 'No Experience'
+    }
+  ],
+  jobTypeNames: [
+    {
+      jobType: 'PARTTIME',
+      jobTypeName: 'Part-Time'
+    },
+    {
+      jobType: 'FULLTIME',
+      jobTypeName: 'Full-Time'
+    }
+  ],
+  cityName: 'Ho Chi Minh',
+  titleName: 'Employee',
+  genderName: 'Male'
 };
 
 const JobInfoScreen = () => {
@@ -47,7 +68,7 @@ const JobInfoScreen = () => {
   const onPressShare = () => {};
 
   return (
-    <View.Col>
+    <ScrollView stickyHeaderIndices={[0]}>
       <Common.Header
         title={jobData.jobName}
         actionLeft={onPressBack}
@@ -56,7 +77,7 @@ const JobInfoScreen = () => {
       />
       <JobHeader jobData={jobData} />
       <JobInfo jobData={jobData} />
-    </View.Col>
+    </ScrollView>
   );
 };
 

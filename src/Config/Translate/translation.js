@@ -32,7 +32,21 @@ export const en = {
   'jh.resend': 'Resend',
   'jh.deadline': 'Deadline',
   'jh.applyNow': 'Apply Now',
-  'jh.saveJob': 'Save Job'
+  'jh.saveJob': 'Save Job',
+  'jh.jobDetail': 'Job Detail',
+  'jh.commonInformation': 'Common Information',
+  'jh.salary': 'Salary',
+  'jh.amount': 'Amount',
+  'jh.jobType': 'Job Type',
+  'jh.level': 'Level',
+  'jh.gender': 'Gender',
+  'jh.experience': 'Experience',
+  'jh.skill': 'Skill',
+  'jh.region': 'Region',
+  'jh.workAddress': 'Work Address',
+  'jh.jobDescription': 'Job Description',
+  'jh.require': 'Require',
+  'jh.benefit': 'Benefit'
 };
 
 export const vn = {
@@ -68,5 +82,19 @@ export const vn = {
   'jh.resend': 'Gửi lại',
   'jh.deadline': 'Hạn Cuối',
   'jh.applyNow': 'Ứng Tuyển Ngay',
-  'jh.saveJob': 'Lưu Việc Làm'
+  'jh.saveJob': 'Lưu Việc Làm',
+  'jh.jobDetail': 'Chi Tiết Công Việc',
+  'jh.commonInformation': 'Thông Tin Chung',
+  'jh.salary': 'Lương',
+  'jh.amount': 'Số Lượng',
+  'jh.jobType': 'Hình Thức Làm Việc',
+  'jh.level': 'Trình Độ',
+  'jh.gender': 'Giới Tính',
+  'jh.experience': 'Kinh Nghiệm',
+  'jh.skill': 'Kỹ Năng',
+  'jh.region': 'Khu Vực',
+  'jh.workAddress': 'Địa Chỉ Làm Việc',
+  'jh.jobDescription': 'Mô Tả Công Việc',
+  'jh.require': 'Yêu Cầu',
+  'jh.benefit': 'Quyền Lợi'
 };

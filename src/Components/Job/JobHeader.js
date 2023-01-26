@@ -41,7 +41,7 @@ const JobHeader = ({ jobData }) => {
       </View.Row>
       <View.Row
         style={{
-          paddingHorizontal: 16,
+          paddingHorizontal: 10,
           paddingBottom: 10,
           justifyContent: 'center'
         }}
@@ -55,7 +55,7 @@ const JobHeader = ({ jobData }) => {
             {t('jh.applyNow')}
           </Text.BodyBold>
         </Button.Button>
-        <View.Row style={{ width: 16 }} />
+        <View.Row style={{ width: 10 }} />
         <Button.Button secondary style={{ flex: 1 }}>
           <Icon.VectorIcon
             name={'heart-outline'}

@@ -82,7 +82,7 @@ const Header = ({
 const RenderHTMLJobHere = styled(RenderHTML).attrs(props => ({
   baseStyle: {
     fontFamily: 'BeVietnam-Light',
-    color: props.theme.colors.item_text,
+    color: props.theme.text_colors.secondary_text_color,
     fontSize: props.theme.font_size.medium,
     ...props.baseStyle
   },
