@@ -46,7 +46,10 @@ export const en = {
   'jh.workAddress': 'Work Address',
   'jh.jobDescription': 'Job Description',
   'jh.require': 'Require',
-  'jh.benefit': 'Benefit'
+  'jh.benefit': 'Benefit',
+  'jh.shareJob': 'Share Job',
+  'jh.copyLink': 'Copy Link',
+  'jh.shareSocial': 'Share By Social Media'
 };
 
 export const vn = {
@@ -96,5 +99,8 @@ export const vn = {
   'jh.workAddress': 'Địa Chỉ Làm Việc',
   'jh.jobDescription': 'Mô Tả Công Việc',
   'jh.require': 'Yêu Cầu',
-  'jh.benefit': 'Quyền Lợi'
+  'jh.benefit': 'Quyền Lợi',
+  'jh.shareJob': 'Chia Sẻ Việc Làm',
+  'jh.copyLink': 'Sao Chép Liên Kết',
+  'jh.shareSocial': 'Chia Sẻ Qua Mạng Xã Hội'
 };

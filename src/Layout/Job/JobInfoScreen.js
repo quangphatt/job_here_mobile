@@ -65,7 +65,13 @@ const JobInfoScreen = () => {
 
   const onPressBack = () => {};
 
-  const onPressShare = () => {};
+  const onPressShare = () => {
+    Global._showModal({
+      label: t('jh.shareJob'),
+      closeOnOverlayTap: true,
+      component: <JobShare path={`/Job/${jobData.jobId}`} />
+    });
+  };
 
   return (
     <ScrollView stickyHeaderIndices={[0]}>
