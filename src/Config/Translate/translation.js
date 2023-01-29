@@ -49,7 +49,9 @@ export const en = {
   'jh.benefit': 'Benefit',
   'jh.shareJob': 'Share Job',
   'jh.copyLink': 'Copy Link',
-  'jh.shareSocial': 'Share By Social Media'
+  'jh.shareSocial': 'Share By Social Media',
+  'jh.update': 'Update',
+  'jh.dayAgo': 'days ago'
 };
 
 export const vn = {
@@ -102,5 +104,7 @@ export const vn = {
   'jh.benefit': 'Quyền Lợi',
   'jh.shareJob': 'Chia Sẻ Việc Làm',
   'jh.copyLink': 'Sao Chép Liên Kết',
-  'jh.shareSocial': 'Chia Sẻ Qua Mạng Xã Hội'
+  'jh.shareSocial': 'Chia Sẻ Qua Mạng Xã Hội',
+  'jh.update': 'Cập nhật',
+  'jh.dayAgo': 'ngày trước'
 };

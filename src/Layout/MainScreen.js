@@ -6,10 +6,11 @@ import Global from '@Global';
 import SignUpScreen from './Authentication/SignUpScreen';
 import AuthenticationCodeScreen from './Authentication/AuthenticationCodeScreen';
 import JobInfoScreen from './Job/JobInfoScreen';
+import CompanyInfoScreen from './Company/CompanyInfoScreen';
 import { useTranslation } from 'react-i18next';
 
 const MainScreen = () => {
-  return <JobInfoScreen />;
+  return <CompanyInfoScreen />;
 };
 
 export default MainScreen;
