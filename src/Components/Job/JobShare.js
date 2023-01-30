@@ -10,7 +10,7 @@ import twitter_img from '@Assets/Images/twitter.png';
 
 const SOCIAL_SIZE = 44;
 
-const JobShare = ({ path = '' }) => {
+const JobShare = ({ path = '', company = false }) => {
   const { t } = useTranslation();
   const host = 'jobhere.tech';
   let url = host + path;

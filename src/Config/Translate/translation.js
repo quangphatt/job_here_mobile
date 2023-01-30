@@ -51,7 +51,8 @@ export const en = {
   'jh.copyLink': 'Copy Link',
   'jh.shareSocial': 'Share By Social Media',
   'jh.update': 'Update',
-  'jh.dayAgo': 'days ago'
+  'jh.dayAgo': 'days ago',
+  'jh.shareCompany': 'Share Company'
 };
 
 export const vn = {
@@ -106,5 +107,6 @@ export const vn = {
   'jh.copyLink': 'Sao Chép Liên Kết',
   'jh.shareSocial': 'Chia Sẻ Qua Mạng Xã Hội',
   'jh.update': 'Cập nhật',
-  'jh.dayAgo': 'ngày trước'
+  'jh.dayAgo': 'ngày trước',
+  'jh.shareCompany': 'Chia Sẻ Công Ty'
 };
