@@ -51,7 +51,12 @@ export const en = {
   'jh.copyLink': 'Copy Link',
   'jh.shareSocial': 'Share By Social Media',
   'jh.update': 'Update',
-  'jh.dayAgo': 'days ago'
+  'jh.dayAgo': 'days ago',
+  'jh.shareCompany': 'Share Company',
+  'jh.dayApplyRemain1': '',
+  'jh.dayApplyRemain2': 'days left to apply',
+  'jh.companyIntroduction': 'Company Introduction',
+  'jh.recruit': 'Recruit'
 };
 
 export const vn = {
@@ -106,5 +111,10 @@ export const vn = {
   'jh.copyLink': 'Sao Chép Liên Kết',
   'jh.shareSocial': 'Chia Sẻ Qua Mạng Xã Hội',
   'jh.update': 'Cập nhật',
-  'jh.dayAgo': 'ngày trước'
+  'jh.dayAgo': 'ngày trước',
+  'jh.shareCompany': 'Chia Sẻ Công Ty',
+  'jh.dayApplyRemain1': 'Còn ',
+  'jh.dayApplyRemain2': 'ngày để ứng tuyển',
+  'jh.companyIntroduction': 'Giới Thiệu Công Ty',
+  'jh.recruit': 'Tuyển Dụng'
 };
