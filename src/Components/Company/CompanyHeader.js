@@ -47,7 +47,12 @@ const CompanyHeader = ({ companyData }) => {
             }}
           />
         </View.Col>
-        <View.Col style={{ marginLeft: (AVATAR_SIZE * 5) / 4 + 3 * 2 + 10 }}>
+        <View.Col
+          style={{
+            marginLeft: (AVATAR_SIZE * 5) / 4 + 3 * 2 + 10,
+            paddingBottom: 5
+          }}
+        >
           <Text.BodyBold secondary fontSize={19}>
             {companyData.companyName}
           </Text.BodyBold>
