@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.swmansion.rnscreens.RNScreensPackage;
 import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
 import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -25,7 +26,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Arrays;
 import com.facebook.react.shell.MainReactPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -40,6 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new RNScreensPackage(),
             new RNDateTimePickerPackage(),
             new ReactCheckBoxPackage(),
             new RNDeviceInfo(),
@@ -50,8 +51,7 @@ public class MainApplication extends Application implements ReactApplication {
             new AsyncStoragePackage(),
             new VectorIconsPackage(),
             new SafeAreaContextPackage(),
-            new RNGestureHandlerPackage(),
-            new SplashScreenReactPackage()  //here
+            new RNGestureHandlerPackage()
             );
         }
 
