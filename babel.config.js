@@ -14,8 +14,10 @@ module.exports = {
           '@Provider': './src/Config/Provider',
           '@Global': './src/Config/Provider/GlobalContextProvider',
           '@Theme': './src/Config/Theme',
-          '@Layout': './src/Layout',
-          '@Navigation': './src/Navigation'
+          '@Navigation': './src/Navigation',
+          '@NavigationAction':
+            './src/Navigation/DrawerNavigation/NavigationAction.js',
+          '@Screen': './src/Screen'
         }
       }
     ],
