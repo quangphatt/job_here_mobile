@@ -66,7 +66,7 @@ const AuthenticationCodeScreen = () => {
           </View.Row>
         </View.Col>
         <View.Col style={{ marginTop: '5%' }}>
-          <Button.Button onPress={onSubmit}>
+          <Button.Button onPress={onSubmit} disabled={!authCode}>
             <Text.Body style={{ textTransform: 'uppercase' }}>
               {t('jh.submit')}
             </Text.Body>

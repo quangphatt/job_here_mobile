@@ -11,7 +11,7 @@ import { withTranslation } from 'react-i18next';
 import vi_icon from '@Assets/Images/vi_icon.png';
 import en_icon from '@Assets/Images/en_icon.png';
 
-const ButtonPreventDouble = (TouchableOpacity);
+const ButtonPreventDouble = preventDoubleClick(TouchableOpacity);
 
 const Button = styled(ButtonPreventDouble)`
   display: flex;
@@ -22,9 +22,15 @@ const Button = styled(ButtonPreventDouble)`
   background: ${props =>
     props.secondary
       ? props.theme.colors.white_color
+      : props.disabled
+      ? props.theme.colors.dark_gray_color
       : props.theme.colors.primary_color};
   border-radius: 5px;
-  border: 1px solid ${props => props.theme.colors.primary_color};
+  border: 1px solid
+    ${props =>
+      props.disabled
+        ? props.theme.colors.dark_gray_color
+        : props.theme.colors.primary_color};
 `;
 
 const _ButtonChangeLanguage = ({ i18n }) => {

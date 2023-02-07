@@ -245,7 +245,16 @@ const SignUpScreen = () => {
             </View.Row>
           </View.Col>
           <View.Col style={{ marginTop: '5%' }}>
-            <Button.Button onPress={onPressSignUp}>
+            <Button.Button
+              onPress={onPressSignUp}
+              disabled={
+                !account.email ||
+                !account.displayName ||
+                !account.password ||
+                !account.rePassword ||
+                !account.phoneNumber
+              }
+            >
               <Text.Body style={{ textTransform: 'uppercase' }}>
                 {t('jh.signUp')}
               </Text.Body>

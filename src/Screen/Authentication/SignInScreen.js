@@ -111,7 +111,10 @@ const SignInScreen = () => {
           <Text.BodyBold secondary>{t('jh.remembherPassword')}</Text.BodyBold>
         </View.Row>
         <View.Col style={{ marginTop: '5%' }}>
-          <Button.Button onPress={onPressSignIn}>
+          <Button.Button
+            onPress={onPressSignIn}
+            disabled={!account.email || !account.password}
+          >
             <Text.Body style={{ textTransform: 'uppercase' }}>
               {t('jh.signIn')}
             </Text.Body>
