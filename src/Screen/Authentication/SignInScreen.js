@@ -3,29 +3,30 @@ import { StyleSheet, Image } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { View, Text, Button, Icon } from '@Components';
 import theme from '@Theme';
+import { withGlobalContext } from '@Global';
 import { useTranslation } from 'react-i18next';
 import logo from '@Assets/Images/logo_no_text.png';
 import logo_title from '@Assets/Images/title_light.png';
 
-const SignInScreen = () => {
+const SignInScreen = (props) => {
   const { t } = useTranslation();
   const [account, setAccount] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberPassword, setRememberPasswrod] = useState(false);
 
-  const onChangeEmail = email => {
-    setAccount(prev => ({ ...prev, email }));
+  const onChangeEmail = (email) => {
+    setAccount((prev) => ({ ...prev, email }));
   };
 
-  const onChangePassword = password => {
-    setAccount(prev => ({ ...prev, password }));
+  const onChangePassword = (password) => {
+    setAccount((prev) => ({ ...prev, password }));
   };
 
   const onToggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const onToggleRememberPassword = value => {
+  const onToggleRememberPassword = (value) => {
     setRememberPasswrod(value);
   };
 
@@ -150,4 +151,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignInScreen;
+export default withGlobalContext(SignInScreen);

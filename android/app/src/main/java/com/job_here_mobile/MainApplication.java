@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.lottie.LottiePackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;
 import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;
@@ -40,6 +42,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new LottiePackage(),
+            new SplashScreenReactPackage(),
             new RNScreensPackage(),
             new RNDateTimePickerPackage(),
             new ReactCheckBoxPackage(),

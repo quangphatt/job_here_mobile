@@ -99,7 +99,7 @@ const JobInfo = ({ jobData }) => {
                 {t('jh.jobType')}
               </Text.BodyBold>
               <TagList
-                tagData={_.map(jobData.jobTypeNames, item => ({
+                tagData={_.map(jobData.jobTypeNames, (item) => ({
                   label: item.jobTypeName
                 }))}
               />
@@ -154,7 +154,7 @@ const JobInfo = ({ jobData }) => {
                 {t('jh.experience')}
               </Text.BodyBold>
               <TagList
-                tagData={_.map(jobData.experienceNames, item => ({
+                tagData={_.map(jobData.experienceNames, (item) => ({
                   label: item.experienceName
                 }))}
               />
@@ -175,7 +175,7 @@ const JobInfo = ({ jobData }) => {
                 {t('jh.skill')}
               </Text.BodyBold>
               <TagList
-                tagData={_.map(jobData.jobSkills, item => ({
+                tagData={_.map(jobData.jobSkills, (item) => ({
                   label: item.skillName
                 }))}
               />

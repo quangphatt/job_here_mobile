@@ -12,7 +12,7 @@ const AuthenticationCodeScreen = () => {
   const { t } = useTranslation();
   const [authCode, setAuthCode] = useState('');
 
-  const onChangeAuthCode = authCode => {
+  const onChangeAuthCode = (authCode) => {
     setAuthCode(authCode);
   };
 
