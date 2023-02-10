@@ -43,6 +43,10 @@ target 'job_here_mobile' do
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'job_here_mobileTests' do
     inherit! :complete
     # Pods for testing

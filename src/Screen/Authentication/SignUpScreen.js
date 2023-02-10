@@ -23,32 +23,32 @@ const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
 
-  const onChangeEmail = email => {
-    setAccount(prev => ({ ...prev, email }));
+  const onChangeEmail = (email) => {
+    setAccount((prev) => ({ ...prev, email }));
   };
 
-  const onChangeDisplayName = displayName => {
-    setAccount(prev => ({ ...prev, displayName }));
+  const onChangeDisplayName = (displayName) => {
+    setAccount((prev) => ({ ...prev, displayName }));
   };
 
-  const onChangePassword = password => {
-    setAccount(prev => ({ ...prev, password }));
+  const onChangePassword = (password) => {
+    setAccount((prev) => ({ ...prev, password }));
   };
 
-  const onChangeRePassword = rePassword => {
-    setAccount(prev => ({ ...prev, rePassword }));
+  const onChangeRePassword = (rePassword) => {
+    setAccount((prev) => ({ ...prev, rePassword }));
   };
 
   const onChangeDateOfBirth = (event, selectedDate) => {
     Global._hideModal();
-    setAccount(prev => ({
+    setAccount((prev) => ({
       ...prev,
       dateOfBirth: moment(selectedDate, 'MM-DD-YYYY').format('YYYY/MM/DD')
     }));
   };
 
-  const onChangePhoneNumber = phoneNumber => {
-    setAccount(prev => ({ ...prev, phoneNumber }));
+  const onChangePhoneNumber = (phoneNumber) => {
+    setAccount((prev) => ({ ...prev, phoneNumber }));
   };
 
   const onToggleShowPassword = () => {
