@@ -3,14 +3,14 @@ import { Dimensions } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { withGlobalContext } from '@Global';
 import AuthenticationNavigation from '@Navigation/AuthenticationNavigation/AuthenticationNavigation';
-import BottomNavigation from './BottomNavigation';
+import BottomNavigation from './BottomNavigation/BottomNavigation';
 import DrawerContent from './DrawerContent';
 
 const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigation = props => {
-  const renderDrawerContent = props => {
+const DrawerNavigation = (props) => {
+  const renderDrawerContent = (props) => {
     return <DrawerContent {...props} />;
   };
 

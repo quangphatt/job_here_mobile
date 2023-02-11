@@ -58,7 +58,11 @@ export const en = {
   'jh.companyIntroduction': 'Company Introduction',
   'jh.recruit': 'Recruit',
   'jh.loading': 'Loading...',
-  'jh.signOut': 'Sign Out'
+  'jh.signOut': 'Sign Out',
+  'jh.home': 'Home',
+  'jh.message': 'Message',
+  'jh.notifycation': 'Notifycation',
+  'jh.personal': 'Personal'
 };
 
 export const vn = {
@@ -120,5 +124,9 @@ export const vn = {
   'jh.companyIntroduction': 'Giới Thiệu Công Ty',
   'jh.recruit': 'Tuyển Dụng',
   'jh.loading': 'Đang Tải...',
-  'jh.signOut': 'Đăng Xuất'
+  'jh.signOut': 'Đăng Xuất',
+  'jh.home': 'Trang Chủ',
+  'jh.message': 'Tin Nhắn',
+  'jh.notifycation': 'Thông Báo',
+  'jh.personal': 'Cá Nhân'
 };
