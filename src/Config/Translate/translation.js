@@ -57,7 +57,8 @@ export const en = {
   'jh.dayApplyRemain2': 'days left to apply',
   'jh.companyIntroduction': 'Company Introduction',
   'jh.recruit': 'Recruit',
-  'jh.loading': 'Loading...'
+  'jh.loading': 'Loading...',
+  'jh.signOut': 'Sign Out'
 };
 
 export const vn = {
@@ -118,5 +119,6 @@ export const vn = {
   'jh.dayApplyRemain2': 'ngày để ứng tuyển',
   'jh.companyIntroduction': 'Giới Thiệu Công Ty',
   'jh.recruit': 'Tuyển Dụng',
-  'jh.loading': 'Đang Tải...'
+  'jh.loading': 'Đang Tải...',
+  'jh.signOut': 'Đăng Xuất'
 };

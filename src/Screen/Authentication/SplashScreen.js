@@ -5,12 +5,19 @@ import Theme from '@Theme';
 import AutoHeightImage from 'react-native-auto-height-image';
 import Lottie from 'lottie-react-native';
 import { useTranslation } from 'react-i18next';
+import { navigate } from '@NavigationAction';
 import splash_img from '@Assets/Images/launch_screen.png';
 
 const { width } = Dimensions.get('window');
 
 const SplashScreen = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('SignInScreen');
+    }, 1000);
+  }, []);
 
   return (
     <View.Container

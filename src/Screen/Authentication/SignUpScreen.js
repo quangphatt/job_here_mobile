@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Image, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { View, Text, Button, Icon } from '@Components';
+import AutoHeightImage from 'react-native-auto-height-image';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import theme from '@Theme';
 import { useTranslation } from 'react-i18next';
-import logo from '@Assets/Images/logo_no_text.png';
-import logo_title from '@Assets/Images/title_light.png';
 import Global from '@Global';
+import { navigate } from '@NavigationAction';
+import logo_group from '@Assets/Images/logo_group.png';
 
 moment.suppressDeprecationWarnings = true;
 
@@ -75,22 +76,24 @@ const SignUpScreen = () => {
     });
   };
 
-  const onPressSignUp = async () => {};
+  const onPressSignUp = async () => {
+    navigate('AuthenticationCodeScreen');
+  };
 
-  const onPressSignIn = () => {};
+  const onPressSignIn = () => {
+    navigate('SignInScreen');
+  };
 
-  const onPressTermOfService = () => {};
+  const onPressTermOfService = () => {
+    navigate('CommonAppNavigation', { screen: 'TermOfServiceScreen' });
+  };
 
   return (
     <View.Container>
       <ScrollView>
         <View.Col style={{ alignItems: 'center', marginTop: '8%' }}>
           <View.Row style={{ alignItems: 'center' }}>
-            <Image
-              source={logo}
-              style={{ width: 42, height: 42, marginRight: 5 }}
-            />
-            <Image source={logo_title} style={{ width: 160, height: 27 }} />
+            <AutoHeightImage source={logo_group} width={200} />
           </View.Row>
           <View.Col style={{ alignItems: 'center', marginTop: 5 }}>
             <Text.H2_Bold secondary>{t('jh.signUp')}</Text.H2_Bold>
