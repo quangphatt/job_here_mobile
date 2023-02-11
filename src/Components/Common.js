@@ -14,8 +14,8 @@ import { preventDoubleClick } from '@Config/Common';
 const TouchPreventDouble = preventDoubleClick(TouchableOpacity);
 
 const HeaderContainer = styled(View.Row)`
-  height: ${props => props.theme.size.header_height}px;
-  background-color: ${props =>
+  height: ${(props) => props.theme.size.header_height}px;
+  background-color: ${(props) =>
     props.background || props.theme.colors.primary_color};
   padding: 0px 12px 0px 12px;
 `;
@@ -63,23 +63,24 @@ const Header = ({
             {title}
           </Text.BodyBold>
         </HeaderCenter>
-        {iconRight ? (
-          <HeaderRight
-            onPress={typeof actionRight === 'function' ? actionRight : () => {}}
-          >
-            <Icon.VectorIcon
-              name={iconRight}
-              size={24}
-              color={Theme.colors.white_color}
-            />
-          </HeaderRight>
-        ) : null}
+        <HeaderRight
+          onPress={typeof actionRight === 'function' ? actionRight : () => {}}
+          disabled={!iconRight}
+        >
+          <Icon.VectorIcon
+            name={iconRight || 'arrow-back'}
+            size={24}
+            color={
+              iconRight ? Theme.colors.white_color : Theme.colors.primary_color
+            }
+          />
+        </HeaderRight>
       </HeaderContainer>
     </SafeAreaView>
   );
 };
 
-const RenderHTMLJobHere = styled(RenderHTML).attrs(props => ({
+const RenderHTMLJobHere = styled(RenderHTML).attrs((props) => ({
   baseStyle: {
     fontFamily: 'BeVietnam-Light',
     color: props.theme.text_colors.secondary_text_color,

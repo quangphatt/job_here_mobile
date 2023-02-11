@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Image, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { View, Text, Button, Icon } from '@Components';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import AutoHeightImage from 'react-native-auto-height-image';
 import theme from '@Theme';
 import { useTranslation } from 'react-i18next';
-import logo from '@Assets/Images/logo_no_text.png';
-import logo_title from '@Assets/Images/title_light.png';
-import Global from '@Global';
+import { navigate } from '@NavigationAction';
+import logo_group from '@Assets/Images/logo_group.png';
 
 const AuthenticationCodeScreen = () => {
   const { t } = useTranslation();
@@ -16,7 +15,9 @@ const AuthenticationCodeScreen = () => {
     setAuthCode(authCode);
   };
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    navigate('SignInScreen');
+  };
 
   const onPressResend = () => {};
 
@@ -24,11 +25,7 @@ const AuthenticationCodeScreen = () => {
     <View.Container>
       <View.Col style={{ alignItems: 'center', marginTop: '8%' }}>
         <View.Row style={{ alignItems: 'center' }}>
-          <Image
-            source={logo}
-            style={{ width: 42, height: 42, marginRight: 5 }}
-          />
-          <Image source={logo_title} style={{ width: 160, height: 27.2 }} />
+          <AutoHeightImage source={logo_group} width={200} />
         </View.Row>
         <View.Col style={{ alignItems: 'center', marginTop: 5 }}>
           <Text.H2_Bold secondary>{t('jh.authCode')}</Text.H2_Bold>

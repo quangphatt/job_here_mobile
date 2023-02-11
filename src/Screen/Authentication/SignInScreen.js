@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { View, Text, Button, Icon } from '@Components';
+import AutoHeightImage from 'react-native-auto-height-image';
 import theme from '@Theme';
 import { withGlobalContext } from '@Global';
 import { useTranslation } from 'react-i18next';
-import logo from '@Assets/Images/logo_no_text.png';
-import logo_title from '@Assets/Images/title_light.png';
+import { navigate } from '@NavigationAction';
+import logo_group from '@Assets/Images/logo_group.png';
 
 const SignInScreen = (props) => {
   const { t } = useTranslation();
@@ -30,19 +31,19 @@ const SignInScreen = (props) => {
     setRememberPasswrod(value);
   };
 
-  const onPressSignUp = () => {};
+  const onPressSignUp = () => {
+    navigate('SignUpScreen');
+  };
 
-  const onPressSignIn = async () => {};
+  const onPressSignIn = async () => {
+    props.global.updateState('isSignIn', true);
+  };
 
   return (
     <View.Container>
       <View.Col style={{ alignItems: 'center', marginTop: '8%' }}>
         <View.Row style={{ alignItems: 'center' }}>
-          <Image
-            source={logo}
-            style={{ width: 42, height: 42, marginRight: 5 }}
-          />
-          <Image source={logo_title} style={{ width: 160, height: 27 }} />
+          <AutoHeightImage source={logo_group} width={200} />
         </View.Row>
         <View.Col style={{ alignItems: 'center', marginTop: 5 }}>
           <Text.H2_Bold secondary>{t('jh.signIn')}</Text.H2_Bold>
