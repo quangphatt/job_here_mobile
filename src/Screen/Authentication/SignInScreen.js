@@ -39,6 +39,10 @@ const SignInScreen = (props) => {
     props.global.updateState('isSignIn', true);
   };
 
+  const onPressNoSignIn = () => {
+    navigate('CommonAppNavigation', { screen: 'HomeScreen' });
+  };
+
   return (
     <View.Container>
       <View.Col style={{ alignItems: 'center', marginTop: '8%' }}>
@@ -117,9 +121,18 @@ const SignInScreen = (props) => {
             onPress={onPressSignIn}
             disabled={!account.email || !account.password}
           >
-            <Text.Body style={{ textTransform: 'uppercase' }}>
+            <Text.BodyBold style={{ textTransform: 'uppercase' }}>
               {t('jh.signIn')}
-            </Text.Body>
+            </Text.BodyBold>
+          </Button.Button>
+          <Button.Button
+            secondary
+            onPress={onPressNoSignIn}
+            style={{ marginTop: 10 }}
+          >
+            <Text.BodyBold primary style={{ textTransform: 'uppercase' }}>
+              {t('jh.noSignIn')}
+            </Text.BodyBold>
           </Button.Button>
         </View.Col>
       </View.Col>

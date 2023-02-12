@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { View, Text, Button, Icon, Common, Image } from '@Components';
 import { CompanyHeader, CompanyInfo, CompanyShare } from '@Components/Company';
 import { useTranslation } from 'react-i18next';
+import { goBack } from '@NavigationAction';
 import Global from '@Global';
 
 const _testData_companyJob = [
@@ -92,8 +93,6 @@ const CompanyInfoScreen = () => {
     return newUrl;
   };
 
-  const onPressBack = () => {};
-
   const onPressShare = () => {
     Global._showModal({
       label: t('jh.shareCompany'),
@@ -106,7 +105,7 @@ const CompanyInfoScreen = () => {
     <ScrollView stickyHeaderIndices={[0]}>
       <Common.Header
         title={companyData.companyName}
-        actionLeft={onPressBack}
+        actionLeft={goBack}
         iconRight={'share-social'}
         actionRight={onPressShare}
       />
