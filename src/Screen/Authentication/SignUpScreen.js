@@ -258,9 +258,9 @@ const SignUpScreen = () => {
                 !account.phoneNumber
               }
             >
-              <Text.Body style={{ textTransform: 'uppercase' }}>
+              <Text.BodyBold style={{ textTransform: 'uppercase' }}>
                 {t('jh.signUp')}
-              </Text.Body>
+              </Text.BodyBold>
             </Button.Button>
           </View.Col>
           <View.Row
@@ -274,7 +274,7 @@ const SignUpScreen = () => {
           >
             <Text.Body secondary>{t('jh.agreeTermOfService')}</Text.Body>
             <Button.ButtonPreventDouble onPress={onPressTermOfService}>
-              <Text.Body primary>{t('jh.termOfService')}</Text.Body>
+              <Text.BodyBold primary>{t('jh.termOfService')}</Text.BodyBold>
             </Button.ButtonPreventDouble>
           </View.Row>
         </View.Col>

@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, Icon, Image, Button } from '@Components';
 import Theme from '@Theme';
-import { navigate, getCurrentRoute, popToTop } from '@NavigationAction';
+import { navigate, getCurrentRoute } from '@NavigationAction';
 import { useTranslation } from 'react-i18next';
-import jobhere_img from '@Assets/Images/logo_no_text.png';
 import personal_img from '@Assets/Images/user.png';
 
 const TABS = [
-  { name: 'HomeScreen', icon: false, displayName: 'jh.home' },
+  { name: 'HomeScreen', icon: 'home', displayName: 'Job Here' },
   {
     name: 'MessageScreen',
     icon: 'chatbubble-ellipses',
@@ -49,7 +48,14 @@ const Tabbar = (props) => {
       }}
     >
       {_.map(TABS, ({ name, icon, displayName }, index) => {
-        let current_route = getCurrentRoute().name;
+        let current_route = getCurrentRoute()?.name ?? ' ';
+        if (
+          current_route !== 'MessageScreen' &&
+          current_route !== 'NotificationScreen' &&
+          current_route !== 'PersonalScreen'
+        ) {
+          current_route = 'HomeScreen';
+        }
         let is_current_route = current_route === name;
 
         return (
@@ -84,20 +90,19 @@ const Tabbar = (props) => {
                   />
                 ) : (
                   <Image.ImageCircle
-                    source={name === 'HomeScreen' ? jobhere_img : personal_img}
+                    source={personal_img}
                     size={30}
                     style={{
-                      borderWidth: name === 'HomeScreen' ? 0 : 0.5,
+                      borderWidth: 0.5,
                       borderColor: Theme.colors.dark_gray_color
                     }}
                   />
                 )}
                 <Text.SubBodyBold
                   style={{
-                    color:
-                      name === current_route
-                        ? Theme.text_colors.primary_text_color
-                        : Theme.text_colors.secondary_text_color,
+                    color: is_current_route
+                      ? Theme.text_colors.primary_text_color
+                      : Theme.text_colors.secondary_text_color,
                     fontSize: 12
                   }}
                 >

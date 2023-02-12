@@ -22,7 +22,7 @@ const DrawerNavigation = (props) => {
         headerShown: false,
         swipeEnabled: false,
         drawerType: 'front',
-        drawerStyle: { width: width / 1.2, maxWidth: 340 }
+        drawerStyle: { width: width / 1.5, maxWidth: 340 }
       }}
       drawerContent={renderDrawerContent}
       initialRouteName="AuthenticationNavigation"

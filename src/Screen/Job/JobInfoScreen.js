@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { View, Text, Button, Icon, Common } from '@Components';
 import { JobHeader, JobInfo, JobShare } from '@Components/Job';
 import { useTranslation } from 'react-i18next';
+import { goBack } from '@NavigationAction';
 import Global from '@Global';
 
 const _testData = {
@@ -63,8 +64,6 @@ const JobInfoScreen = () => {
   const [jobData, setJobData] = useState(_testData);
   const { t } = useTranslation();
 
-  const onPressBack = () => {};
-
   const onPressShare = () => {
     Global._showModal({
       label: t('jh.shareJob'),
@@ -77,7 +76,7 @@ const JobInfoScreen = () => {
     <ScrollView stickyHeaderIndices={[0]}>
       <Common.Header
         title={jobData.jobName}
-        actionLeft={onPressBack}
+        actionLeft={goBack}
         iconRight={'share-social'}
         actionRight={onPressShare}
       />

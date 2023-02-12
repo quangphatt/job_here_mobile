@@ -15,7 +15,7 @@ const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate('SignInScreen');
+      navigate('CommonAppNavigation', { screen: 'HomeScreen' });
     }, 1000);
   }, []);
 

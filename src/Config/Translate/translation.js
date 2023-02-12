@@ -2,6 +2,7 @@ export const en = {
   Vietnamese: 'Vietnamese',
   English: 'English',
   'jh.signIn': 'Sign In',
+  'jh.noSignIn': 'Continue without sign in',
   'jh.signInSub': 'Sign in to continue.',
   'jh.email': 'Email',
   'jh.emailPlaceholder': 'Enter Email',
@@ -62,13 +63,22 @@ export const en = {
   'jh.home': 'Home',
   'jh.message': 'Message',
   'jh.notifycation': 'Notifycation',
-  'jh.personal': 'Personal'
+  'jh.personal': 'Personal',
+  'jh.jobs': 'Jobs',
+  'jh.appliedJob': 'Applied Job',
+  'jh.savedJob': 'Saved Job',
+  'jh.searchJob': 'Search Job',
+  'jh.profileAndCV': 'Profile And CV',
+  'jh.cvManage': 'CV Manage',
+  'jh.companies': 'Companies',
+  'jh.companyList': 'Company List'
 };
 
 export const vn = {
   Vietnamese: 'Tiếng Việt',
   English: 'Tiếng Anh',
   'jh.signIn': 'Đăng Nhập',
+  'jh.noSignIn': 'Tiếp tục mà không cần đăng nhập',
   'jh.signInSub': 'Đăng nhập để tiếp tục.',
   'jh.email': 'Email',
   'jh.emailPlaceholder': 'Nhập Email',
@@ -128,5 +138,13 @@ export const vn = {
   'jh.home': 'Trang Chủ',
   'jh.message': 'Tin Nhắn',
   'jh.notifycation': 'Thông Báo',
-  'jh.personal': 'Cá Nhân'
+  'jh.personal': 'Cá Nhân',
+  'jh.jobs': 'Việc Làm',
+  'jh.appliedJob': 'Việc Làm Đã Ứng Tuyển',
+  'jh.savedJob': 'Việc Làm Đã Lưu',
+  'jh.searchJob': 'Tìm Kiếm Việc Làm',
+  'jh.profileAndCV': 'Hồ Sơ Và CV',
+  'jh.cvManage': 'Quản Lý CV',
+  'jh.companies': 'Công Ty',
+  'jh.companyList': 'Danh Sách Công Ty'
 };
