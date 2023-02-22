@@ -4,6 +4,7 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { SlideInUp, SlideOutUp } from 'react-native-reanimated';
 import alert from '@Alert';
+import { useTranslation } from 'react-i18next';
 
 const AView = Animated.createAnimatedComponent(View.Row);
 
@@ -11,6 +12,7 @@ const NetInfoHandler = () => {
   const [isShowNotification, toggleNotification] = useState(false);
   const insets = useSafeAreaInsets();
   const netInfo = useNetInfo();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (typeof netInfo.isConnected === 'boolean') {
@@ -21,8 +23,8 @@ const NetInfoHandler = () => {
         toggleNotification(true);
         setTimeout(() => {
           alert.show({
-            title: 'No Connection',
-            body: `${'Your Internet connection is interrupted.'}\n${'Please check again!'}`
+            title: t('jh.noConnection'),
+            body: `${t('jh.connectionInterrupted')}\n${t('jh.checkAgain')}`
           });
         }, 1000);
       }

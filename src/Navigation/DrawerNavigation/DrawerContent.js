@@ -4,8 +4,8 @@ import { View, Text, Icon, Button } from '@Components';
 import Theme from '@Theme';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { useTranslation } from 'react-i18next';
-import { withGlobalContext } from '@Global';
 import { navigate } from '@NavigationAction';
+import { useSelector } from 'react-redux';
 import logo_group from '@Assets/Images/logo_group.png';
 
 const MENU = [
@@ -37,9 +37,11 @@ const MENU = [
   }
 ];
 
-const DrawerContent = ({ global }) => {
+const DrawerContent = () => {
   const { t } = useTranslation();
   const [showChildren, setShowChildren] = useState({});
+  const token = useSelector((state) => state.Authentication.token);
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
 
   const onPressSignIn = () => {
     navigate('AuthenticationNavigation', { screen: 'SignInScreen' });
@@ -72,7 +74,7 @@ const DrawerContent = ({ global }) => {
               : null
           }}
         >
-          <Text.BodyBold fontSize={20} secondary>
+          <Text.BodyBold fontSize={18} secondary>
             {t(item.name)}
           </Text.BodyBold>
           <Icon.VectorIcon
@@ -113,13 +115,15 @@ const DrawerContent = ({ global }) => {
           onPress={onPressChild}
           style={{ flexDirection: 'row', alignItems: 'center' }}
         >
-          <Text.Body fontSize={18} secondary>
+          <Text.Body fontSize={16} secondary>
             {t(child.name)}
           </Text.Body>
         </Button.ButtonPreventDouble>
       </View.Col>
     );
   };
+
+  let isSignIn = !!token && !!sessionInfo?.email;
 
   return (
     <View.Col style={{ padding: 10 }}>
@@ -134,7 +138,7 @@ const DrawerContent = ({ global }) => {
             marginBottom: 10
           }}
         />
-        {global.isSignIn ? (
+        {isSignIn ? (
           <View.Col>
             {_.map(MENU, (item, index) => {
               return renderMenuItem(item, index);
@@ -159,4 +163,4 @@ const DrawerContent = ({ global }) => {
   );
 };
 
-export default withGlobalContext(DrawerContent);
+export default DrawerContent;

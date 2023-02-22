@@ -1,20 +1,23 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { withGlobalContext } from '@Global';
 import AuthenticationNavigation from '@Navigation/AuthenticationNavigation/AuthenticationNavigation';
 import BottomNavigation from './BottomNavigation/BottomNavigation';
 import DrawerContent from './DrawerContent';
+import { useSelector } from 'react-redux';
 
 const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
+  const token = useSelector((state) => state.Authentication.token);
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
+
   const renderDrawerContent = (props) => {
     return <DrawerContent {...props} />;
   };
 
-  const { isSignIn } = props.global;
+  let isSignIn = !!token && !!sessionInfo?.email;
 
   return (
     <Drawer.Navigator
@@ -40,4 +43,4 @@ const DrawerNavigation = (props) => {
   );
 };
 
-export default withGlobalContext(DrawerNavigation);
+export default DrawerNavigation;

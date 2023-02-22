@@ -10,46 +10,34 @@ export class GlobalContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSignIn: true,
       listModal: []
     };
 
     GlobalContextProvider.componentInstance = this;
   }
 
-  updateState = (stateName, data) => {
-    switch (stateName) {
-      case 'isSignIn':
-        this.setState({
-          ...this.state,
-          isSignIn: data
-        });
-        break;
-      default:
-        break;
-    }
-  };
+  updateState = (stateName, data) => {};
 
-  static _showModal = params => {
+  static _showModal = (params) => {
     GlobalContextProvider.componentInstance.showModal(params);
   };
 
-  static _hideModal = params => {
+  static _hideModal = (params) => {
     GlobalContextProvider.componentInstance.hideModal(params);
   };
 
-  static _hideAllModal = params => {
+  static _hideAllModal = (params) => {
     GlobalContextProvider.componentInstance.hideAllModal(params);
   };
 
-  showModal = params => {
+  showModal = (params) => {
     Keyboard.dismiss();
     GlobalContextProvider.componentInstance = this;
     let index = this.state.listModal.length;
     this.state.listModal.push(
       <ModalAction
         key={`modalAction_${index}`}
-        ref={ref => (this[`modalActionRef_${index}`] = ref)}
+        ref={(ref) => (this[`modalActionRef_${index}`] = ref)}
       />
     );
     this.setState({ listModal: this.state.listModal }, () => {
@@ -59,7 +47,7 @@ export class GlobalContextProvider extends Component {
     });
   };
 
-  hideModal = params => {
+  hideModal = (params) => {
     GlobalContextProvider.componentInstance = this;
     let index = this.state.listModal.length - 1;
     if (index >= 0) {
@@ -71,7 +59,7 @@ export class GlobalContextProvider extends Component {
     }
   };
 
-  hideAllModal = params => {
+  hideAllModal = (params) => {
     GlobalContextProvider.componentInstance = this;
     let last_index = this.state.listModal.length - 1;
     for (let i = last_index; i >= 0; i--) {
@@ -82,21 +70,7 @@ export class GlobalContextProvider extends Component {
     });
   };
 
-  resetState = stateName => {
-    switch (stateName) {
-      case 'isSignIn':
-        this.setState({
-          ...this.state,
-          isSignIn: false
-        });
-        break;
-      default:
-        this.setState({
-          isSignIn: false
-        });
-        break;
-    }
-  };
+  resetState = (stateName) => {};
 
   render() {
     return (
@@ -108,7 +82,7 @@ export class GlobalContextProvider extends Component {
         }}
       >
         {this.props.children}
-        {_.map(this.state.listModal, modal => modal)}
+        {_.map(this.state.listModal, (modal) => modal)}
       </GlobalContext.Provider>
     );
   }
@@ -116,9 +90,9 @@ export class GlobalContextProvider extends Component {
 
 export default GlobalContextProvider;
 
-export const withGlobalContext = ChildComponent =>
+export const withGlobalContext = (ChildComponent) =>
   forwardRef((props, ref) => (
     <GlobalContext.Consumer>
-      {context => <ChildComponent {...props} global={context} ref={ref} />}
+      {(context) => <ChildComponent {...props} global={context} ref={ref} />}
     </GlobalContext.Consumer>
   ));
