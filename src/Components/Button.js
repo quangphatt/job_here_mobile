@@ -8,6 +8,8 @@ import Global from '@Global';
 import { preventDoubleClick } from '@Config/Common';
 import styled from 'styled-components/native';
 import { withTranslation } from 'react-i18next';
+import { changeAcceptLanguage } from '@ReduxSlice/HeaderRequestSlice';
+import { useDispatch } from 'react-redux';
 import vi_icon from '@Assets/Images/vi_icon.png';
 import en_icon from '@Assets/Images/en_icon.png';
 
@@ -19,7 +21,7 @@ const Button = styled(ButtonPreventDouble)`
   justify-content: center;
   align-items: center;
   padding: 6px 20px;
-  background: ${props =>
+  background: ${(props) =>
     props.secondary
       ? props.theme.colors.white_color
       : props.disabled
@@ -27,18 +29,22 @@ const Button = styled(ButtonPreventDouble)`
       : props.theme.colors.primary_color};
   border-radius: 5px;
   border: 1px solid
-    ${props =>
+    ${(props) =>
       props.disabled
         ? props.theme.colors.dark_gray_color
         : props.theme.colors.primary_color};
 `;
 
 const _ButtonChangeLanguage = ({ i18n }) => {
+  const dispatch = useDispatch();
+
   const onChangeLanguage = () => {
     if (i18n.language === 'en') {
       i18n.changeLanguage('vn');
+      dispatch(changeAcceptLanguage('vi'));
     } else {
       i18n.changeLanguage('en');
+      dispatch(changeAcceptLanguage('en'));
     }
     Global._hideModal();
   };

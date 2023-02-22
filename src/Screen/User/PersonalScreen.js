@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, Common } from '@Components';
-import { withGlobalContext } from '@Global';
 import { useTranslation } from 'react-i18next';
+import { logOut } from '@ReduxSlice/AuthenticationSlice';
+import { useDispatch } from 'react-redux';
 
-const PersonalScreen = (props) => {
+const PersonalScreen = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const onSignOut = () => {
-    props.global.updateState('isSignIn', false);
+    dispatch(logOut());
   };
 
   return (
@@ -23,4 +25,4 @@ const PersonalScreen = (props) => {
   );
 };
 
-export default withGlobalContext(PersonalScreen);
+export default PersonalScreen;

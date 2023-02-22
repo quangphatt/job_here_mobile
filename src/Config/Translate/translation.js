@@ -71,7 +71,10 @@ export const en = {
   'jh.profileAndCV': 'Profile And CV',
   'jh.cvManage': 'CV Manage',
   'jh.companies': 'Companies',
-  'jh.companyList': 'Company List'
+  'jh.companyList': 'Company List',
+  'jh.noConnection': 'No Connection',
+  'jh.connectionInterrupted': 'Your Internet connection is interrupted.',
+  'jh.checkAgain': 'Please check again!'
 };
 
 export const vn = {
@@ -146,5 +149,8 @@ export const vn = {
   'jh.profileAndCV': 'Hồ Sơ Và CV',
   'jh.cvManage': 'Quản Lý CV',
   'jh.companies': 'Công Ty',
-  'jh.companyList': 'Danh Sách Công Ty'
+  'jh.companyList': 'Danh Sách Công Ty',
+  'jh.noConnection': 'Không có kết nối',
+  'jh.connectionInterrupted': 'Kết nối Internet của bạn bị ngắt quãng.',
+  'jh.checkAgain': 'Vui lòng kiểm tra lại!'
 };

@@ -7,7 +7,7 @@ import DrawerNavigation from './DrawerNavigation/DrawerNavigation';
 
 const Stack = createNativeStackNavigator();
 
-const AppNavigation = props => {
+const AppNavigation = () => {
   const routeNameRef = useRef();
 
   const onReady = () => {

@@ -4,14 +4,22 @@ import CheckBox from '@react-native-community/checkbox';
 import { View, Text, Button, Icon } from '@Components';
 import AutoHeightImage from 'react-native-auto-height-image';
 import theme from '@Theme';
-import { withGlobalContext } from '@Global';
 import { useTranslation } from 'react-i18next';
 import { navigate } from '@NavigationAction';
+import { authBusiness } from '@Business';
+import { changeSession, changeToken } from '@ReduxSlice/AuthenticationSlice';
+import { changeHeaderToken } from '@ReduxSlice/HeaderRequestSlice';
+import { useDispatch } from 'react-redux';
+import Alert from '@Alert';
 import logo_group from '@Assets/Images/logo_group.png';
 
-const SignInScreen = (props) => {
+const SignInScreen = () => {
   const { t } = useTranslation();
-  const [account, setAccount] = useState({ email: '', password: '' });
+  const dispatch = useDispatch();
+  const [account, setAccount] = useState({
+    email: '',
+    password: ''
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberPassword, setRememberPasswrod] = useState(false);
 
@@ -36,7 +44,33 @@ const SignInScreen = (props) => {
   };
 
   const onPressSignIn = async () => {
-    props.global.updateState('isSignIn', true);
+    let signIn = await authBusiness.signIn(account.email, account.password);
+    if (signIn.data.httpCode === 200) {
+      try {
+        dispatch(changeToken(signIn.data.objectData.token));
+        dispatch(changeHeaderToken(signIn.data.objectData.token));
+
+        let session = await authBusiness.getSessionInfo();
+        if (
+          session.data &&
+          session.data.httpCode !== 401 &&
+          session.data.objectData &&
+          session.data.objectData.email
+        ) {
+          dispatch(changeSession(session.data.objectData));
+        } else {
+          dispatch(logOut());
+        }
+      } catch (error) {
+        console.log('Error while save token to headerRequest', error);
+      }
+    } else {
+      // Alert.show({
+      //   title: t('jh.signIn'),
+      //   body: signIn.data.message
+      // });
+      // setAccount({ ...account, password: '' });
+    }
   };
 
   const onPressNoSignIn = () => {
@@ -165,4 +199,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withGlobalContext(SignInScreen);
+export default SignInScreen;

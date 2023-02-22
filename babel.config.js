@@ -17,8 +17,20 @@ module.exports = {
           '@Navigation': './src/Navigation',
           '@NavigationAction':
             './src/Navigation/DrawerNavigation/NavigationAction.js',
-          '@Screen': './src/Screen'
+          '@Screen': './src/Screen',
+          '@ReduxSlice': './src/Config/Redux/Slice'
         }
+      }
+    ],
+    [
+      'module:react-native-dotenv',
+      {
+        envName: 'APP_ENV',
+        moduleName: '@env',
+        path: '.env',
+        safe: false,
+        allowUndefined: true,
+        verbose: false
       }
     ],
     'react-native-reanimated/plugin'
