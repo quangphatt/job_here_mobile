@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
+import com.ReactNativeBlobUtil.ReactNativeBlobUtilPackage;
+import org.wonday.pdf.RCTPdfView;
 import com.airbnb.android.react.lottie.LottiePackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -42,6 +45,9 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new RNSharePackage(),
+            new ReactNativeBlobUtilPackage(),
+            new RCTPdfView(),
             new LottiePackage(),
             new SplashScreenReactPackage(),
             new RNScreensPackage(),
