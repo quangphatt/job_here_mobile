@@ -9,8 +9,8 @@ import {
 class AuthBusiness extends Service {
   signIn = async (email, password) => {
     let params = {
-      email: email,
-      password: password
+      email,
+      password
     };
     let result = await this.post(signInURL, params);
     return result;
@@ -21,23 +21,23 @@ class AuthBusiness extends Service {
     return result;
   };
 
-  // signUp = async (email, password, fullname, dateOfBirth, phone) => {
-  //   let params = {
-  //     email: email,
-  //     password: password,
-  //     fullname: fullname,
-  //     dateOfBirth: dateOfBirth,
-  //     phone: phone
-  //   };
-  //   let result = await this.post(signUpURL, params);
-  //   return result;
-  // };
+  signUp = async (email, password, fullname, dateOfBirth, phone) => {
+    let params = {
+      email,
+      password,
+      fullname,
+      dateOfBirth,
+      phone
+    };
+    let result = await this.post(signUpURL, params);
+    return result;
+  };
 
-  // authCode = async (code) => {
-  //   let params = { code: code };
-  //   let result = await this.post(authCodeURL, params);
-  //   return result;
-  // };
+  authCode = async (code) => {
+    let params = { code };
+    let result = await this.post(authCodeURL, params);
+    return result;
+  };
 }
 
 const authBusiness = new AuthBusiness();

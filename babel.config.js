@@ -10,6 +10,7 @@ module.exports = {
           '@Business': './src/Business',
           '@Components': './src/Components',
           '@Alert': './src/Components/Modal/ModalAlert',
+          '@Loading': './src/Components/Modal/ModalLoading',
           '@Config': './src/Config',
           '@Provider': './src/Config/Provider',
           '@Global': './src/Config/Provider/GlobalContextProvider',

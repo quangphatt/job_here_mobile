@@ -53,6 +53,8 @@ target 'job_here_mobile' do
 
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
+  pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
+
   target 'job_here_mobileTests' do
     inherit! :complete
     # Pods for testing

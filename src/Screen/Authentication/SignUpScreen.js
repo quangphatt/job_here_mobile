@@ -7,12 +7,25 @@ import theme from '@Theme';
 import { useTranslation } from 'react-i18next';
 import Global from '@Global';
 import { navigate } from '@NavigationAction';
+import { authBusiness } from '@Business';
+import {
+  ValidateEmail,
+  ValidateUTF8Name,
+  ValidatePassword,
+  ValidateDateOfBirth,
+  ValidatePhone
+} from '@Config/Validate';
+import { useDispatch } from 'react-redux';
+import { changeXAuthToken } from '@ReduxSlice/HeaderRequestSlice';
+import Alert from '@Alert';
+import Loading from '@Loading';
 import logo_group from '@Assets/Images/logo_group.png';
 
 moment.suppressDeprecationWarnings = true;
 
 const SignUpScreen = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [account, setAccount] = useState({
     email: '',
     displayName: '',
@@ -77,7 +90,58 @@ const SignUpScreen = () => {
   };
 
   const onPressSignUp = async () => {
-    navigate('AuthenticationCodeScreen');
+    if (!ValidateEmail(account.email)) {
+      Alert.show({
+        title: t('jh.signUp'),
+        body: t('jh.invalidEmail')
+      });
+    } else if (!ValidateUTF8Name(account.displayName)) {
+      Alert.show({
+        title: t('jh.signUp'),
+        body: t('jh.invalidDisplayName')
+      });
+    } else if (!ValidatePassword(account.password)) {
+      Alert.show({
+        title: t('jh.signUp'),
+        body: t('jh.invalidPassword')
+      });
+    } else if (account.password.trim() !== account.rePassword.trim()) {
+      Alert.show({
+        title: t('jh.signUp'),
+        body: t('jh.invalidRePassword')
+      });
+    } else if (!ValidateDateOfBirth(account.dateOfBirth)) {
+      Alert.show({
+        title: t('jh.signUp'),
+        body: t('jh.invalidDateOfBirth')
+      });
+    } else if (!ValidatePhone(account.phoneNumber)) {
+      Alert.show({
+        title: t('jh.signUp'),
+        body: t('jh.invalidPhoneNumber')
+      });
+    } else {
+      let { email, password, dateOfBirth, displayName, phoneNumber } = account;
+      Loading.show();
+      let signUp = await authBusiness.signUp(
+        email,
+        password,
+        displayName,
+        dateOfBirth,
+        phoneNumber
+      );
+      Loading.hide();
+      if (signUp.data.httpCode === 200) {
+        let xAuthToken = signUp?.headers?.['x-auth-token'] ?? '';
+        dispatch(changeXAuthToken(xAuthToken));
+        navigate('AuthenticationCodeScreen');
+      } else {
+        Alert.show({
+          title: t('jh.signUp'),
+          body: signIn?.data?.message ?? ''
+        });
+      }
+    }
   };
 
   const onPressSignIn = () => {

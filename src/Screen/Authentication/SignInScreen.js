@@ -11,6 +11,7 @@ import { changeSession, changeToken } from '@ReduxSlice/AuthenticationSlice';
 import { changeHeaderToken } from '@ReduxSlice/HeaderRequestSlice';
 import { useDispatch } from 'react-redux';
 import Alert from '@Alert';
+import Loading from '@Loading';
 import logo_group from '@Assets/Images/logo_group.png';
 
 const SignInScreen = () => {
@@ -44,7 +45,9 @@ const SignInScreen = () => {
   };
 
   const onPressSignIn = async () => {
+    Loading.show();
     let signIn = await authBusiness.signIn(account.email, account.password);
+    Loading.hide();
     if (signIn.data.httpCode === 200) {
       try {
         dispatch(changeToken(signIn.data.objectData.token));
@@ -65,11 +68,11 @@ const SignInScreen = () => {
         console.log('Error while save token to headerRequest', error);
       }
     } else {
-      // Alert.show({
-      //   title: t('jh.signIn'),
-      //   body: signIn.data.message
-      // });
-      // setAccount({ ...account, password: '' });
+      Alert.show({
+        title: t('jh.signIn'),
+        body: signIn?.data?.message ?? ''
+      });
+      setAccount({ ...account, password: '' });
     }
   };
 

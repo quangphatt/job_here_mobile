@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.blurview.BlurViewPackage;
 import cl.json.RNSharePackage;
 import com.ReactNativeBlobUtil.ReactNativeBlobUtilPackage;
 import org.wonday.pdf.RCTPdfView;
@@ -45,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new BlurViewPackage(),
             new RNSharePackage(),
             new ReactNativeBlobUtilPackage(),
             new RCTPdfView(),

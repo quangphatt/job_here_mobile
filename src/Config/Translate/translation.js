@@ -74,7 +74,15 @@ export const en = {
   'jh.companyList': 'Company List',
   'jh.noConnection': 'No Connection',
   'jh.connectionInterrupted': 'Your Internet connection is interrupted.',
-  'jh.checkAgain': 'Please check again!'
+  'jh.checkAgain': 'Please check again!',
+  'jh.invalidEmail': 'Invalid Email!',
+  'jh.invalidDisplayName': 'Invalid Display Name!',
+  'jh.invalidPassword':
+    'Password must have at least 8 characters and contain uppercase letters, lowercase letters, numbers, symbols!',
+  'jh.invalidRePassword': 'Password not match!',
+  'jh.invalidDateOfBirth': 'Invalid Date Of Birth!',
+  'jh.invalidPhoneNumber': 'Invalid Phone Number!',
+  'jh.invalidCode': 'Invalid Authentication Code!'
 };
 
 export const vn = {
@@ -152,5 +160,13 @@ export const vn = {
   'jh.companyList': 'Danh Sách Công Ty',
   'jh.noConnection': 'Không có kết nối',
   'jh.connectionInterrupted': 'Kết nối Internet của bạn bị ngắt quãng.',
-  'jh.checkAgain': 'Vui lòng kiểm tra lại!'
+  'jh.checkAgain': 'Vui lòng kiểm tra lại!',
+  'jh.invalidEmail': 'Email không hợp lệ!',
+  'jh.invalidDisplayName': 'Tên hiển thị không hợp lệ!',
+  'jh.invalidPassword':
+    'Mật khẩu phải có ít nhất 8 ký tự và chứa chữ cái hoa, chữ cái thường, số, ký hiệu!',
+  'jh.invalidRePassword': 'Mật khẩu không khớp!',
+  'jh.invalidDateOfBirth': 'Ngày sinh không hợp lệ!',
+  'jh.invalidPhoneNumber': 'Số điện thoại không hợp lệ!',
+  'jh.invalidCode': 'Mã xác thực không hợp lệ!'
 };

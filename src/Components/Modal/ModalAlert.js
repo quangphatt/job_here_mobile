@@ -83,7 +83,7 @@ const ModalAlert = ({
     }
   };
 
-  const onPress = type => () => {
+  const onPress = (type) => () => {
     if (typeof onAction === 'function') onAction(type);
     else magicModal.hide();
   };
@@ -104,12 +104,14 @@ const ModalAlert = ({
             style={{ marginBottom: 10 }}
           />
         )}
-        <Text.H3_Bold
-          color={alertType === AlertType.INFO ? '#1D232E' : alert_color()}
-          style={{ marginBottom: 10 }}
-        >
-          {title}
-        </Text.H3_Bold>
+        {!!title && (
+          <Text.H3_Bold
+            color={alertType === AlertType.INFO ? '#1D232E' : alert_color()}
+            style={{ marginBottom: 10 }}
+          >
+            {title}
+          </Text.H3_Bold>
+        )}
         <Text.Body
           testID="alert_message"
           secondary

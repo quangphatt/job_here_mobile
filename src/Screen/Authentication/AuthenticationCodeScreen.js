@@ -5,18 +5,39 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import theme from '@Theme';
 import { useTranslation } from 'react-i18next';
 import { navigate } from '@NavigationAction';
+import { authBusiness } from '@Business';
+import { ValidateAuthCode } from '@Config/Validate';
+import Alert from '@Alert';
+import Loading from '@Loading';
 import logo_group from '@Assets/Images/logo_group.png';
 
 const AuthenticationCodeScreen = () => {
   const { t } = useTranslation();
   const [authCode, setAuthCode] = useState('');
 
-  const onChangeAuthCode = (authCode) => {
-    setAuthCode(authCode);
+  const onChangeAuthCode = (code) => {
+    setAuthCode(code);
   };
 
-  const onSubmit = () => {
-    navigate('SignInScreen');
+  const onSubmit = async () => {
+    if (!ValidateAuthCode(authCode)) {
+      Alert.show({
+        title: t('jh.authCode'),
+        body: t('jh.invalidCode')
+      });
+    } else {
+      Loading.show();
+      let authCodeR = await authBusiness.authCode(parseInt(authCode));
+      Loading.hide();
+      if (authCodeR.data.httpCode === 200) {
+        navigate('SignInScreen');
+      } else {
+        Alert.show({
+          title: t('jh.authCode'),
+          body: authCodeR?.data?.message ?? ''
+        });
+      }
+    }
   };
 
   const onPressResend = () => {};
