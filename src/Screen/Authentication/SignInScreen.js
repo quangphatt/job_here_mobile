@@ -116,6 +116,7 @@ const SignInScreen = () => {
               value={account.email}
               onChangeText={onChangeEmail}
               placeholder={t('jh.emailPlaceholder')}
+              placeholderTextColor={theme.colors.dark_gray_color}
               style={styles.text_input}
               keyboardType={'email-address'}
             />
@@ -134,6 +135,7 @@ const SignInScreen = () => {
               value={account.password}
               onChangeText={onChangePassword}
               placeholder={t('jh.passwordPlaceholder')}
+              placeholderTextColor={theme.colors.dark_gray_color}
               secureTextEntry={!showPassword}
               style={[styles.text_input, { paddingRight: 36 }]}
             />
@@ -150,6 +152,10 @@ const SignInScreen = () => {
             fontSize={14}
             value={rememberPassword}
             onValueChange={onToggleRememberPassword}
+            tintColors={{
+              true: theme.colors.primary_color,
+              false: theme.colors.primary_color
+            }}
           />
           <Text.BodyBold secondary>{t('jh.remembherPassword')}</Text.BodyBold>
         </View.Row>

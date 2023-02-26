@@ -189,6 +189,7 @@ const SignUpScreen = () => {
                 value={account.email}
                 onChangeText={onChangeEmail}
                 placeholder={t('jh.emailPlaceholder')}
+                placeholderTextColor={theme.colors.dark_gray_color}
                 style={styles.text_input}
                 keyboardType={'email-address'}
               />
@@ -207,6 +208,7 @@ const SignUpScreen = () => {
                 value={account.displayName}
                 onChangeText={onChangeDisplayName}
                 placeholder={t('jh.displayNamePlaceholder')}
+                placeholderTextColor={theme.colors.dark_gray_color}
                 style={styles.text_input}
               />
             </View.Row>
@@ -227,6 +229,7 @@ const SignUpScreen = () => {
                 value={account.password}
                 onChangeText={onChangePassword}
                 placeholder={t('jh.passwordPlaceholder')}
+                placeholderTextColor={theme.colors.dark_gray_color}
                 secureTextEntry={!showPassword}
                 style={[styles.text_input, { paddingRight: 36 }]}
               />
@@ -254,6 +257,7 @@ const SignUpScreen = () => {
                 value={account.rePassword}
                 onChangeText={onChangeRePassword}
                 placeholder={t('jh.rePasswordPlaceholder')}
+                placeholderTextColor={theme.colors.dark_gray_color}
                 secureTextEntry={!showRePassword}
                 style={[styles.text_input, { paddingRight: 36 }]}
               />
@@ -306,6 +310,7 @@ const SignUpScreen = () => {
                 value={account.phoneNumber}
                 onChangeText={onChangePhoneNumber}
                 placeholder={t('jh.phoneNumberPlaceholder')}
+                placeholderTextColor={theme.colors.dark_gray_color}
                 style={styles.text_input}
                 keyboardType={'number-pad'}
               />

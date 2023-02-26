@@ -78,6 +78,7 @@ const AuthenticationCodeScreen = () => {
               value={authCode}
               onChangeText={onChangeAuthCode}
               placeholder={t('jh.authCodePlaceholder')}
+              placeholderTextColor={theme.colors.dark_gray_color}
               style={styles.text_input}
               keyboardType={'number-pad'}
             />
