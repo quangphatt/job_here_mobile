@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { View, Text, Button, Icon } from '@Components';
 import AutoHeightImage from 'react-native-auto-height-image';
 import theme from '@Theme';
+import { AuthContext } from '@Config/Provider/AuthProvider';
 import { useTranslation } from 'react-i18next';
 import { navigate } from '@NavigationAction';
 import { authBusiness } from '@Business';
-import { changeSession, changeToken } from '@ReduxSlice/AuthenticationSlice';
+import { changeSession } from '@ReduxSlice/AuthenticationSlice';
 import { changeHeaderToken } from '@ReduxSlice/HeaderRequestSlice';
 import { useDispatch } from 'react-redux';
+import * as Keychain from 'react-native-keychain';
 import Alert from '@Alert';
 import Loading from '@Loading';
 import logo_group from '@Assets/Images/logo_group.png';
@@ -17,6 +19,7 @@ import logo_group from '@Assets/Images/logo_group.png';
 const SignInScreen = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const authContext = useContext(AuthContext);
   const [account, setAccount] = useState({
     email: '',
     password: ''
@@ -50,7 +53,6 @@ const SignInScreen = () => {
     Loading.hide();
     if (signIn.data.httpCode === 200) {
       try {
-        dispatch(changeToken(signIn.data.objectData.token));
         dispatch(changeHeaderToken(signIn.data.objectData.token));
 
         let session = await authBusiness.getSessionInfo();
@@ -61,8 +63,27 @@ const SignInScreen = () => {
           session.data.objectData.email
         ) {
           dispatch(changeSession(session.data.objectData));
+
+          const { token, refreshToken } = signIn.data.objectData;
+          const { email, password } = account;
+          authContext.setAuthState({
+            token,
+            refreshToken,
+            authenticated: true,
+            email,
+            password
+          });
+
+          await Keychain.setGenericPassword(
+            'token',
+            JSON.stringify({
+              token,
+              refreshToken
+            })
+          );
         } else {
           dispatch(logOut());
+          authContext.logOut();
         }
       } catch (error) {
         console.log('Error while save token to headerRequest', error);

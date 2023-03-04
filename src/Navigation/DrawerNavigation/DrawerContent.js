@@ -5,7 +5,6 @@ import Theme from '@Theme';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { useTranslation } from 'react-i18next';
 import { navigate } from '@NavigationAction';
-import { useSelector } from 'react-redux';
 import logo_group from '@Assets/Images/logo_group.png';
 
 const MENU = [
@@ -37,11 +36,9 @@ const MENU = [
   }
 ];
 
-const DrawerContent = () => {
+const DrawerContent = ({ isSignIn }) => {
   const { t } = useTranslation();
   const [showChildren, setShowChildren] = useState({});
-  const token = useSelector((state) => state.Authentication.token);
-  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
 
   const onPressSignIn = () => {
     navigate('AuthenticationNavigation', { screen: 'SignInScreen' });
@@ -122,8 +119,6 @@ const DrawerContent = () => {
       </View.Col>
     );
   };
-
-  let isSignIn = !!token && !!sessionInfo?.email;
 
   return (
     <View.Col style={{ padding: 10 }}>

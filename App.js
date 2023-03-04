@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 import GlobalContextProvider from '@Global';
+import { AuthProvider } from '@Config/Provider/AuthProvider';
 import { Provider } from 'react-redux';
 import { store, persistor } from '@Config/Redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -28,7 +29,9 @@ const App = () => {
               <NetInfo />
               <MagicModalPortal />
               <GlobalContextProvider>
-                <AppNavigation />
+                <AuthProvider>
+                  <AppNavigation />
+                </AuthProvider>
               </GlobalContextProvider>
             </ThemeProvider>
           </PersistGate>

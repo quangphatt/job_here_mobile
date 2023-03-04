@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Common } from '@Components';
+import { AuthContext } from '@Config/Provider/AuthProvider';
 import { useTranslation } from 'react-i18next';
 import { logOut } from '@ReduxSlice/AuthenticationSlice';
 import { useDispatch } from 'react-redux';
@@ -7,9 +8,11 @@ import { useDispatch } from 'react-redux';
 const PersonalScreen = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const authContext = useContext(AuthContext);
 
   const onSignOut = () => {
     dispatch(logOut());
+    authContext.logOut();
   };
 
   return (

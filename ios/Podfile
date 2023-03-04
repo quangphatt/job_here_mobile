@@ -55,6 +55,8 @@ target 'job_here_mobile' do
 
   pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
 
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
   target 'job_here_mobileTests' do
     inherit! :complete
     # Pods for testing
