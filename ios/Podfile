@@ -47,6 +47,16 @@ target 'job_here_mobile' do
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+
+  pod 'react-native-blob-util', :path => '../node_modules/react-native-blob-util'
+
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
+  pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
+
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
   target 'job_here_mobileTests' do
     inherit! :complete
     # Pods for testing

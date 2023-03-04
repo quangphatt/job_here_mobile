@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  sessionInfo: null,
-  token: ''
+  sessionInfo: null
 };
 
 export const AuthenticationSlice = createSlice({
@@ -12,17 +11,12 @@ export const AuthenticationSlice = createSlice({
     changeSession: (state, action) => {
       state.sessionInfo = action.payload;
     },
-    changeToken: (state, action) => {
-      state.token = action.payload;
-    },
     logOut: (state) => {
       state.sessionInfo = null;
-      state.token = '';
     }
   }
 });
 
-export const { changeSession, changeToken, logOut } =
-  AuthenticationSlice.actions;
+export const { changeSession, logOut } = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;

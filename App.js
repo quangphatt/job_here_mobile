@@ -4,8 +4,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 import GlobalContextProvider from '@Global';
+import { AuthProvider } from '@Config/Provider/AuthProvider';
 import { Provider } from 'react-redux';
-import { store } from '@Config/Redux/store';
+import { store, persistor } from '@Config/Redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 import { MagicModalPortal } from 'react-native-magic-modal';
 import NetInfo from '@Config/NetInfo';
 import '@Config/Translate/i18n';
@@ -22,13 +24,17 @@ const App = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <NetInfo />
-            <MagicModalPortal />
-            <GlobalContextProvider>
-              <AppNavigation />
-            </GlobalContextProvider>
-          </ThemeProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <ThemeProvider theme={theme}>
+              <NetInfo />
+              <MagicModalPortal />
+              <GlobalContextProvider>
+                <AuthProvider>
+                  <AppNavigation />
+                </AuthProvider>
+              </GlobalContextProvider>
+            </ThemeProvider>
+          </PersistGate>
         </Provider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
