@@ -82,7 +82,8 @@ export const en = {
   'jh.invalidRePassword': 'Password not match!',
   'jh.invalidDateOfBirth': 'Invalid Date Of Birth!',
   'jh.invalidPhoneNumber': 'Invalid Phone Number!',
-  'jh.invalidCode': 'Invalid Authentication Code!'
+  'jh.invalidCode': 'Invalid Authentication Code!',
+  'jh.newJob': 'New Job'
 };
 
 export const vn = {
@@ -168,5 +169,6 @@ export const vn = {
   'jh.invalidRePassword': 'Mật khẩu không khớp!',
   'jh.invalidDateOfBirth': 'Ngày sinh không hợp lệ!',
   'jh.invalidPhoneNumber': 'Số điện thoại không hợp lệ!',
-  'jh.invalidCode': 'Mã xác thực không hợp lệ!'
+  'jh.invalidCode': 'Mã xác thực không hợp lệ!',
+  'jh.newJob': 'Việc làm mới đăng'
 };

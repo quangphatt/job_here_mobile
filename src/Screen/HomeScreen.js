@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { View, Text, Common } from '@Components';
+import { JobNew } from '@Components/Job';
 import { openDrawer, navigate } from '@NavigationAction';
 import { useTranslation } from 'react-i18next';
 
@@ -20,7 +21,9 @@ const HomeScreen = () => {
         iconRight={'search-sharp'}
         actionRight={onPressSearch}
       />
-      <Text.Body secondary>HomeScreen</Text.Body>
+      <View.Col>
+        <JobNew />
+      </View.Col>
     </ScrollView>
   );
 };

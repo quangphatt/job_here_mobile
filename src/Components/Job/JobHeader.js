@@ -2,9 +2,14 @@ import React from 'react';
 import { View, Text, Icon, Button, Image } from '@Components';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
+import company_default_img from '@Assets/Images/company_default_img.jpg';
 
 const JobHeader = ({ jobData }) => {
   const { t } = useTranslation();
+  let avatar =
+    jobData.avatar || jobData.avatarUrl
+      ? { uri: jobData.avatar || jobData.avatarUrl }
+      : company_default_img;
 
   const onPressApply = () => {};
 
@@ -17,14 +22,14 @@ const JobHeader = ({ jobData }) => {
         margin: 10,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: Theme.border_colors.primary_border_color
+        borderColor: Theme.border_colors.secondary_border_color
       }}
     >
       <View.Row>
         <View.Col style={{ padding: 10 }}>
-          <Image.ImageCircle source={{ uri: jobData.avatar }} size={60} />
+          <Image.ImageCircle source={avatar} size={60} />
         </View.Col>
-        <View.Col>
+        <View.Col style={{ flex: 1 }}>
           <Button.ButtonPreventDouble onPress={onPressApply}>
             <Text.H3_Bold primary>{jobData.jobName}</Text.H3_Bold>
           </Button.ButtonPreventDouble>
@@ -41,6 +46,7 @@ const JobHeader = ({ jobData }) => {
       </View.Row>
       <View.Row
         style={{
+          marginTop: 4,
           paddingHorizontal: 10,
           paddingBottom: 10,
           justifyContent: 'center'
