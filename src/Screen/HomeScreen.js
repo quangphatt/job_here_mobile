@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { View, Text, Common } from '@Components';
-import { JobNew } from '@Components/Job';
+import { JobNew, JobInteresting } from '@Components/Job';
 import { openDrawer, navigate } from '@NavigationAction';
 import { useTranslation } from 'react-i18next';
 
@@ -23,6 +23,7 @@ const HomeScreen = () => {
       />
       <View.Col>
         <JobNew />
+        <JobInteresting />
       </View.Col>
     </ScrollView>
   );

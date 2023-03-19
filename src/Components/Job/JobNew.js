@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Dimensions } from 'react-native';
-import { View, Text, Loading, Pagination } from '@Components';
+import React, { useState } from 'react';
+import { Dimensions } from 'react-native';
+import { View, Text, Pagination } from '@Components';
 import { JobHeader } from '@Components/Job';
 import { useTranslation } from 'react-i18next';
 import { jobBusiness } from '@Business';
@@ -12,20 +12,14 @@ const JobNew = () => {
   const { t } = useTranslation();
   const [__lastUpdate, setLastUpdate] = useState(null);
   const [stateData, setStateData] = useState({
-    jobData: [],
-    loading: true
+    jobData: []
   });
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
+  const getData = async (page, size) => {
     let result = await jobBusiness.getListNewJob();
     if (result.data.httpCode === 200) {
       stateData.jobData = result?.data?.objectData ?? [];
     }
-    stateData.loading = false;
     setLastUpdate(moment().format('x'));
   };
 
@@ -37,8 +31,6 @@ const JobNew = () => {
     );
   };
 
-  if (stateData.loading) return <Loading placeholder />;
-
   return (
     <View.Col
       style={{ backgroundColor: Theme.colors.white_color, paddingVertical: 10 }}
@@ -46,7 +38,12 @@ const JobNew = () => {
       <Text.H3_Bold secondary style={{ paddingLeft: 10 }}>
         {t('jh.newJob')}
       </Text.H3_Bold>
-      <Pagination listData={stateData.jobData} renderItem={renderItem} />
+      <Pagination
+        listData={stateData.jobData}
+        renderItem={renderItem}
+        getData={getData}
+        dataLength={stateData.jobData.length}
+      />
     </View.Col>
   );
 };

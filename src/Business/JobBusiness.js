@@ -1,9 +1,18 @@
 import Service from '@Config/Service';
-import { getListNewJobURL } from '@Config/Service/ConfigURL';
+import {
+  getListNewJobURL,
+  getListJobInterestingURL
+} from '@Config/Service/ConfigURL';
 
 class JobBusiness extends Service {
   getListNewJob = async () => {
     let result = await this.get(getListNewJobURL);
+    return result;
+  };
+  getListJobInteresting = async (page, size) => {
+    let result = await this.get(
+      `${getListJobInterestingURL}?page=${page}&size=${size}`
+    );
     return result;
   };
 }
