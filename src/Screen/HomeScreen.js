@@ -2,8 +2,10 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { View, Text, Common } from '@Components';
 import { JobNew, JobInteresting } from '@Components/Job';
+import { CompanyTop } from '@Components/Company';
 import { openDrawer, navigate } from '@NavigationAction';
 import { useTranslation } from 'react-i18next';
+import Theme from '@Theme';
 
 const HomeScreen = () => {
   const { t } = useTranslation();
@@ -13,7 +15,10 @@ const HomeScreen = () => {
   };
 
   return (
-    <ScrollView stickyHeaderIndices={[0]}>
+    <ScrollView
+      stickyHeaderIndices={[0]}
+      style={{ flex: 1, backgroundColor: Theme.colors.white_color }}
+    >
       <Common.Header
         title={'Job Here'}
         iconLeft={'menu'}
@@ -24,6 +29,7 @@ const HomeScreen = () => {
       <View.Col>
         <JobNew />
         <JobInteresting />
+        <CompanyTop />
       </View.Col>
     </ScrollView>
   );

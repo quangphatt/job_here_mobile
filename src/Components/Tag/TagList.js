@@ -11,7 +11,7 @@ const TagList = ({ tagData = [] }) => {
           <View.Col
             key={index}
             style={{
-              backgroundColor: Theme.background_colors.item_background_color,
+              backgroundColor: Theme.background_colors.page_background_color,
               borderRadius: 3,
               paddingHorizontal: 5,
               paddingBottom: 2,

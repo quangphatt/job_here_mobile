@@ -11,3 +11,6 @@ export const unitDropdownURL = '/dropdown/unit';
 // Job
 export const getListNewJobURL = '/job/getListNewJob';
 export const getListJobInterestingURL = '/job/getListJobInteresting';
+
+// Company
+export const getTopCompanyURL = '/company/getListTopCompanyHome';

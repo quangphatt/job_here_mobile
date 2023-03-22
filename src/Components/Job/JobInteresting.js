@@ -4,7 +4,6 @@ import { View, Text, Loading, Pagination } from '@Components';
 import { JobItem } from '@Components/Job';
 import { useTranslation } from 'react-i18next';
 import { dropdownBusiness, jobBusiness } from '@Business';
-import Theme from '@Theme';
 
 const JobInteresting = () => {
   const { t } = useTranslation();
@@ -54,9 +53,7 @@ const JobInteresting = () => {
   };
 
   return (
-    <View.Col
-      style={{ backgroundColor: Theme.colors.white_color, paddingVertical: 10 }}
-    >
+    <View.Col style={{ paddingVertical: 10 }}>
       <Text.H3_Bold secondary style={{ paddingLeft: 10 }}>
         {t('jh.interestingJob')}
       </Text.H3_Bold>

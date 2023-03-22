@@ -1,5 +1,5 @@
 import React, { useState, useRef, createRef, useEffect } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Dimensions } from 'react-native';
 import { View, Text, Icon, Button, Loading } from '@Components';
 import Theme from '@Theme';
 
@@ -7,6 +7,7 @@ const ITEM_SIZE = 28;
 const BUTTON_SIZE = 25;
 const MAX_ITEM = 5;
 const CENTER_ITEM = parseInt((MAX_ITEM - 1) / 2);
+const { width } = Dimensions.get('window');
 
 const Pagination = ({
   listData = [],
@@ -132,7 +133,7 @@ const Pagination = ({
               <Button.ButtonPreventDouble
                 onPress={onChangeCurrentItem(stateData.currentItem - 1)}
               >
-                <Icon.VectorIcon name={'caret-back'} size={BUTTON_SIZE + 4} />
+                <Icon.VectorIcon name={'caret-back'} size={BUTTON_SIZE} />
               </Button.ButtonPreventDouble>
             </View.Row>
           )}
@@ -145,7 +146,7 @@ const Pagination = ({
             contentContainerStyle={{
               alignItems: 'center',
               justifyContent: 'center',
-              flex: 1
+              flex: dataLength >= MAX_ITEM ? null : 1
             }}
           />
           {showButton && (
@@ -153,10 +154,7 @@ const Pagination = ({
               <Button.ButtonPreventDouble
                 onPress={onChangeCurrentItem(stateData.currentItem + 1)}
               >
-                <Icon.VectorIcon
-                  name={'caret-forward'}
-                  size={BUTTON_SIZE + 4}
-                />
+                <Icon.VectorIcon name={'caret-forward'} size={BUTTON_SIZE} />
               </Button.ButtonPreventDouble>
               <Button.ButtonPreventDouble
                 onPress={onChangeCurrentItem(listData.length - 1)}
