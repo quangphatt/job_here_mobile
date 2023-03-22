@@ -5,11 +5,20 @@ import theme from '@Theme';
 
 // https://oblador.github.io/react-native-vector-icons/ --> Ionicons
 
-const VectorIcon = ({ name, size, color, style = {}, type = 'Ionicons' }) => {
+const VectorIcon = ({
+  name,
+  size,
+  color,
+  style = {},
+  type = 'Ionicons',
+  primary
+}) => {
   const iconProps = {
     name,
     size: size || 16,
-    color: color || theme.text_colors.secondary_text_color,
+    color: primary
+      ? theme.text_colors.primary_text_color
+      : color || theme.text_colors.secondary_text_color,
     style
   };
 

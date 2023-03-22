@@ -1,27 +1,45 @@
-import React, { useState, useRef, createRef, useCallback } from 'react';
-import { FlatList, Dimensions, StyleSheet } from 'react-native';
-import { View, Text, Icon, Button } from '@Components';
+import React, { useState, useRef, createRef, useEffect } from 'react';
+import { FlatList, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Icon, Button, Loading } from '@Components';
 import Theme from '@Theme';
 
-const { width, height } = Dimensions.get('window');
 const ITEM_SIZE = 28;
 const BUTTON_SIZE = 25;
 const MAX_ITEM = 5;
 const CENTER_ITEM = parseInt((MAX_ITEM - 1) / 2);
+const { width } = Dimensions.get('window');
 
-const Pagination = ({ listData = [], renderItem, currentItem = 0 }) => {
+const Pagination = ({
+  listData = [],
+  dataLength = 0,
+  renderItem,
+  currentItem = 0,
+  singlePage = false,
+  getData
+}) => {
   const [stateData, setStateData] = useState({
-    listData: listData,
     currentItem: currentItem,
     viewableItems: [],
     listRef: createRef(),
-    paginationRef: createRef()
+    paginationRef: createRef(),
+    loading: true
   });
   const [__lastUpdate, setLastUpdate] = useState(null);
   const viewabilityConfigCallbackPairs = useRef([
     { _viewabilityConfig, onViewableItemsChanged }
   ]);
-  let showButton = listData.length > MAX_ITEM;
+
+  useEffect(() => {
+    _getData(0);
+  }, []);
+
+  let showButton = dataLength > MAX_ITEM;
+
+  const _getData = async (idx) => {
+    await getData(idx, 1);
+    stateData.loading = false;
+    setLastUpdate(moment().format('x'));
+  };
 
   const onViewableItemsChanged = ({ viewableItems, changed }) => {};
 
@@ -29,16 +47,23 @@ const Pagination = ({ listData = [], renderItem, currentItem = 0 }) => {
     itemVisiblePercentThreshold: 100
   };
 
-  const onChangeCurrentItem = (idx) => () => {
-    if (idx >= 0 && idx < listData.length) {
+  const onChangeCurrentItem = (idx) => async () => {
+    if (idx >= 0 && idx < dataLength) {
       stateData.currentItem = idx;
-      stateData.listRef.scrollToIndex({
-        index: idx
-      });
       stateData.paginationRef.scrollToIndex({
         index: idx - CENTER_ITEM > 0 ? idx - CENTER_ITEM : 0
       });
       setLastUpdate(moment().format('x'));
+      if (singlePage) {
+        stateData.loading = true;
+        setLastUpdate(moment().format('x'));
+        await _getData(idx);
+      } else {
+        stateData.listRef.scrollToIndex({
+          index: idx
+        });
+        setLastUpdate(moment().format('x'));
+      }
     }
   };
 
@@ -74,17 +99,25 @@ const Pagination = ({ listData = [], renderItem, currentItem = 0 }) => {
 
   return (
     <View.Col style={{ justifyContent: 'center', alignItems: 'center' }}>
-      <FlatList
-        ref={(r) => (stateData.listRef = r)}
-        data={stateData.listData}
-        horizontal
-        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
-        scrollEnabled={false}
-        pagingEnabled
-        renderItem={renderItem}
-        showsHorizontalScrollIndicator={false}
-      />
-      {listData.length > 1 && (
+      {stateData.loading ? (
+        <Loading placeholder />
+      ) : singlePage ? (
+        renderItem({ item: listData[0] })
+      ) : (
+        <FlatList
+          ref={(r) => (stateData.listRef = r)}
+          data={listData}
+          horizontal
+          viewabilityConfigCallbackPairs={
+            viewabilityConfigCallbackPairs.current
+          }
+          scrollEnabled={false}
+          pagingEnabled
+          renderItem={renderItem}
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {dataLength > 1 && (
         <View.Row
           style={{
             justifyContent: 'center',
@@ -100,20 +133,20 @@ const Pagination = ({ listData = [], renderItem, currentItem = 0 }) => {
               <Button.ButtonPreventDouble
                 onPress={onChangeCurrentItem(stateData.currentItem - 1)}
               >
-                <Icon.VectorIcon name={'caret-back'} size={BUTTON_SIZE + 4} />
+                <Icon.VectorIcon name={'caret-back'} size={BUTTON_SIZE} />
               </Button.ButtonPreventDouble>
             </View.Row>
           )}
           <FlatList
             horizontal
             ref={(r) => (stateData.paginationRef = r)}
-            data={[...Array(listData.length)]}
+            data={[...Array(dataLength)]}
             renderItem={_renderPaginationItem}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               alignItems: 'center',
               justifyContent: 'center',
-              flex: 1
+              flex: dataLength >= MAX_ITEM ? null : 1
             }}
           />
           {showButton && (
@@ -121,10 +154,7 @@ const Pagination = ({ listData = [], renderItem, currentItem = 0 }) => {
               <Button.ButtonPreventDouble
                 onPress={onChangeCurrentItem(stateData.currentItem + 1)}
               >
-                <Icon.VectorIcon
-                  name={'caret-forward'}
-                  size={BUTTON_SIZE + 4}
-                />
+                <Icon.VectorIcon name={'caret-forward'} size={BUTTON_SIZE} />
               </Button.ButtonPreventDouble>
               <Button.ButtonPreventDouble
                 onPress={onChangeCurrentItem(listData.length - 1)}

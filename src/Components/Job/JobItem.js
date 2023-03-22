@@ -3,6 +3,7 @@ import { View, Text, Image, Icon, Button } from '@Components';
 import { TagList } from '@Components/Tag';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
+import company_default_img from '@Assets/Images/company_default_img.jpg';
 
 const JobItem = ({ jobData }) => {
   const { t } = useTranslation();
@@ -29,6 +30,11 @@ const JobItem = ({ jobData }) => {
     }
   ];
 
+  let avatar =
+    jobData.avatar || jobData.avatarUrl
+      ? { uri: jobData.avatar || jobData.avatarUrl }
+      : company_default_img;
+
   const onPressJobName = () => {};
 
   const onPressCompanyName = () => {};
@@ -38,28 +44,27 @@ const JobItem = ({ jobData }) => {
   return (
     <View.Row
       style={{
-        backgroundColor: Theme.background_colors.page_background_color,
+        backgroundColor: Theme.colors.white_color,
         marginTop: 5,
         marginBottom: 5,
-        padding: 5,
         borderColor: Theme.border_colors.secondary_border_color,
-        borderWidth: 0.5,
+        borderWidth: 1,
         borderRadius: 6
       }}
     >
-      <View.Col style={{ marginTop: 5 }}>
+      <View.Col style={{ padding: 10 }}>
         <Image.ImageSquare
-          source={{ uri: jobData.avatarUrl }}
+          source={avatar}
           size={56}
           style={{ backgroundColor: Theme.colors.white_color }}
         />
       </View.Col>
-      <View.Col style={{ marginLeft: 10, flex: 1 }}>
+      <View.Col style={{ flex: 1, paddingRight: 10, paddingBottom: 10 }}>
         <View.Row
           style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}
         >
           <Button.ButtonPreventDouble onPress={onPressJobName}>
-            <Text.BodyBold secondary fontSize={17}>
+            <Text.BodyBold secondary fontSize={20}>
               {jobData?.jobName ?? ''}
             </Text.BodyBold>
           </Button.ButtonPreventDouble>
@@ -68,11 +73,14 @@ const JobItem = ({ jobData }) => {
               name={'ios-checkmark-circle'}
               color={Theme.colors.primary_color}
               style={{ marginTop: 2 }}
+              size={20}
             />
           )}
         </View.Row>
         <Button.ButtonPreventDouble onPress={onPressCompanyName}>
-          <Text.Body secondary>{jobData?.companyName ?? ''}</Text.Body>
+          <Text.Body secondary fontSize={16}>
+            {jobData?.companyName ?? ''}
+          </Text.Body>
         </Button.ButtonPreventDouble>
         <View.Row
           style={{

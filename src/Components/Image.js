@@ -13,7 +13,7 @@ const ImageCircle = ({ source, size = 24, style = {} }) => {
         width: size,
         height: size,
         borderRadius: size / 2,
-        borderWidth: 0.5,
+        borderWidth: 0.75,
         borderColor: theme.border_colors.secondary_border_color,
         backgroundColor: theme.background_colors.item_background_color,
         overflow: 'hidden',
@@ -36,6 +36,8 @@ const ImageSquare = ({ source, size = 24, style = {} }) => {
         width: size,
         height: size,
         borderRadius: size / 6,
+        borderWidth: 0.75,
+        borderColor: theme.border_colors.secondary_border_color,
         backgroundColor: theme.background_colors.item_background_color,
         overflow: 'hidden',
         ...style

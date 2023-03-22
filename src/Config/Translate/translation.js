@@ -83,7 +83,10 @@ export const en = {
   'jh.invalidDateOfBirth': 'Invalid Date Of Birth!',
   'jh.invalidPhoneNumber': 'Invalid Phone Number!',
   'jh.invalidCode': 'Invalid Authentication Code!',
-  'jh.newJob': 'New Job'
+  'jh.newJob': 'New Job',
+  'jh.interestingJob': 'Interesting Job',
+  'jh.topCompany': 'Top Company',
+  'jh.seeAllCompany': 'See all company'
 };
 
 export const vn = {
@@ -170,5 +173,8 @@ export const vn = {
   'jh.invalidDateOfBirth': 'Ngày sinh không hợp lệ!',
   'jh.invalidPhoneNumber': 'Số điện thoại không hợp lệ!',
   'jh.invalidCode': 'Mã xác thực không hợp lệ!',
-  'jh.newJob': 'Việc làm mới đăng'
+  'jh.newJob': 'Việc làm mới đăng',
+  'jh.interestingJob': 'Việc làm hấp dẫn',
+  'jh.topCompany': 'Công ty hàng đầu',
+  'jh.seeAllCompany': 'Xem tất cả công ty'
 };
