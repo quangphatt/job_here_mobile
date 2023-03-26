@@ -2,14 +2,21 @@ import React from 'react';
 import { View, Text, Icon, Button, Image } from '@Components';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
+import { navigatePush } from '@NavigationAction';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
-const JobHeader = ({ jobData }) => {
+const JobHeader = ({ jobData, inJobScreen = false }) => {
   const { t } = useTranslation();
   let avatar =
     jobData.avatar || jobData.avatarUrl
       ? { uri: jobData.avatar || jobData.avatarUrl }
       : company_default_img;
+
+  const onPressJobName = () => {
+    navigatePush('JobInfoScreen', { jobId: jobData.jobId });
+  };
+
+  const onPressCompanyName = () => {};
 
   const onPressApply = () => {};
 
@@ -30,10 +37,13 @@ const JobHeader = ({ jobData }) => {
           <Image.ImageCircle source={avatar} size={60} />
         </View.Col>
         <View.Col style={{ flex: 1 }}>
-          <Button.ButtonPreventDouble onPress={onPressApply}>
+          <Button.ButtonPreventDouble
+            onPress={onPressJobName}
+            disabled={inJobScreen}
+          >
             <Text.H3_Bold primary>{jobData.jobName}</Text.H3_Bold>
           </Button.ButtonPreventDouble>
-          <Button.ButtonPreventDouble onPress={onPressSaveJob}>
+          <Button.ButtonPreventDouble onPress={onPressCompanyName}>
             <Text.H4_Bold secondary>{jobData.companyName}</Text.H4_Bold>
           </Button.ButtonPreventDouble>
           <View.Row style={{ alignItems: 'center', marginTop: 3 }}>
@@ -52,7 +62,7 @@ const JobHeader = ({ jobData }) => {
           justifyContent: 'center'
         }}
       >
-        <Button.Button style={{ flex: 1 }}>
+        <Button.Button style={{ flex: 1 }} onPress={onPressApply}>
           <Icon.VectorIcon
             name={'paper-plane'}
             color={Theme.colors.white_color}
@@ -62,7 +72,7 @@ const JobHeader = ({ jobData }) => {
           </Text.BodyBold>
         </Button.Button>
         <View.Row style={{ width: 10 }} />
-        <Button.Button secondary style={{ flex: 1 }}>
+        <Button.Button secondary style={{ flex: 1 }} onPress={onPressSaveJob}>
           <Icon.VectorIcon
             name={'heart-outline'}
             color={Theme.colors.primary_color}

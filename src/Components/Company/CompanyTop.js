@@ -34,7 +34,7 @@ const CompanyTop = () => {
 
   const renderItem = ({ item, index }) => {
     return (
-      <View.Col
+      <Button.ButtonPreventDouble
         key={index}
         style={{
           width: width - 20,
@@ -55,7 +55,7 @@ const CompanyTop = () => {
           style={{ borderWidth: 0 }}
         />
         <Text.Body secondary>{item.companyName}</Text.Body>
-      </View.Col>
+      </Button.ButtonPreventDouble>
     );
   };
 

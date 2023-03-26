@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import View from './View';
 import Text from './Text';
 import Common from './Common';
+import Icon from './Icon';
 import theme from '@Theme';
 import Global from '@Global';
 import { preventDoubleClick } from '@Config/Common';
@@ -105,4 +106,42 @@ const ButtonChangeLanguage = withTranslation('translations')(
   _ButtonChangeLanguage
 );
 
-export default { Button, ButtonPreventDouble, ButtonChangeLanguage };
+const ButtonScrollToTop = ({ listRef }) => {
+  const onScrollToTop = () => {
+    listRef?.current?.scrollTo?.({ y: 0, animated: true });
+  };
+  const BUTTON_SIZE = 42;
+  const BUTTON_MARGIN = 16;
+
+  return (
+    <View.Col
+      style={{
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: BUTTON_MARGIN,
+        bottom: BUTTON_MARGIN,
+        width: BUTTON_SIZE,
+        height: BUTTON_SIZE,
+        borderRadius: BUTTON_SIZE / 2,
+        backgroundColor: theme.colors.primary_color,
+        zIndex: 1
+      }}
+    >
+      <ButtonPreventDouble onPress={onScrollToTop}>
+        <Icon.VectorIcon
+          name={'arrow-up'}
+          size={24}
+          color={theme.colors.white_color}
+        />
+      </ButtonPreventDouble>
+    </View.Col>
+  );
+};
+
+export default {
+  Button,
+  ButtonPreventDouble,
+  ButtonChangeLanguage,
+  ButtonScrollToTop
+};

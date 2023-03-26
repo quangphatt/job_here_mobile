@@ -1,5 +1,5 @@
 import axios from 'axios';
-import host from './Host';
+import { host } from './Host';
 import { store } from '@Config/Redux/store';
 import NetInfo from '@react-native-community/netinfo';
 
