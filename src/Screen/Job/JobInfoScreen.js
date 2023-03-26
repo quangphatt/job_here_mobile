@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ScrollView, Share } from 'react-native';
-import { View, Text, Button, Icon, Common, Loading } from '@Components';
+import { View, Button, Common, Loading } from '@Components';
 import { JobHeader, JobInfo } from '@Components/Job';
 import { jobBusiness, dropdownBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';

@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 import { View, Text, Image, Icon, Pagination, Button } from '@Components';
 import { useTranslation } from 'react-i18next';
 import { companyBusiness } from '@Business';
-import { navigate } from '@NavigationAction';
+import { navigate, navigatePush } from '@NavigationAction';
 import Theme from '@Theme';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
@@ -32,10 +32,15 @@ const CompanyTop = () => {
     navigate('CompanyListScreen');
   };
 
+  const onPressCompanyItem = (companyId) => () => {
+    navigatePush('CompanyInfoScreen', { companyId });
+  };
+
   const renderItem = ({ item, index }) => {
     return (
       <Button.ButtonPreventDouble
         key={index}
+        onPress={onPressCompanyItem(item.companyId)}
         style={{
           width: width - 20,
           margin: 10,

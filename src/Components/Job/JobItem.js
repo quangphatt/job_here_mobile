@@ -40,7 +40,9 @@ const JobItem = ({ jobData }) => {
     navigatePush('JobInfoScreen', { jobId: jobData.jobId });
   };
 
-  const onPressCompanyName = () => {};
+  const onPressCompanyName = () => {
+    navigatePush('CompanyInfoScreen', { companyId: jobData.companyId });
+  };
 
   const onPressSaveJob = () => {};
 

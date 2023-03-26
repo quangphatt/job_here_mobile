@@ -17,12 +17,16 @@ const CompanyHeader = ({ companyData }) => {
             {t('jh.companyIntroduction')}
           </Text.BodyBold>
         </View.Col>
-        <View.Col>
-          <Common.RenderHTMLJobHere
-            contentWidth={width}
-            source={{ html: companyData.description || '' }}
-          />
-        </View.Col>
+        {!!companyData.description ? (
+          <View.Col>
+            <Common.RenderHTMLJobHere
+              contentWidth={width}
+              source={{ html: companyData.description || '' }}
+            />
+          </View.Col>
+        ) : (
+          <Text.Body secondary>{t('jh.noDescription')}</Text.Body>
+        )}
       </View.Col>
       {(companyData?.companyJobs?.length ?? 0) > 0 && (
         <View.Col style={styles.group}>
@@ -32,7 +36,7 @@ const CompanyHeader = ({ companyData }) => {
             </Text.BodyBold>
           </View.Col>
           <View.Col>
-            {_.map(companyData.companyJobs, item => (
+            {_.map(companyData.companyJobs, (item) => (
               <JobItem key={item.jobId} jobData={item} />
             ))}
           </View.Col>
