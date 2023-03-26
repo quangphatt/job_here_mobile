@@ -15,10 +15,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <ScrollView
-      stickyHeaderIndices={[0]}
-      style={{ flex: 1, backgroundColor: Theme.colors.white_color }}
-    >
+    <ScrollView stickyHeaderIndices={[0]} style={{ flex: 1 }}>
       <Common.Header
         title={'Job Here'}
         iconLeft={'menu'}

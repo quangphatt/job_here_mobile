@@ -3,6 +3,7 @@ import { View, Text, Image, Icon, Button } from '@Components';
 import { TagList } from '@Components/Tag';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
+import { navigatePush } from '@NavigationAction';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
 const JobItem = ({ jobData }) => {
@@ -35,9 +36,13 @@ const JobItem = ({ jobData }) => {
       ? { uri: jobData.avatar || jobData.avatarUrl }
       : company_default_img;
 
-  const onPressJobName = () => {};
+  const onPressJobName = () => {
+    navigatePush('JobInfoScreen', { jobId: jobData.jobId });
+  };
 
-  const onPressCompanyName = () => {};
+  const onPressCompanyName = () => {
+    navigatePush('CompanyInfoScreen', { companyId: jobData.companyId });
+  };
 
   const onPressSaveJob = () => {};
 

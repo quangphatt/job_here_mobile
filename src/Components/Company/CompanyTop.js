@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 import { View, Text, Image, Icon, Pagination, Button } from '@Components';
 import { useTranslation } from 'react-i18next';
 import { companyBusiness } from '@Business';
-import { navigate } from '@NavigationAction';
+import { navigate, navigatePush } from '@NavigationAction';
 import Theme from '@Theme';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
@@ -29,22 +29,28 @@ const CompanyTop = () => {
   };
 
   const onPressSeeAllCompany = () => {
-    navigate('CompanyListScreen');
+    navigate('CompanyListScreen', { isBack: true });
+  };
+
+  const onPressCompanyItem = (companyId) => () => {
+    navigatePush('CompanyInfoScreen', { companyId });
   };
 
   const renderItem = ({ item, index }) => {
     return (
-      <View.Col
+      <Button.ButtonPreventDouble
         key={index}
+        onPress={onPressCompanyItem(item.companyId)}
         style={{
           width: width - 20,
           margin: 10,
-          paddingVertical: 8,
+          paddingVertical: 12,
           justifyContent: 'center',
           alignItems: 'center',
           borderWidth: 1,
           borderColor: Theme.border_colors.secondary_border_color,
-          borderRadius: 10
+          borderRadius: 10,
+          backgroundColor: Theme.colors.white_color
         }}
       >
         <Image.ImageSquare
@@ -55,7 +61,7 @@ const CompanyTop = () => {
           style={{ borderWidth: 0 }}
         />
         <Text.Body secondary>{item.companyName}</Text.Body>
-      </View.Col>
+      </Button.ButtonPreventDouble>
     );
   };
 

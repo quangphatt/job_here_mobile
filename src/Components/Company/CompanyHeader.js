@@ -3,6 +3,8 @@ import { Linking, StyleSheet } from 'react-native';
 import { View, Text, Icon, Image, Button } from '@Components';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
+import company_default_img from '@Assets/Images/company_default_img.jpg';
+import company_default_bg from '@Assets/Images/company_default_background.jpg';
 
 const AVATAR_SIZE = 76;
 
@@ -21,7 +23,11 @@ const CompanyHeader = ({ companyData }) => {
     <View.Col style={{ backgroundColor: Theme.colors.white_color }}>
       <View.Col>
         <Image.Image
-          source={{ uri: companyData.backgroundUrl }}
+          source={
+            companyData?.backgroundUrl
+              ? { uri: companyData.backgroundUrl }
+              : company_default_bg
+          }
           style={{ flex: 1, height: 80 }}
         />
       </View.Col>
@@ -30,7 +36,7 @@ const CompanyHeader = ({ companyData }) => {
           style={{
             padding: 3,
             backgroundColor: Theme.colors.white_color,
-            borderColor: Theme.border_colors.primary_border_color,
+            borderColor: Theme.border_colors.secondary_border_color,
             borderWidth: 1,
             borderRadius: (AVATAR_SIZE + 3 * 2) / 6,
             position: 'absolute',
@@ -39,7 +45,11 @@ const CompanyHeader = ({ companyData }) => {
           }}
         >
           <Image.ImageSquare
-            source={{ uri: companyData.avatarUrl }}
+            source={
+              companyData?.avatarUrl
+                ? { uri: companyData.avatarUrl }
+                : company_default_img
+            }
             size={AVATAR_SIZE}
             style={{
               borderColor: Theme.border_colors.primary_border_color,
@@ -50,7 +60,9 @@ const CompanyHeader = ({ companyData }) => {
         <View.Col
           style={{
             marginLeft: (AVATAR_SIZE * 5) / 4 + 3 * 2 + 10,
-            paddingBottom: 5
+            paddingRight: 5,
+            paddingBottom: 5,
+            flex: 1
           }}
         >
           <Text.BodyBold secondary fontSize={19}>

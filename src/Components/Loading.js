@@ -1,9 +1,29 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 import { View, Text } from '@Components';
 import LottieView from 'lottie-react-native';
 
-const Loading = ({ placeholder = false }) => {
-  if (placeholder)
+const { width, height } = Dimensions.get('window');
+
+const Loading = ({ placeholder = false, screen = false }) => {
+  if (placeholder) {
+    if (screen) {
+      return (
+        <View.Col
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <LottieView
+            source={require('@Assets/Lottie/screen_placeholder.json')}
+            autoPlay={true}
+            loop
+            style={{ width, flex: 1 }}
+          />
+        </View.Col>
+      );
+    }
     return (
       <View.Col
         style={{
@@ -20,6 +40,7 @@ const Loading = ({ placeholder = false }) => {
         />
       </View.Col>
     );
+  }
 
   return (
     <View.Col style={{ alignItems: 'center', justifyContent: 'center' }}>

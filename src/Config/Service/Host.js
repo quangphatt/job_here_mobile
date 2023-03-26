@@ -1,5 +1,4 @@
-import { RN_APP_SERVER_URL } from '@env';
+import { RN_APP_SERVER_URL, RN_APP_FRONTEND_URL } from '@env';
 
-const host = RN_APP_SERVER_URL;
-
-export default host;
+export const host = RN_APP_SERVER_URL;
+export const fe_host = RN_APP_FRONTEND_URL;

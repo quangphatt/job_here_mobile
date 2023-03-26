@@ -86,7 +86,10 @@ export const en = {
   'jh.newJob': 'New Job',
   'jh.interestingJob': 'Interesting Job',
   'jh.topCompany': 'Top Company',
-  'jh.seeAllCompany': 'See all company'
+  'jh.seeAllCompany': 'See all company',
+  'jh.companyDetail': 'Company Detail',
+  'jh.people': 'People',
+  'jh.noDescription': 'No Description'
 };
 
 export const vn = {
@@ -176,5 +179,8 @@ export const vn = {
   'jh.newJob': 'Việc làm mới đăng',
   'jh.interestingJob': 'Việc làm hấp dẫn',
   'jh.topCompany': 'Công ty hàng đầu',
-  'jh.seeAllCompany': 'Xem tất cả công ty'
+  'jh.seeAllCompany': 'Xem tất cả công ty',
+  'jh.companyDetail': 'Chi tiết công ty',
+  'jh.people': 'Nhân viên',
+  'jh.noDescription': 'Không có mô tả'
 };
