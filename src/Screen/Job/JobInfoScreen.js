@@ -70,16 +70,18 @@ const JobInfoScreen = (props) => {
 
   const onPressShare = async () => {
     try {
-      let result = await Share.share({
-        message: `${fe_host}/Job/${jobData.jobId}`
-      });
+      if (!!jobData?.jobId) {
+        let result = await Share.share({
+          message: `${fe_host}/Job/${jobData.jobId}`
+        });
+      }
     } catch (error) {
       console.log('Error while sharing job!!!', error);
     }
   };
 
   return (
-    <View.Col>
+    <View.Col style={{ flex: 1 }}>
       <ScrollView stickyHeaderIndices={[0]} ref={listRef}>
         <Common.Header
           title={jobData?.jobName ?? t('jh.jobDetail')}

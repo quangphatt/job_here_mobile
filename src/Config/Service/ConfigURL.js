@@ -24,3 +24,4 @@ export const getJobInfoURL = '/job/getJobInfo';
 export const getTopCompanyURL = '/company/getListTopCompanyHome';
 export const getCompanyInfoURL = '/company/getCompanyInfo';
 export const getAllJobOfCompanyURL = '/company/getAllJobOfCompany';
+export const getListCompanyURL = '/company/getListCompany';

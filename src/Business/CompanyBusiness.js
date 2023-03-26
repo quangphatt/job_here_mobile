@@ -2,7 +2,8 @@ import Service from '@Config/Service';
 import {
   getTopCompanyURL,
   getCompanyInfoURL,
-  getAllJobOfCompanyURL
+  getAllJobOfCompanyURL,
+  getListCompanyURL
 } from '@Config/Service/ConfigURL';
 
 class CompanyBusiness extends Service {
@@ -13,6 +14,12 @@ class CompanyBusiness extends Service {
 
   getJobOfCompany = async (companyId) => {
     let result = await this.get(`${getAllJobOfCompanyURL}/${companyId}`);
+    return result;
+  };
+
+  getListCompany = async (page, size) => {
+    let params = { page, size };
+    let result = await this.get(getListCompanyURL, params);
     return result;
   };
 

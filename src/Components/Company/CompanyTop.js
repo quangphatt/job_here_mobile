@@ -29,7 +29,7 @@ const CompanyTop = () => {
   };
 
   const onPressSeeAllCompany = () => {
-    navigate('CompanyListScreen');
+    navigate('CompanyListScreen', { isBack: true });
   };
 
   const onPressCompanyItem = (companyId) => () => {
@@ -44,12 +44,13 @@ const CompanyTop = () => {
         style={{
           width: width - 20,
           margin: 10,
-          paddingVertical: 8,
+          paddingVertical: 12,
           justifyContent: 'center',
           alignItems: 'center',
           borderWidth: 1,
           borderColor: Theme.border_colors.secondary_border_color,
-          borderRadius: 10
+          borderRadius: 10,
+          backgroundColor: Theme.colors.white_color
         }}
       >
         <Image.ImageSquare

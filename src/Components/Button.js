@@ -106,9 +106,13 @@ const ButtonChangeLanguage = withTranslation('translations')(
   _ButtonChangeLanguage
 );
 
-const ButtonScrollToTop = ({ listRef }) => {
+const ButtonScrollToTop = ({ listRef, isFlatList = false }) => {
   const onScrollToTop = () => {
-    listRef?.current?.scrollTo?.({ y: 0, animated: true });
+    if (isFlatList) {
+      listRef?.current?.scrollToOffset?.({ animated: true, offset: 0 });
+    } else {
+      listRef?.current?.scrollTo?.({ y: 0, animated: true });
+    }
   };
   const BUTTON_SIZE = 42;
   const BUTTON_MARGIN = 16;
