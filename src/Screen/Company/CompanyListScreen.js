@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FlatList, LayoutAnimation, ActivityIndicator } from 'react-native';
-import { View, Text, Common, Button } from '@Components';
+import { View, Common, Button } from '@Components';
 import { CompanyItem } from '@Components/Company';
 import Theme from '@Theme';
 import { companyBusiness } from '@Business';
