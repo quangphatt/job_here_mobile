@@ -1,17 +1,16 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, FlatList } from 'react-native';
 import View from './View';
 import Text from './Text';
 import Icon from './Icon';
 import Image from './Image';
-import Button from './Button';
 import Theme from '@Theme';
 import styled from 'styled-components/native';
 import RenderHTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { preventDoubleClick } from '@Config/Common';
 
-const TouchPreventDouble = preventDoubleClick(TouchableOpacity);
+const ButtonPreventDouble = preventDoubleClick(TouchableOpacity);
 
 const HeaderContainer = styled(View.Row)`
   height: ${(props) => props.theme.size.header_height}px;
@@ -20,13 +19,13 @@ const HeaderContainer = styled(View.Row)`
   padding: 0px 12px 0px 12px;
 `;
 
-const HeaderLeft = styled(TouchPreventDouble)`
+const HeaderLeft = styled(ButtonPreventDouble)`
   align-items: flex-start;
   justify-content: center;
   width: 40px;
 `;
 
-const HeaderRight = styled(TouchPreventDouble)`
+const HeaderRight = styled(ButtonPreventDouble)`
   align-items: flex-end;
   justify-content: center;
   width: 40px;
@@ -106,7 +105,7 @@ const BasicItem = ({
   style
 }) => {
   return (
-    <Button.ButtonPreventDouble
+    <ButtonPreventDouble
       activeOpacity={0.6}
       onPress={onPress}
       style={{ flexDirection: 'row', ...style }}
@@ -174,8 +173,56 @@ const BasicItem = ({
           </View.Col>
         )}
       </View.Row>
-    </Button.ButtonPreventDouble>
+    </ButtonPreventDouble>
   );
 };
 
-export default { Header, RenderHTMLJobHere, BasicItem };
+const SelectionList = ({
+  listItem,
+  onSelectItem,
+  notNull = false,
+  currentItem
+}) => {
+  const _onSelectItem = (id) => () => {
+    if (typeof onSelectItem === 'function') {
+      onSelectItem(id);
+    }
+  };
+
+  const renderItem = ({ item, index }) => {
+    let isCurrentItem = currentItem && item.id === currentItem;
+
+    return (
+      <View.Col key={index}>
+        <ButtonPreventDouble
+          onPress={_onSelectItem(item.id)}
+          disabled={isCurrentItem}
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingVertical: 5
+          }}
+        >
+          <Text.Body fontSize={17} secondary>
+            {item.name}
+          </Text.Body>
+          {isCurrentItem && (
+            <Icon.VectorIcon name={'checkmark-sharp'} size={25} primary />
+          )}
+        </ButtonPreventDouble>
+      </View.Col>
+    );
+  };
+
+  return (
+    <SafeAreaView
+      edges={['bottom']}
+      style={{ paddingHorizontal: 20, paddingBottom: 16 }}
+    >
+      <FlatList data={listItem} renderItem={renderItem} />
+    </SafeAreaView>
+  );
+};
+
+export default { Header, RenderHTMLJobHere, BasicItem, SelectionList };

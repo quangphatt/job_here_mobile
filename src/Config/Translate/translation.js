@@ -89,7 +89,11 @@ export const en = {
   'jh.seeAllCompany': 'See all company',
   'jh.companyDetail': 'Company Detail',
   'jh.people': 'People',
-  'jh.noDescription': 'No Description'
+  'jh.noDescription': 'No Description',
+  'jh.pickTime': 'Pick Time',
+  'jh.pickMonth': 'Pick Month',
+  'jh.pickYear': 'Pick Year',
+  'jh.noJobApllied': 'There is no applied job in this time!'
 };
 
 export const vn = {
@@ -182,5 +186,9 @@ export const vn = {
   'jh.seeAllCompany': 'Xem tất cả công ty',
   'jh.companyDetail': 'Chi tiết công ty',
   'jh.people': 'Nhân viên',
-  'jh.noDescription': 'Không có mô tả'
+  'jh.noDescription': 'Không có mô tả',
+  'jh.pickTime': 'Chọn Thời Gian',
+  'jh.pickMonth': 'Chọn Tháng',
+  'jh.pickYear': 'Chọn Năm',
+  'jh.noJobApllied': 'Không có việc làm đã ứng tuyển trong thời gian này!'
 };

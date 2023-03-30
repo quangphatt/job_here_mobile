@@ -23,7 +23,7 @@ class ModalAction extends PureComponent {
     this.on_close = null;
   }
 
-  showModal = params => {
+  showModal = (params) => {
     this.on_close = params.on_close;
     this.setState({
       isShowHeader: params?.isShowHeader ?? true,
@@ -38,7 +38,7 @@ class ModalAction extends PureComponent {
     this.modalActionRef.current.open();
   };
 
-  hideModal = params => {
+  hideModal = (params) => {
     this.params = params;
     this.modalActionRef.current.close();
   };
@@ -60,14 +60,14 @@ class ModalAction extends PureComponent {
     if (isShowHeader) {
       return (
         <View.Row style={styles.headerContainer}>
-          <Text.H4_Bold style={{ flex: 1 }} numberOfLines={1}>
+          <Text.H4_Bold style={{ flex: 1, fontSize: 17 }} numberOfLines={1}>
             {this.state.label}
           </Text.H4_Bold>
           <TouchableOpacity onPress={this.onHideModal}>
             <Icon.VectorIcon
               name={'close'}
               xboss
-              size={20}
+              size={30}
               color={theme.colors.white_color}
               paddingLeft={10}
             />
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     backgroundColor: theme.colors.primary_color,
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     zIndex: 1000
