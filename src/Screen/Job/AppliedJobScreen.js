@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { View, Text, Icon, Common, Loading, Button } from '@Components';
+import { View, Text, Icon, Common, List, Loading, Button } from '@Components';
 import { JobItem } from '@Components/Job';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
@@ -80,7 +80,7 @@ const AppliedJobScreen = () => {
       label: t('jh.pickMonth'),
       closeOnOverlayTap: true,
       component: (
-        <Common.SelectionList
+        <List.SelectionList
           listItem={LIST_MONTH}
           onSelectItem={onChangeMonth}
           notNull
@@ -96,7 +96,7 @@ const AppliedJobScreen = () => {
       label: t('jh.pickYear'),
       closeOnOverlayTap: true,
       component: (
-        <Common.SelectionList
+        <List.SelectionList
           listItem={LIST_YEAR}
           onSelectItem={onChangeYear}
           notNull

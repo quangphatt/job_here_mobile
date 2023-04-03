@@ -177,52 +177,8 @@ const BasicItem = ({
   );
 };
 
-const SelectionList = ({
-  listItem,
-  onSelectItem,
-  notNull = false,
-  currentItem
-}) => {
-  const _onSelectItem = (id) => () => {
-    if (typeof onSelectItem === 'function') {
-      onSelectItem(id);
-    }
-  };
-
-  const renderItem = ({ item, index }) => {
-    let isCurrentItem = currentItem && item.id === currentItem;
-
-    return (
-      <View.Col key={index}>
-        <ButtonPreventDouble
-          onPress={_onSelectItem(item.id)}
-          disabled={isCurrentItem}
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingVertical: 5
-          }}
-        >
-          <Text.Body fontSize={17} secondary>
-            {item.name}
-          </Text.Body>
-          {isCurrentItem && (
-            <Icon.VectorIcon name={'checkmark-sharp'} size={25} primary />
-          )}
-        </ButtonPreventDouble>
-      </View.Col>
-    );
-  };
-
-  return (
-    <SafeAreaView
-      edges={['bottom']}
-      style={{ paddingHorizontal: 20, paddingBottom: 16 }}
-    >
-      <FlatList data={listItem} renderItem={renderItem} />
-    </SafeAreaView>
-  );
+export default {
+  Header,
+  RenderHTMLJobHere,
+  BasicItem
 };
-
-export default { Header, RenderHTMLJobHere, BasicItem, SelectionList };

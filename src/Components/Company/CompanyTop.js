@@ -58,7 +58,7 @@ const CompanyTop = () => {
             item?.avatarUrl ? { uri: item.avatarUrl } : company_default_img
           }
           size={72}
-          style={{ borderWidth: 0 }}
+          style={{ borderWidth: 0, backgroundColor: Theme.colors.white_color }}
         />
         <Text.Body secondary>{item.companyName}</Text.Body>
       </Button.ButtonPreventDouble>

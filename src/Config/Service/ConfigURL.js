@@ -19,6 +19,8 @@ export const cityDropdownURL = '/dropdown/city';
 export const getListNewJobURL = '/job/getListNewJob';
 export const getListJobInterestingURL = '/job/getListJobInteresting';
 export const getJobInfoURL = '/job/getJobInfo';
+export const getSavedJobURL = "/user/getSavedJob";
+export const getAllSavedJobIdURL = "/user/getAllSavedJobId";
 
 // Company
 export const getTopCompanyURL = '/company/getListTopCompanyHome';

@@ -2,7 +2,9 @@ import Service from '@Config/Service';
 import {
   getListNewJobURL,
   getListJobInterestingURL,
-  getJobInfoURL
+  getJobInfoURL,
+  getSavedJobURL,
+  getAllSavedJobIdURL
 } from '@Config/Service/ConfigURL';
 
 class JobBusiness extends Service {
@@ -20,6 +22,16 @@ class JobBusiness extends Service {
     let result = await this.get(
       `${getListJobInterestingURL}?page=${page}&size=${size}`
     );
+    return result;
+  };
+
+  getSavedJob = async (page, size) => {
+    let result = await this.get(`${getSavedJobURL}?page=${page}&size=${size}`);
+    return result;
+  };
+
+  getAllSavedJobId = async () => {
+    let result = await this.get(getAllSavedJobIdURL);
     return result;
   };
 }

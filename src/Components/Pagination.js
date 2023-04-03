@@ -31,6 +31,10 @@ const Pagination = ({
 
   useEffect(() => {
     _getData(0);
+    return () => {
+      stateData.currentItem = [];
+      setLastUpdate(moment().format('x'));
+    };
   }, []);
 
   let showButton = dataLength > MAX_ITEM;

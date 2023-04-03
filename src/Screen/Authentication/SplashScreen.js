@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Dimensions } from 'react-native';
 import { View, Text } from '@Components';
 import Theme from '@Theme';
 import AutoHeightImage from 'react-native-auto-height-image';
 import Lottie from 'lottie-react-native';
+import { AuthContext } from '@Config/Provider/AuthProvider';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { navigate } from '@NavigationAction';
 import splash_img from '@Assets/Images/launch_screen.png';
 
@@ -12,11 +14,16 @@ const { width } = Dimensions.get('window');
 
 const SplashScreen = () => {
   const { t } = useTranslation();
+  const authContext = useContext(AuthContext);
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
+  let isSignIn = authContext?.authState?.authenticated ?? false;
 
   useEffect(() => {
-    setTimeout(() => {
-      navigate('CommonAppNavigation', { screen: 'HomeScreen' });
-    }, 1000);
+    if (!(isSignIn || !!sessionInfo?.email)) {
+      setTimeout(() => {
+        navigate('CommonAppNavigation', { screen: 'HomeScreen' });
+      }, 400);
+    }
   }, []);
 
   return (

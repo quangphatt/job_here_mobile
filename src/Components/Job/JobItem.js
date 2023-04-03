@@ -4,14 +4,19 @@ import { TagList } from '@Components/Tag';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
 import { navigatePush } from '@NavigationAction';
+import { useSelector, useDispatch } from 'react-redux';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
-const JobItem = ({ jobData }) => {
+const JobItem = ({ jobData = {} }) => {
   const { t } = useTranslation();
+  const savedJobList =
+    useSelector((state) => state.SavedJob.listSavedJob) || [];
 
   let tagData = [
     {
       label: `${
+        jobData.salaryMin &&
+        jobData.salaryMax &&
         jobData.salaryMin === jobData.salaryMax
           ? jobData.salaryMin
           : `${jobData.salaryMin} - ${jobData.salaryMax}`
@@ -108,7 +113,11 @@ const JobItem = ({ jobData }) => {
             }}
           >
             <Icon.VectorIcon
-              name={'heart-outline'}
+              name={
+                savedJobList.includes(jobData.jobId)
+                  ? 'heart-sharp'
+                  : 'heart-outline'
+              }
               color={Theme.colors.primary_color}
             />
           </Button.ButtonPreventDouble>
