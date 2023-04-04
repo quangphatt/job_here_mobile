@@ -4,10 +4,15 @@ import { View, Text, Icon, Button } from '@Components';
 import Theme from '@Theme';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { useTranslation } from 'react-i18next';
-import { navigate } from '@NavigationAction';
+import { navigate, getCurrentRoute } from '@NavigationAction';
 import logo_group from '@Assets/Images/logo_group.png';
 
 const MENU = [
+  {
+    name: 'jh.home',
+    route: 'HomeScreen',
+    type: 1
+  },
   {
     name: 'jh.jobs',
     children: [
@@ -49,17 +54,32 @@ const DrawerContent = ({ isSignIn }) => {
   };
 
   const renderMenuItem = (item, index) => {
+    let noChild = !item?.children;
+
     const onToggleShowChildren = () => {
       LayoutAnimation.configureNext(
         LayoutAnimation.create(200, 'easeInEaseOut', 'opacity')
       );
-      setShowChildren({ ...showChildren, [index]: !showChildren[index] });
+      setShowChildren({
+        ...showChildren,
+        [index]: noChild ? false : !showChildren[index]
+      });
+    };
+
+    const onPressNoChild = () => {
+      let currentRoute = getCurrentRoute().name;
+      if (item.route !== currentRoute) {
+        navigate('JobHereNavigation', {
+          screen: 'CommonNavigation',
+          params: { screen: item.route }
+        });
+      }
     };
 
     return (
       <View.Col key={index}>
         <Button.ButtonPreventDouble
-          onPress={onToggleShowChildren}
+          onPress={noChild ? onPressNoChild : onToggleShowChildren}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -74,14 +94,16 @@ const DrawerContent = ({ isSignIn }) => {
           <Text.BodyBold fontSize={18} secondary>
             {t(item.name)}
           </Text.BodyBold>
-          <Icon.VectorIcon
-            name={
-              showChildren[index]
-                ? 'chevron-down-outline'
-                : 'chevron-up-outline'
-            }
-            size={20}
-          />
+          {!noChild && (
+            <Icon.VectorIcon
+              name={
+                showChildren[index]
+                  ? 'chevron-down-outline'
+                  : 'chevron-up-outline'
+              }
+              size={20}
+            />
+          )}
         </Button.ButtonPreventDouble>
         {showChildren[index] && (
           <View.Col style={{ marginLeft: 15, marginVertical: 4 }}>
@@ -96,13 +118,16 @@ const DrawerContent = ({ isSignIn }) => {
 
   const renderMenuChild = (child, index) => {
     const onPressChild = () => {
-      if (child.type === 0) {
-        navigate('JobHereNavigation', { screen: child.route });
-      } else if (child.type === 1) {
-        navigate('JobHereNavigation', {
-          screen: 'CommonNavigation',
-          params: { screen: child.route }
-        });
+      let currentRoute = getCurrentRoute().name;
+      if (child.route !== currentRoute) {
+        if (child.type === 0) {
+          navigate('JobHereNavigation', { screen: child.route });
+        } else if (child.type === 1) {
+          navigate('JobHereNavigation', {
+            screen: 'CommonNavigation',
+            params: { screen: child.route }
+          });
+        }
       }
     };
 

@@ -6,11 +6,15 @@ import BottomNavigation from './BottomNavigation/BottomNavigation';
 import DrawerContent from './DrawerContent';
 import { AuthContext } from '@Config/Provider/AuthProvider';
 import * as Keychain from 'react-native-keychain';
+import { GetAllSavedJob } from '@ReduxSlice/SavedJobSlice';
+import { useDispatch } from 'react-redux';
+import { store } from '@Config/Redux/store';
 
 const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
+  const dispatch = useDispatch();
   const authContext = useContext(AuthContext);
   const loadJWT = useCallback(async () => {
     try {
@@ -40,6 +44,9 @@ const DrawerNavigation = (props) => {
   }, [loadJWT]);
 
   let isSignIn = authContext?.authState?.authenticated;
+  if (isSignIn && !store.getState()?.SavedJob?.isLoaded) {
+    dispatch(GetAllSavedJob());
+  }
 
   const renderDrawerContent = (props) => {
     return <DrawerContent {...props} isSignIn={isSignIn} />;

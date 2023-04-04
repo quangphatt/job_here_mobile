@@ -1,12 +1,25 @@
 import React from 'react';
 import { View, Text, Icon, Button, Image } from '@Components';
 import Theme from '@Theme';
+import { jobBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';
 import { navigatePush } from '@NavigationAction';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  GetAllSavedJob,
+  SaveTemporary,
+  UnSaveTemporary
+} from '@ReduxSlice/SavedJobSlice';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
 const JobHeader = ({ jobData, inJobScreen = false }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const savedJobList =
+    useSelector((state) => state.SavedJob.listSavedJob) || [];
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
+  let isSignIn = !!sessionInfo;
+  let isSaved = savedJobList.includes(jobData.jobId);
   let avatar =
     jobData.avatar || jobData.avatarUrl
       ? { uri: jobData.avatar || jobData.avatarUrl }
@@ -20,9 +33,23 @@ const JobHeader = ({ jobData, inJobScreen = false }) => {
     navigatePush('CompanyInfoScreen', { companyId: jobData.companyId });
   };
 
+  const onSignIn = () => {};
+
   const onPressApply = () => {};
 
-  const onPressSaveJob = () => {};
+  const onPressSaveJob = async () => {
+    let result = null;
+    if (isSaved) {
+      dispatch(UnSaveTemporary(jobData.jobId));
+      result = await jobBusiness.unsaveJob(jobData.jobId);
+    } else {
+      dispatch(SaveTemporary(jobData.jobId));
+      result = await jobBusiness.saveJob(jobData.jobId);
+    }
+    if (result.data.httpCode === 200) {
+      dispatch(GetAllSavedJob());
+    }
+  };
 
   return (
     <View.Col
@@ -64,25 +91,46 @@ const JobHeader = ({ jobData, inJobScreen = false }) => {
           justifyContent: 'center'
         }}
       >
-        <Button.Button style={{ flex: 1 }} onPress={onPressApply}>
+        <Button.Button
+          style={{ flex: 1 }}
+          onPress={isSignIn ? onPressApply : onSignIn}
+        >
           <Icon.VectorIcon
             name={'paper-plane'}
             color={Theme.colors.white_color}
           />
           <Text.BodyBold style={{ paddingLeft: 5 }}>
-            {t('jh.applyNow')}
+            {isSignIn ? t('jh.applyNow') : t('jh.signInToApply')}
           </Text.BodyBold>
         </Button.Button>
         <View.Row style={{ width: 10 }} />
-        <Button.Button secondary style={{ flex: 1 }} onPress={onPressSaveJob}>
-          <Icon.VectorIcon
-            name={'heart-outline'}
-            color={Theme.colors.primary_color}
-          />
-          <Text.BodyBold primary style={{ paddingLeft: 5 }}>
-            {t('jh.saveJob')}
-          </Text.BodyBold>
-        </Button.Button>
+        {isSignIn ? (
+          <Button.Button
+            secondary={!isSaved}
+            style={{ flex: 1 }}
+            onPress={onPressSaveJob}
+          >
+            <Icon.VectorIcon
+              name={isSaved ? 'heart-sharp' : 'heart-outline'}
+              color={
+                isSaved ? Theme.colors.white_color : Theme.colors.primary_color
+              }
+            />
+            <Text.BodyBold primary={!isSaved} style={{ paddingLeft: 5 }}>
+              {isSaved ? t('jh.saved') : t('jh.saveJob')}
+            </Text.BodyBold>
+          </Button.Button>
+        ) : (
+          <Button.Button secondary style={{ flex: 1 }} onPress={onSignIn}>
+            <Icon.VectorIcon
+              name={'heart-outline'}
+              color={Theme.colors.primary_color}
+            />
+            <Text.BodyBold primary style={{ paddingLeft: 5 }}>
+              {t('jh.signInToSaveJob')}
+            </Text.BodyBold>
+          </Button.Button>
+        )}
       </View.Row>
     </View.Col>
   );

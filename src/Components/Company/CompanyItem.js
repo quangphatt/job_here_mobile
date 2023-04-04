@@ -50,7 +50,8 @@ const CompanyItem = ({ companyData }) => {
             size={AVATAR_SIZE}
             style={{
               borderColor: Theme.border_colors.primary_border_color,
-              borderWidth: 1
+              borderWidth: 1,
+              backgroundColor: Theme.colors.white_color
             }}
           />
         </View.Col>

@@ -2,16 +2,30 @@ import React from 'react';
 import { View, Text, Image, Icon, Button } from '@Components';
 import { TagList } from '@Components/Tag';
 import Theme from '@Theme';
+import { jobBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';
 import { navigatePush } from '@NavigationAction';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  GetAllSavedJob,
+  SaveTemporary,
+  UnSaveTemporary
+} from '@ReduxSlice/SavedJobSlice';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
-const JobItem = ({ jobData }) => {
+const JobItem = ({ jobData = {} }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const savedJobList =
+    useSelector((state) => state.SavedJob.listSavedJob) || [];
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
+  let isSaved = savedJobList.includes(jobData.jobId);
 
   let tagData = [
     {
       label: `${
+        jobData.salaryMin &&
+        jobData.salaryMax &&
         jobData.salaryMin === jobData.salaryMax
           ? jobData.salaryMin
           : `${jobData.salaryMin} - ${jobData.salaryMax}`
@@ -44,7 +58,19 @@ const JobItem = ({ jobData }) => {
     navigatePush('CompanyInfoScreen', { companyId: jobData.companyId });
   };
 
-  const onPressSaveJob = () => {};
+  const onPressSaveJob = async () => {
+    let result = null;
+    if (isSaved) {
+      dispatch(UnSaveTemporary(jobData.jobId));
+      result = await jobBusiness.unsaveJob(jobData.jobId);
+    } else {
+      dispatch(SaveTemporary(jobData.jobId));
+      result = await jobBusiness.saveJob(jobData.jobId);
+    }
+    if (result.data.httpCode === 200) {
+      dispatch(GetAllSavedJob());
+    }
+  };
 
   return (
     <View.Row
@@ -96,22 +122,24 @@ const JobItem = ({ jobData }) => {
           <View.Row style={{ flex: 1, flexWrap: 'wrap' }}>
             <TagList tagData={tagData} />
           </View.Row>
-          <Button.ButtonPreventDouble
-            onPress={onPressSaveJob}
-            style={{
-              backgroundColor: Theme.colors.white_color,
-              borderColor: Theme.border_colors.secondary_border_color,
-              borderWidth: 1,
-              borderRadius: 5,
-              padding: 2,
-              marginTop: 4
-            }}
-          >
-            <Icon.VectorIcon
-              name={'heart-outline'}
-              color={Theme.colors.primary_color}
-            />
-          </Button.ButtonPreventDouble>
+          {!!sessionInfo && (
+            <Button.ButtonPreventDouble
+              onPress={onPressSaveJob}
+              style={{
+                backgroundColor: Theme.colors.white_color,
+                borderColor: Theme.border_colors.secondary_border_color,
+                borderWidth: 1,
+                borderRadius: 5,
+                padding: 2,
+                marginTop: 4
+              }}
+            >
+              <Icon.VectorIcon
+                name={isSaved ? 'heart-sharp' : 'heart-outline'}
+                color={Theme.colors.primary_color}
+              />
+            </Button.ButtonPreventDouble>
+          )}
         </View.Row>
       </View.Col>
     </View.Row>

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import AuthenticationSlice from './Slice/AuthenticationSlice';
 import HeaderRequestSlice from './Slice/HeaderRequestSlice';
+import SavedJobSlice from './Slice/SavedJobSlice';
 import { combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
@@ -14,7 +15,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   Authentication: AuthenticationSlice,
-  HeaderRequest: HeaderRequestSlice
+  HeaderRequest: HeaderRequestSlice,
+  SavedJob: SavedJobSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

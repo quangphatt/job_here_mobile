@@ -93,7 +93,8 @@ export const en = {
   'jh.pickTime': 'Pick Time',
   'jh.pickMonth': 'Pick Month',
   'jh.pickYear': 'Pick Year',
-  'jh.noJobApllied': 'There is no applied job in this time!'
+  'jh.noJobApllied': 'There is no applied job in this time!',
+  'jh.noData': 'No Data'
 };
 
 export const vn = {
@@ -190,5 +191,6 @@ export const vn = {
   'jh.pickTime': 'Chọn Thời Gian',
   'jh.pickMonth': 'Chọn Tháng',
   'jh.pickYear': 'Chọn Năm',
-  'jh.noJobApllied': 'Không có việc làm đã ứng tuyển trong thời gian này!'
+  'jh.noJobApllied': 'Không có việc làm đã ứng tuyển trong thời gian này!',
+  'jh.noData': 'Không có dữ liệu'
 };

@@ -6,7 +6,6 @@ import { companyBusiness, dropdownBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';
 import { fe_host } from '@Config/Service/Host';
 import { goBack } from '@NavigationAction';
-import Global from '@Global';
 
 const CompanyInfoScreen = (props) => {
   const [companyData, setCompanyData] = useState({});

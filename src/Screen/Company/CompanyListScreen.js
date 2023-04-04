@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FlatList, LayoutAnimation, ActivityIndicator } from 'react-native';
-import { View, Text, Common, Button } from '@Components';
+import { View, Text, Common, Button, Loading, List } from '@Components';
 import { CompanyItem } from '@Components/Company';
-import Theme from '@Theme';
 import { companyBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';
 import { goBack, openDrawer } from '@NavigationAction';
@@ -11,14 +10,14 @@ const SIZE = 10;
 const MARGIN_ITEM = 10;
 
 const CompanyListScreen = (props) => {
+  const { t } = useTranslation();
   const [stateData, setStateData] = useState({
-    companyList: [],
+    listData: [],
     shouldLoadMore: true,
     loading: true
   });
   const [__lastUpdate, setLastUpdate] = useState(null);
   const listRef = useRef(null);
-  const { t } = useTranslation();
   let isBack = props?.route?.params?.isBack ?? false;
 
   useEffect(() => {
@@ -26,11 +25,11 @@ const CompanyListScreen = (props) => {
   }, []);
 
   const getData = async () => {
-    let currentPage = parseInt(stateData.companyList.length / SIZE);
+    let currentPage = parseInt(stateData.listData.length / SIZE);
     let result = await companyBusiness.getListCompany(currentPage, SIZE);
     if (result.data.httpCode === 200) {
       let _companyList = result.data?.objectData?.pageData ?? [];
-      stateData.companyList = [...stateData.companyList, ..._companyList];
+      stateData.listData = [...stateData.listData, ..._companyList];
       if (_companyList.length < SIZE) stateData.shouldLoadMore = false;
     }
     stateData.loading = false;
@@ -67,15 +66,20 @@ const CompanyListScreen = (props) => {
         title={t('jh.companyList')}
         actionLeft={isBack ? goBack : openDrawer}
       />
-      <FlatList
-        ref={listRef}
-        data={stateData.companyList}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingVertical: MARGIN_ITEM / 2 }}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.1}
-      />
-      {stateData.loading && (
+      {stateData.loading && stateData.listData.length === 0 ? (
+        <Loading placeholder />
+      ) : stateData.listData.length === 0 ? (
+        <List.ListEmpty />
+      ) : (
+        <FlatList
+          ref={listRef}
+          data={stateData.listData}
+          renderItem={renderItem}
+          onEndReached={onEndReached}
+          onEndReachedThreshold={0.1}
+        />
+      )}
+      {stateData.loading && stateData.listData.length > 0 && (
         <View.Col
           style={{ position: 'absolute', bottom: 10, left: 0, right: 0 }}
         >
@@ -85,7 +89,7 @@ const CompanyListScreen = (props) => {
           />
         </View.Col>
       )}
-      {stateData.companyList.length > SIZE && (
+      {stateData.listData.length > 0 && (
         <Button.ButtonScrollToTop listRef={listRef} isFlatList />
       )}
     </View.Col>
