@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { jobBusiness } from '@Business';
 
 const initialState = {
-  listSavedJob: []
+  listSavedJob: [],
+  isLoaded: false
 };
 
 export const GetAllSavedJob = createAsyncThunk('getAllSavedJob', async () => {
@@ -29,6 +30,7 @@ export const SavedJobSlice = createSlice({
       state.listSavedJob = action.payload?.data?.objectData?.map(
         (item) => item.jobId
       );
+      if (!state.isLoaded) state.isLoaded = true;
     });
   }
 });

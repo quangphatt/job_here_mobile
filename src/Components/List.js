@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FlatList, LayoutAnimation, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { FlatList } from 'react-native';
 import View from './View';
 import Text from './Text';
 import Icon from './Icon';
@@ -57,72 +57,14 @@ const SelectionList = ({
   );
 };
 
-const ItemList = ({ getData, renderItem, size = 10, style = {} }) => {
-  const [stateData, setStateData] = useState({
-    listItem: [],
-    shouldLoadMore: true,
-    loading: true
-  });
-  const [__lastUpdate, setLastUpdate] = useState(null);
-  const listRef = useRef(null);
+const ListEmpty = () => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    _getData();
-  }, []);
-
-  const _getData = async () => {
-    if (typeof getData === 'function') {
-      let currentPage = parseInt(stateData.listItem.length / size);
-      let _listItem = await getData(currentPage, size);
-      stateData.listItem = [...stateData.listItem, ..._listItem];
-      if (stateData.listItem.length < size * (currentPage + 1)) {
-        stateData.shouldLoadMore = false;
-      }
-      stateData.loading = false;
-      setLastUpdate(moment().format('x'));
-    }
-  };
-
-  const onEndReached = async () => {
-    if (stateData.shouldLoadMore && !stateData.loading) {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-      stateData.loading = true;
-      setLastUpdate(moment().format('x'));
-      await _getData();
-    }
-  };
-
   return (
-    <View.Col style={{ ...style }}>
-      {stateData.loading && stateData.listItem.length === 0 ? (
-        <Loading placeholder />
-      ) : stateData.listItem.length === 0 ? (
-        <Text.Body secondary>{t('jh.noData')}</Text.Body>
-      ) : (
-        <FlatList
-          ref={listRef}
-          data={stateData.listItem}
-          renderItem={renderItem}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={0.1}
-        />
-      )}
-      {stateData.loading && stateData.listItem.length > 0 && (
-        <View.Col
-          style={{ position: 'absolute', bottom: 10, left: 0, right: 0 }}
-        >
-          <ActivityIndicator
-            color={Theme.colors.dark_gray_color}
-            size="large"
-          />
-        </View.Col>
-      )}
-      {stateData.listItem.length > 0 && (
-        <Button.ButtonScrollToTop listRef={listRef} isFlatList />
-      )}
+    <View.Col style={{ padding: 10, alignItems: 'center' }}>
+      <Text.H4 secondary>{t('jh.noData')}</Text.H4>
     </View.Col>
   );
 };
 
-export default { SelectionList, ItemList };
+export default { SelectionList, ListEmpty };

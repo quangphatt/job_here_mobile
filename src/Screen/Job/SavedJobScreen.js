@@ -1,22 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Common, List } from '@Components';
+import React, { useEffect, useState, useRef } from 'react';
+import { FlatList, LayoutAnimation, ActivityIndicator } from 'react-native';
+import { View, Text, Common, Button, Loading, List } from '@Components';
 import { JobItem } from '@Components/Job';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
 import { jobBusiness, dropdownBusiness } from '@Business';
+import { useSelector } from 'react-redux';
 import { openDrawer } from '@NavigationAction';
 
 const SIZE = 10;
 const MARGIN_ITEM = 10;
 
 const SavedJobScreen = () => {
-  const [unitDropdown, setUnitDropdown] = useState([]);
+  const [stateData, setStateData] = useState({
+    listData: [],
+    shouldLoadMore: true,
+    loading: true,
+    unitDropdown: []
+  });
+  const [__lastUpdate, setLastUpdate] = useState(null);
   const { t } = useTranslation();
+  const listRef = useRef(null);
+  const savedJobList =
+    useSelector((state) => state.SavedJob.listSavedJob) || [];
 
-  const getData = async (page, size) => {
-    let result = await jobBusiness.getSavedJob(page, size);
+  useEffect(() => {
+    getData();
+  }, [savedJobList]);
+
+  const getData = async () => {
+    let currentPage = parseInt(stateData.listData.length / SIZE);
+    let result = await jobBusiness.getSavedJob(currentPage, SIZE);
     if (result.data.httpCode === 200) {
-      if (unitDropdown.length === 0) {
+      if (stateData.unitDropdown.length === 0) {
         await getUnitDropdown();
       }
       let listJob = result?.data?.objectData?.pageData ?? [];
@@ -24,16 +40,28 @@ const SavedJobScreen = () => {
         listJob[i].unitName =
           unitDropdown.find((x) => x.unit === listJob[i].unit)?.unitName ?? '';
       }
-      return listJob;
+      stateData.listData = [...stateData.listData, ...listJob];
+      if (listJob.length < SIZE) stateData.shouldLoadMore = false;
     }
-    return [];
+    stateData.loading = false;
+    setLastUpdate(moment().format('x'));
   };
 
   const getUnitDropdown = async () => {
     let _unit = await dropdownBusiness.getUnitDropdown();
     if (_unit.data.httpCode === 200) {
       let _unitDropdown = _unit.data?.objectData ?? [];
-      setUnitDropdown(_unitDropdown);
+      stateData.unitDropdown = _unitDropdown;
+      setLastUpdate(moment().format('x'));
+    }
+  };
+
+  const onEndReached = async () => {
+    if (stateData.shouldLoadMore && !stateData.loading) {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      stateData.loading = true;
+      setLastUpdate(moment().format('x'));
+      await getData();
     }
   };
 
@@ -52,12 +80,32 @@ const SavedJobScreen = () => {
         title={t('jh.savedJob')}
         actionLeft={openDrawer}
       />
-      <List.ItemList
-        getData={getData}
-        renderItem={renderItem}
-        size={SIZE}
-        style={{ flex: 1, paddingVertical: MARGIN_ITEM / 2 }}
-      />
+      {stateData.loading && stateData.listData.length === 0 ? (
+        <Loading placeholder />
+      ) : stateData.listData.length === 0 ? (
+        <List.ListEmpty />
+      ) : (
+        <FlatList
+          ref={listRef}
+          data={stateData.listData}
+          renderItem={renderItem}
+          onEndReached={onEndReached}
+          onEndReachedThreshold={0.1}
+        />
+      )}
+      {stateData.loading && stateData.listData.length > 0 && (
+        <View.Col
+          style={{ position: 'absolute', bottom: 10, left: 0, right: 0 }}
+        >
+          <ActivityIndicator
+            color={Theme.colors.dark_gray_color}
+            size="large"
+          />
+        </View.Col>
+      )}
+      {stateData.listData.length > 0 && (
+        <Button.ButtonScrollToTop listRef={listRef} isFlatList />
+      )}
     </View.Col>
   );
 };
