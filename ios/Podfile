@@ -51,11 +51,13 @@ target 'job_here_mobile' do
 
   pod 'react-native-blob-util', :path => '../node_modules/react-native-blob-util'
 
-  pod 'RNShare', :path => '../node_modules/react-native-share'
-
   pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
+  pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
+
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
 
   target 'job_here_mobileTests' do
     inherit! :complete

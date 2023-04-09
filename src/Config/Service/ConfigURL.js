@@ -19,10 +19,10 @@ export const cityDropdownURL = '/dropdown/city';
 export const getListNewJobURL = '/job/getListNewJob';
 export const getListJobInterestingURL = '/job/getListJobInteresting';
 export const getJobInfoURL = '/job/getJobInfo';
-export const saveJobURL = "/user/saveJob";
-export const unsavedJobURL = "/user/unSaveJob";
-export const getSavedJobURL = "/user/getSavedJob";
-export const getAllSavedJobIdURL = "/user/getAllSavedJobId";
+export const saveJobURL = '/user/saveJob';
+export const unsavedJobURL = '/user/unSaveJob';
+export const getSavedJobURL = '/user/getSavedJob';
+export const getAllSavedJobIdURL = '/user/getAllSavedJobId';
 
 // Company
 export const getTopCompanyURL = '/company/getListTopCompanyHome';
@@ -32,3 +32,12 @@ export const getListCompanyURL = '/company/getListCompany';
 
 // User
 export const getAppliedJobURL = '/user/getListApplicationHistory';
+export const saveCVURL = "/user/uploadCV";
+export const deleteCVURL = "/user/deleteCV"
+
+// CV
+export const getListCVURL = '/cv/getListOwnerCV';
+
+// Upload
+export const uploadCVURL = '/user/upload/uploadCV';
+export const uploadImageURL = '/user/upload/uploadImage';

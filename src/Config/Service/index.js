@@ -30,6 +30,21 @@ class Service {
     }
     return null;
   };
+
+  upload = async (suburl, params = {}) => {
+    const state = await NetInfo.fetch();
+    if (state.isConnected) {
+      let url = host + suburl;
+      let headers = store?.getState?.()?.HeaderRequest?.headers ?? {};
+      let result = await axios.post(url, params, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          ...headers
+        }
+      });
+      return result;
+    }
+  };
 }
 
 export default Service;

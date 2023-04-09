@@ -98,10 +98,9 @@ const ModalAlert = ({
       <View.Col style={styles.alert_header}>
         {alertType !== AlertType.INFO && (
           <Icon.VectorIcon
-            size={40}
+            size={60}
             name={alert_icon()}
             color={alert_color()}
-            style={{ marginBottom: 10 }}
           />
         )}
         {!!title && (
@@ -112,13 +111,15 @@ const ModalAlert = ({
             {title}
           </Text.H3_Bold>
         )}
-        <Text.Body
-          testID="alert_message"
-          secondary
-          style={{ marginBottom: 10 }}
-        >
-          {body}
-        </Text.Body>
+        {!!body && (
+          <Text.Body
+            testID="alert_message"
+            secondary
+            style={{ marginBottom: 10 }}
+          >
+            {body}
+          </Text.Body>
+        )}
       </View.Col>
       <View.Row style={styles.alert_footer}>
         {button_secondary && (
@@ -133,10 +134,7 @@ const ModalAlert = ({
           </Button.Button>
         )}
         {button_primary && button_secondary && (
-          <View.Seperator
-            borderHeight={5}
-            borderColor={theme.colors.white_color}
-          />
+          <View.Col style={{ width: 10 }} />
         )}
         {button_primary && (
           <Button.Button

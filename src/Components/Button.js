@@ -76,9 +76,7 @@ const _ButtonChangeLanguage = ({ i18n }) => {
           iconRightColor={i18n.language === 'vn' && theme.colors.primary_color}
           onPress={onChangeLanguage}
         />
-        <View.Seperator
-          style={{ height: 16, borderColor: theme.colors.white_color }}
-        />
+        <View.Col style={{ height: 16 }} />
         <Common.BasicItem
           title={'English'}
           imageSource={en_icon}
