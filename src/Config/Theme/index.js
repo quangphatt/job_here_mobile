@@ -52,7 +52,8 @@ const theme = {
     success: '#21AE40',
     info: '#1C75BC',
     warning: '#FFBF30',
-    danger: '#E04141'
+    danger: '#E04141',
+    dark_gray_color_blur: '#99999950',
   },
   text_colors: {
     primary_text_color: '#F55742',

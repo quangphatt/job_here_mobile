@@ -8,6 +8,7 @@ import Loading from './Loading';
 import Theme from '@Theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import Global from '@Global';
 
 const SelectionList = ({
   listItem,
@@ -17,12 +18,13 @@ const SelectionList = ({
 }) => {
   const _onSelectItem = (id) => () => {
     if (typeof onSelectItem === 'function') {
+      Global._hideModal();
       onSelectItem(id);
     }
   };
 
   const renderItem = ({ item, index }) => {
-    let isCurrentItem = currentItem && item.id === currentItem;
+    let isCurrentItem = item.id === currentItem;
 
     return (
       <View.Col key={index}>
@@ -57,6 +59,75 @@ const SelectionList = ({
   );
 };
 
+const DropdownButton = ({
+  icon,
+  listItem = [],
+  currentItem,
+  onSelectItem,
+  label,
+  style = {}
+}) => {
+  const { t } = useTranslation();
+  let currentLabel =
+    _.find(listItem, (item) => item.id === currentItem)?.name ?? label;
+
+  const onPressDropdown = () => {
+    Global._showModal({
+      isScroll: true,
+      label,
+      closeOnOverlayTap: true,
+      component: (
+        <SelectionList
+          listItem={listItem}
+          onSelectItem={onSelectItem}
+          currentItem={currentItem}
+        />
+      )
+    });
+  };
+
+  return (
+    <Button.ButtonPreventDouble
+      onPress={onPressDropdown}
+      style={[
+        {
+          flexDirection: 'row',
+          height: 40,
+          alignItems: 'center',
+          paddingLeft: 10,
+          paddingRight: 36,
+          marginLeft: 5,
+          marginRight: 5,
+          marginBottom: 5,
+          backgroundColor: Theme.colors.white_color,
+          borderColor: Theme.colors.dark_gray_color,
+          borderRadius: 8,
+          borderWidth: 0.5
+        },
+        style
+      ]}
+      activeOpacity={0.7}
+    >
+      {!!icon && (
+        <Icon.VectorIcon
+          name={icon}
+          primary
+          size={20}
+          style={{ marginRight: 6 }}
+        />
+      )}
+      <Text.H4 secondary numberOfLines={1} style={{ flex: 1 }}>
+        {currentLabel}
+      </Text.H4>
+      <Icon.VectorIcon
+        name={'chevron-down'}
+        size={22}
+        style={{ position: 'absolute', right: 10 }}
+      />
+    </Button.ButtonPreventDouble>
+  );
+};
+
 const ListEmpty = () => {
   const { t } = useTranslation();
 
@@ -67,4 +138,4 @@ const ListEmpty = () => {
   );
 };
 
-export default { SelectionList, ListEmpty };
+export default { SelectionList, ListEmpty, DropdownButton };

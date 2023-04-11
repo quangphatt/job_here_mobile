@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.reactnativedocumentpicker.DocumentPickerPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.reactnativecommunity.blurview.BlurViewPackage;
-import cl.json.RNSharePackage;
 import com.ReactNativeBlobUtil.ReactNativeBlobUtilPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -47,9 +48,10 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new RNFetchBlobPackage(),
+            new DocumentPickerPackage(),
             new KeychainPackage(),
             new BlurViewPackage(),
-            new RNSharePackage(),
             new ReactNativeBlobUtilPackage(),
             new RCTPdfView(),
             new LottiePackage(),

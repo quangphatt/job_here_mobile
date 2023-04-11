@@ -6,7 +6,8 @@ import {
   saveJobURL,
   unsavedJobURL,
   getSavedJobURL,
-  getAllSavedJobIdURL
+  getAllSavedJobIdURL,
+  findJobURL
 } from '@Config/Service/ConfigURL';
 
 class JobBusiness extends Service {
@@ -44,6 +45,13 @@ class JobBusiness extends Service {
 
   getAllSavedJobId = async () => {
     let result = await this.get(getAllSavedJobIdURL);
+    return result;
+  };
+
+  findJob = async (page, size, keySearch, industryId, skillId, cityId) => {
+    let result = await this.get(
+      `${findJobURL}?page=${page}&size=${size}&keySearch=${keySearch}&skillId=${skillId}&cityId=${cityId}&industryId=${industryId}`
+    );
     return result;
   };
 }
