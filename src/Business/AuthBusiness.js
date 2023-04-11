@@ -3,7 +3,8 @@ import {
   signInURL,
   getSessionURL,
   signUpURL,
-  authCodeURL
+  authCodeURL,
+  refreshTokenURL
 } from '@Config/Service/ConfigURL';
 
 class AuthBusiness extends Service {
@@ -36,6 +37,15 @@ class AuthBusiness extends Service {
   authCode = async (code) => {
     let params = { code };
     let result = await this.post(authCodeURL, params);
+    return result;
+  };
+
+  refreshToken = async (email, password, token) => {
+    let result = await this.post(
+      refreshTokenURL,
+      { email, password },
+      { refreshToken: token, Authorization: null }
+    );
     return result;
   };
 }

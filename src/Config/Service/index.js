@@ -14,7 +14,7 @@ class Service {
       });
       return result;
     }
-    return null;
+    return { data: { httpCode: 0 } };
   };
 
   get = async (suburl, params = {}, headerParams = {}) => {
@@ -28,7 +28,7 @@ class Service {
       });
       return result;
     }
-    return null;
+    return { data: { httpCode: 0 } };
   };
 
   upload = async (suburl, params = {}) => {
@@ -44,6 +44,7 @@ class Service {
       });
       return result;
     }
+    return { data: { httpCode: 0 } };
   };
 }
 

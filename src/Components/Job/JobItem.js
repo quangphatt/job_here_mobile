@@ -35,13 +35,13 @@ const JobItem = ({ jobData = {} }) => {
       label: jobData?.city?.cityName ?? ''
     },
     {
-      label: jobData?.endDate
-        ? `${t('jh.dayApplyRemain1')}${parseInt(
-            (new Date(jobData.endDate) - new Date()) / 86400000
-          )} ${t('jh.dayApplyRemain2')}`
-        : `${t('jh.update')} ${parseInt(
+      label: jobData?.createdDate
+        ? `${t('jh.update')} ${parseInt(
             (new Date() - new Date(jobData?.createdDate ?? null)) / 86400000
           )} ${t('jh.dayAgo')}`
+        : `${t('jh.dayApplyRemain1')}${parseInt(
+            (new Date(jobData.endDate) - new Date()) / 86400000
+          )} ${t('jh.dayApplyRemain2')}`
     }
   ];
 

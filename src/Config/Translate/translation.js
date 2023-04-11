@@ -115,7 +115,17 @@ export const en = {
   'jh.uploadCVFailed': 'Upload CV Failed!',
   'jh.createDate': 'Create Date',
   'jh.deleteCVSuccessfully': 'Delete CV Successfully!',
-  'jh.deleteCVFailed': 'Delete CV Failed!'
+  'jh.deleteCVFailed': 'Delete CV Failed!',
+  'jh.signInToApply': 'Sign In To Apply',
+  'jh.signInToSaveJob': 'Sign In To Save Job',
+  'jh.searchKeywordPlaceholder': 'Job, Position Name ...',
+  'jh.search': 'Search',
+  'jh.noResult': 'No Result!',
+  'jh.have': 'Have',
+  'jh.matchingResult': 'matching results',
+  'jh.industry': 'Industry',
+  'jh.location': 'Location',
+  'jh.all': 'All'
 };
 
 export const vn = {
@@ -234,5 +244,15 @@ export const vn = {
   'jh.uploadCVFailed': 'Tải lên CV thất bại!',
   'jh.createDate': 'Ngày Tạo',
   'jh.deleteCVSuccessfully': 'Xoá CV thành công!',
-  'jh.deleteCVFailed': 'Xoá CV thất bại!'
+  'jh.deleteCVFailed': 'Xoá CV thất bại!',
+  'jh.signInToApply': 'Đăng nhập để ứng tuyển',
+  'jh.signInToSaveJob': 'Đăng nhập để lưu việc làm',
+  'jh.searchKeywordPlaceholder': 'Việc làm, tên vị trí ...',
+  'jh.search': 'Tìm Kiếm',
+  'jh.noResult': 'Không Có Kết Quả!',
+  'jh.have': 'Có',
+  'jh.matchingResult': 'kết quả trùng khớp',
+  'jh.industry': 'Lĩnh Vực',
+  'jh.location': 'Địa Điểm',
+  'jh.all': 'Tất Cả'
 };

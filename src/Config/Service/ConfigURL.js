@@ -23,6 +23,7 @@ export const saveJobURL = '/user/saveJob';
 export const unsavedJobURL = '/user/unSaveJob';
 export const getSavedJobURL = '/user/getSavedJob';
 export const getAllSavedJobIdURL = '/user/getAllSavedJobId';
+export const findJobURL = '/job/findJob';
 
 // Company
 export const getTopCompanyURL = '/company/getListTopCompanyHome';
@@ -32,8 +33,8 @@ export const getListCompanyURL = '/company/getListCompany';
 
 // User
 export const getAppliedJobURL = '/user/getListApplicationHistory';
-export const saveCVURL = "/user/uploadCV";
-export const deleteCVURL = "/user/deleteCV"
+export const saveCVURL = '/user/uploadCV';
+export const deleteCVURL = '/user/deleteCV';
 
 // CV
 export const getListCVURL = '/cv/getListOwnerCV';

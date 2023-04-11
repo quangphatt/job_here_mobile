@@ -11,7 +11,7 @@ const HomeScreen = () => {
   const { t } = useTranslation();
 
   const onPressSearch = () => {
-    navigate('SearchJobScreen');
+    navigate('SearchJobScreen', { isBack: true });
   };
 
   return (

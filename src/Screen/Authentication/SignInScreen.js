@@ -8,7 +8,7 @@ import { AuthContext } from '@Config/Provider/AuthProvider';
 import { useTranslation } from 'react-i18next';
 import { navigate } from '@NavigationAction';
 import { authBusiness } from '@Business';
-import { changeSession } from '@ReduxSlice/AuthenticationSlice';
+import { changeSession, logOut } from '@ReduxSlice/AuthenticationSlice';
 import { changeHeaderToken } from '@ReduxSlice/HeaderRequestSlice';
 import { useDispatch } from 'react-redux';
 import * as Keychain from 'react-native-keychain';
@@ -78,7 +78,9 @@ const SignInScreen = () => {
             'token',
             JSON.stringify({
               token,
-              refreshToken
+              refreshToken,
+              email,
+              password
             })
           );
         } else {
