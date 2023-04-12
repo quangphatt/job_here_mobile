@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import AuthenticationSlice from './Slice/AuthenticationSlice';
+import CVSlice from './Slice/CVSlice';
 import HeaderRequestSlice from './Slice/HeaderRequestSlice';
 import SavedJobSlice from './Slice/SavedJobSlice';
 import { combineReducers } from 'redux';
@@ -15,6 +16,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   Authentication: AuthenticationSlice,
+  CV: CVSlice,
   HeaderRequest: HeaderRequestSlice,
   SavedJob: SavedJobSlice
 });

@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, Icon, Button, Image } from '@Components';
+import JobApply from './JobApply';
 import Theme from '@Theme';
-import { jobBusiness } from '@Business';
+import { jobBusiness, cvBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';
 import { navigatePush } from '@NavigationAction';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +11,8 @@ import {
   SaveTemporary,
   UnSaveTemporary
 } from '@ReduxSlice/SavedJobSlice';
+import Global from '@Global';
+import Alert from '@Alert';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
 const JobHeader = ({ jobData, inJobScreen = false }) => {

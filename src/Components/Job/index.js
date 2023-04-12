@@ -1,3 +1,4 @@
+export { default as JobApply } from './JobApply';
 export { default as JobHeader } from './JobHeader';
 export { default as JobInfo } from './JobInfo';
 export { default as JobInteresting } from './JobInteresting';
