@@ -2,7 +2,8 @@ import Service from '@Config/Service';
 import {
   getAppliedJobURL,
   saveCVURL,
-  deleteCVURL
+  deleteCVURL,
+  applyJobURL
 } from '@Config/Service/ConfigURL';
 
 class UserBusiness extends Service {
@@ -18,6 +19,12 @@ class UserBusiness extends Service {
 
   deleteCV = async (cvId) => {
     let result = await this.post(`${deleteCVURL}/${cvId}`);
+    return result;
+  };
+
+  applyJob = async (jobId, cvId, note) => {
+    let params = { cvId, jobId, note };
+    let result = await this.post(applyJobURL, params);
     return result;
   };
 }

@@ -89,7 +89,7 @@ const CVManageScreen = (props) => {
       let result = await userBusiness.saveCV(cvUrl, cvName);
       if (result.data.httpCode === 200) {
         Alert.show({
-          body: t('jh.uploadCVSuccessfully'),
+          body: t('jh.uploadCV') + ' ' + t('jh.successfully'),
           type: Alert.AlertType.SUCCESS
         });
         stateData.uploadPending = false;
@@ -101,7 +101,7 @@ const CVManageScreen = (props) => {
         await getCVData();
       } else {
         Alert.show({
-          body: t('jh.uploadCVFailed'),
+          body: t('jh.uploadCV') + ' ' + t('jh.failed'),
           type: Alert.AlertType.DANGER
         });
         stateData.uploadPending = false;
@@ -112,7 +112,7 @@ const CVManageScreen = (props) => {
 
   const onPressCV = (cv) => () => {
     Global._showModal({
-      label: t('jh.viewCV'),
+      label: `${t('jh.viewCV')}: ${cv.cvName}`,
       closeOnOverlayTap: true,
       component: (
         <View.Col style={{ height: height * 0.8 }}>
@@ -139,13 +139,13 @@ const CVManageScreen = (props) => {
           let result = await userBusiness.deleteCV(cvId);
           if (result.data.httpCode === 200) {
             Alert.show({
-              body: t('jh.deleteCVSuccessfully'),
+              body: t('jh.deleteCV') + ' ' + t('jh.successfully'),
               type: Alert.AlertType.SUCCESS
             });
             await getCVData();
           } else {
             Alert.show({
-              body: t('jh.deleteCVFailed'),
+              body: t('jh.deleteCV') + ' ' + t('jh.failed'),
               type: Alert.AlertType.DANGER
             });
           }
@@ -215,7 +215,7 @@ const CVManageScreen = (props) => {
       .fetch('GET', FILE_URL)
       .then((res) => {
         Alert.show({
-          body: t('jh.downloadSuccessfully'),
+          body: t('jh.download') + ' ' + t('jh.successfully'),
           type: Alert.AlertType.SUCCESS
         });
       });

@@ -1,10 +1,11 @@
 import React from 'react';
+import { useWindowDimensions } from 'react-native';
 import { View, Text, Icon, Button, Image } from '@Components';
 import JobApply from './JobApply';
 import Theme from '@Theme';
 import { jobBusiness, cvBusiness } from '@Business';
 import { useTranslation } from 'react-i18next';
-import { navigatePush } from '@NavigationAction';
+import { navigate, navigatePush } from '@NavigationAction';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   GetAllSavedJob,
@@ -16,11 +17,13 @@ import Alert from '@Alert';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
 const JobHeader = ({ jobData, inJobScreen = false }) => {
+  const { height } = useWindowDimensions();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const savedJobList =
     useSelector((state) => state.SavedJob.listSavedJob) || [];
   const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
+  const listCV = useSelector((state) => state.CV.cvList) || [];
   let isSignIn = !!sessionInfo;
   let isSaved = savedJobList.includes(jobData.jobId);
   let avatar =
@@ -36,9 +39,38 @@ const JobHeader = ({ jobData, inJobScreen = false }) => {
     navigatePush('CompanyInfoScreen', { companyId: jobData.companyId });
   };
 
-  const onSignIn = () => {};
+  const onSignIn = () => {
+    navigate('SignInScreen');
+  };
 
-  const onPressApply = () => {};
+  const onPressApply = () => {
+    if (listCV.length === 0) {
+      Alert.show({
+        title: t('jh.noHaveCV'),
+        body: t('jh.youNoHaveCV'),
+        button_primary: t('jh.addCV'),
+        button_secondary: t('jh.cancel'),
+        type: Alert.AlertType.DANGER,
+        action: async (type) => {
+          Alert.hide();
+          if (type === Alert.ActionType.PRIMARY) {
+            navigate('CVManageScreen', { isBack: true });
+          }
+        }
+      });
+    } else {
+      Global._showModal({
+        label: jobData.jobName,
+        isScroll: true,
+        closeOnOverlayTap: true,
+        component: (
+          <View.Col style={{ height: height * 0.7 }}>
+            <JobApply jobData={jobData} />
+          </View.Col>
+        )
+      });
+    }
+  };
 
   const onPressSaveJob = async () => {
     let result = null;
