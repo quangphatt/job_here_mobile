@@ -9,27 +9,31 @@ import { View, Text, Icon, Common, Button, Loading } from '@Components';
 import PdfView from 'react-native-pdf';
 import DocumentPicker from 'react-native-document-picker';
 import { NativeModules } from 'react-native';
-const RNFetchBlob = NativeModules.RNFetchBlob;
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
 import { goBack, openDrawer } from '@NavigationAction';
-import { cvBusiness, uploadBusiness, userBusiness } from '@Business';
+import { uploadBusiness, userBusiness } from '@Business';
+import { getCVList, setCVLoading } from '@ReduxSlice/CVSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import Global from '@Global';
 import Alert from '@Alert';
+
+const RNFetchBlob = NativeModules.RNFetchBlob;
 
 const CVManageScreen = (props) => {
   const { width, height } = useWindowDimensions();
   const [stateData, setStateData] = useState({
-    listCV: [],
     currentCV: {
       cvName: '',
       cvUrl: '',
       cvFilename: ''
     },
-    loading: true,
     uploadPending: false
   });
   const [__lastUpdate, setLastUpdate] = useState(null);
+  let listCV = useSelector((state) => state.CV.cvList) || [];
+  const loading = useSelector((state) => state.CV.loading);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const listRef = useRef(null);
   let isBack = props?.route?.params?.isBack ?? false;
@@ -39,14 +43,9 @@ const CVManageScreen = (props) => {
   }, []);
 
   const getCVData = async () => {
-    stateData.loading = true;
-    setLastUpdate(moment().format('x'));
-    let result = await cvBusiness.getListCV();
-    if (result.data.httpCode === 200) {
-      stateData.listCV = result?.data?.objectData ?? [];
-    }
-    stateData.loading = false;
-    setLastUpdate(moment().format('x'));
+    if (!loading) dispatch(setCVLoading(true));
+    await dispatch(getCVList());
+    dispatch(setCVLoading(false));
   };
 
   const onChangeCVName = (cvName) => {
@@ -90,7 +89,7 @@ const CVManageScreen = (props) => {
       let result = await userBusiness.saveCV(cvUrl, cvName);
       if (result.data.httpCode === 200) {
         Alert.show({
-          body: t('jh.uploadCVSuccessfully'),
+          body: t('jh.uploadCV') + ' ' + t('jh.successfully'),
           type: Alert.AlertType.SUCCESS
         });
         stateData.uploadPending = false;
@@ -102,7 +101,7 @@ const CVManageScreen = (props) => {
         await getCVData();
       } else {
         Alert.show({
-          body: t('jh.uploadCVFailed'),
+          body: t('jh.uploadCV') + ' ' + t('jh.failed'),
           type: Alert.AlertType.DANGER
         });
         stateData.uploadPending = false;
@@ -113,7 +112,7 @@ const CVManageScreen = (props) => {
 
   const onPressCV = (cv) => () => {
     Global._showModal({
-      label: t('jh.viewCV'),
+      label: `${t('jh.viewCV')}: ${cv.cvName}`,
       closeOnOverlayTap: true,
       component: (
         <View.Col style={{ height: height * 0.8 }}>
@@ -140,13 +139,13 @@ const CVManageScreen = (props) => {
           let result = await userBusiness.deleteCV(cvId);
           if (result.data.httpCode === 200) {
             Alert.show({
-              body: t('jh.deleteCVSuccessfully'),
+              body: t('jh.deleteCV') + ' ' + t('jh.successfully'),
               type: Alert.AlertType.SUCCESS
             });
             await getCVData();
           } else {
             Alert.show({
-              body: t('jh.deleteCVFailed'),
+              body: t('jh.deleteCV') + ' ' + t('jh.failed'),
               type: Alert.AlertType.DANGER
             });
           }
@@ -216,7 +215,7 @@ const CVManageScreen = (props) => {
       .fetch('GET', FILE_URL)
       .then((res) => {
         Alert.show({
-          body: t('jh.downloadSuccessfully'),
+          body: t('jh.download') + ' ' + t('jh.successfully'),
           type: Alert.AlertType.SUCCESS
         });
       });
@@ -355,15 +354,17 @@ const CVManageScreen = (props) => {
             </View.Row>
           </View.Col>
           <View.Col style={{ marginHorizontal: 5, marginBottom: 5 }}>
-            {_.map(stateData.listCV, (item, index) => {
-              return renderItem(item, index);
-            })}
+            {loading ? (
+              <Loading placeholder />
+            ) : (
+              _.map(listCV, (item, index) => {
+                return renderItem(item, index);
+              })
+            )}
           </View.Col>
         </View.Col>
       </ScrollView>
-      {stateData.listCV.length > 1 && (
-        <Button.ButtonScrollToTop listRef={listRef} />
-      )}
+      {listCV.length > 1 && <Button.ButtonScrollToTop listRef={listRef} />}
     </View.Col>
   );
 };

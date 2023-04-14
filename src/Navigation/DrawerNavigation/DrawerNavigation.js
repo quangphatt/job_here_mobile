@@ -7,6 +7,7 @@ import DrawerContent from './DrawerContent';
 import { AuthContext } from '@Config/Provider/AuthProvider';
 import * as Keychain from 'react-native-keychain';
 import { GetAllSavedJob } from '@ReduxSlice/SavedJobSlice';
+import { getCVList } from '@ReduxSlice/CVSlice';
 import { useDispatch } from 'react-redux';
 import { store } from '@Config/Redux/store';
 
@@ -44,8 +45,9 @@ const DrawerNavigation = (props) => {
   }, [loadJWT]);
 
   let isSignIn = authContext?.authState?.authenticated;
-  if (isSignIn && !store.getState()?.SavedJob?.isLoaded) {
-    dispatch(GetAllSavedJob());
+  if (isSignIn) {
+    if (!store.getState()?.SavedJob?.isLoaded) dispatch(GetAllSavedJob());
+    if (!store.getState()?.CV?.isLoaded) dispatch(getCVList());
   }
 
   const renderDrawerContent = (props) => {

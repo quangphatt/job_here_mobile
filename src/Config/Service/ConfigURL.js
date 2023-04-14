@@ -35,6 +35,7 @@ export const getListCompanyURL = '/company/getListCompany';
 export const getAppliedJobURL = '/user/getListApplicationHistory';
 export const saveCVURL = '/user/uploadCV';
 export const deleteCVURL = '/user/deleteCV';
+export const applyJobURL = "/user/applyJob";
 
 // CV
 export const getListCVURL = '/cv/getListOwnerCV';

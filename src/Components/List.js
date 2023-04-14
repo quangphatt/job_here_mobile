@@ -38,11 +38,16 @@ const SelectionList = ({
             paddingVertical: 5
           }}
         >
-          <Text.Body fontSize={17} secondary>
+          <Text.Body fontSize={17} secondary style={{ flex: 1 }}>
             {item.name}
           </Text.Body>
           {isCurrentItem && (
-            <Icon.VectorIcon name={'checkmark-sharp'} size={25} primary />
+            <Icon.VectorIcon
+              name={'checkmark-sharp'}
+              size={25}
+              primary
+              style={{ marginLeft: 5 }}
+            />
           )}
         </Button.ButtonPreventDouble>
       </View.Col>
