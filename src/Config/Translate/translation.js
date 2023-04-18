@@ -136,7 +136,12 @@ export const en = {
   'jh.missingSummaryBody': 'Please add summary to apply!',
   'jh.summary': 'Summary',
   'jh.wantToApplyJob': 'Do you want to apply this job?',
-  'jh.apply': 'Apply'
+  'jh.apply': 'Apply',
+  'jh.changePassword': 'Change Password',
+  'jh.privacyPolicy': 'Privacy Policy',
+  'jh.aboutJobHere': 'About Job Here',
+  'jh.logOut': 'Log Out',
+  'jh.wantToLogOut': 'Do you want to log out?'
 };
 
 export const vn = {
@@ -267,7 +272,7 @@ export const vn = {
   'jh.saved': 'Đã lưu',
   'jh.applyJob': 'Ứng tuyển việc làm',
   'jh.ifInfoNotCorrect': 'Thông tin của bạn không chính xác?',
-  'jh.updateUserInfo': 'Cập Nhật Thông Tin',
+  'jh.updateUserInfo': 'Cập Nhật Thông Tin Người Dùng',
   'jh.summaryPlaceholder': 'Mô tả về bản thân để thu hút nhà tuyển dụng...',
   'jh.noHaveCV': 'Không có CV',
   'jh.youNoHaveCV': 'Bạn không có CV. Vui lòng thêm CV để tiếp tục!',
@@ -276,5 +281,10 @@ export const vn = {
   'jh.missingSummaryBody': 'Vui lòng thêm phần mô tả bản thâm để tiếp tục!',
   'jh.summary': 'Tóm Tắt Bản Thân',
   'jh.wantToApplyJob': 'Bạn có muốn ứng tuyển công việc này?',
-  'jh.apply': 'Ứng Tuyển'
+  'jh.apply': 'Ứng Tuyển',
+  'jh.changePassword': 'Đổi Mật Khẩu',
+  'jh.privacyPolicy': 'Chính Sách Bảo Mật',
+  'jh.aboutJobHere': 'Về Job Here',
+  'jh.logOut': 'Đăng Xuất',
+  'jh.wantToLogOut': 'Bạn có muốn đăng xuất khỏi tải khoản hiện tại?'
 };

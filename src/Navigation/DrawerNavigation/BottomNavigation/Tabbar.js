@@ -3,6 +3,7 @@ import { View, Text, Icon, Image, Button } from '@Components';
 import Theme from '@Theme';
 import { navigate, getCurrentRoute } from '@NavigationAction';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import personal_img from '@Assets/Images/user.png';
 
 const TABS = [
@@ -22,12 +23,19 @@ const TABS = [
 
 const Tabbar = (props) => {
   const { t } = useTranslation();
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
+  const avatar = sessionInfo?.imageUrl
+    ? { uri: sessionInfo.imageUrl }
+    : personal_img;
 
   const onPress = (name) => () => {
     if (name === 'HomeScreen') {
       navigate('BottomNavigation', {
         screen: 'JobHereNavigation'
-        // params: { screen: 'CommonNavigation', params: { screen: 'HomeScreen' } }
+      });
+    } else if (name === 'PersonalScreen') {
+      navigate('BottomNavigation', {
+        screen: 'PersonalNavigation'
       });
     } else {
       navigate('BottomNavigation', { screen: name });
@@ -90,7 +98,7 @@ const Tabbar = (props) => {
                   />
                 ) : (
                   <Image.ImageCircle
-                    source={personal_img}
+                    source={avatar}
                     size={30}
                     style={{
                       borderWidth: 0.5,

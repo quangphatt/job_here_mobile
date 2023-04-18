@@ -108,10 +108,17 @@ const BasicItem = ({
     <ButtonPreventDouble
       activeOpacity={0.6}
       onPress={onPress}
-      style={{ flexDirection: 'row', ...style }}
+      style={{
+        backgroundColor: Theme.colors.white_color,
+        flexDirection: 'row',
+        padding: 10,
+        borderBottomWidth: 0.5,
+        borderColor: Theme.colors.dark_gray_color,
+        ...style
+      }}
     >
       <View.Row style={{ flex: 1, alignItems: 'center' }}>
-        {icon && (
+        {!!icon && (
           <View.Col
             style={{
               alignItems: 'center',
@@ -119,25 +126,25 @@ const BasicItem = ({
               marginRight: iconMarginRight
             }}
           >
-            <Icon.VectorIcon name={icon} size={20} color={iconColor} />
+            <Icon.VectorIcon name={icon} size={32} color={iconColor} />
           </View.Col>
         )}
-        {imageSource && (
+        {!!imageSource && (
           <View.Col
             style={{
               alignItems: 'center',
               justifyContent: 'center',
-              marginRight: 10
+              marginRight: iconMarginRight
             }}
           >
-            <Image.ImageCircle source={imageSource} />
+            <Image.ImageCircle source={imageSource} size={32} />
           </View.Col>
         )}
         <Text.Body
           secondary
           color={textColor}
-          numberOfLines={1}
-          style={{ maxWidth: '90%' }}
+          fontSize={20}
+          style={{ flex: 1 }}
         >
           {title}
         </Text.Body>
@@ -148,7 +155,7 @@ const BasicItem = ({
           justifyContent: 'flex-end'
         }}
       >
-        {value && (
+        {!!value && (
           <Text.SubBody
             secondary
             numberOfLines={1}
@@ -157,7 +164,7 @@ const BasicItem = ({
             {value}
           </Text.SubBody>
         )}
-        {iconRight && (
+        {!!iconRight && (
           <View.Col
             style={{
               alignItems: 'center',

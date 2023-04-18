@@ -66,7 +66,7 @@ const _ButtonChangeLanguage = ({ i18n }) => {
           flex: 1,
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          padding: 20
+          paddingVertical: 20
         }}
       >
         <Common.BasicItem
@@ -75,6 +75,7 @@ const _ButtonChangeLanguage = ({ i18n }) => {
           iconRight={i18n.language === 'vn' && 'checkmark-sharp'}
           iconRightColor={i18n.language === 'vn' && theme.colors.primary_color}
           onPress={onChangeLanguage}
+          style={{ borderBottomWidth: 0, paddingVertical: 5 }}
         />
         <View.Col style={{ height: 16 }} />
         <Common.BasicItem
@@ -83,6 +84,7 @@ const _ButtonChangeLanguage = ({ i18n }) => {
           iconRight={i18n.language === 'en' && 'checkmark-sharp'}
           iconRightColor={i18n.language === 'en' && theme.colors.primary_color}
           onPress={onChangeLanguage}
+          style={{ borderBottomWidth: 0 }}
         />
       </View.Col>
     );
@@ -95,7 +97,6 @@ const _ButtonChangeLanguage = ({ i18n }) => {
       iconRight={'chevron-forward'}
       iconRightColor={'#555555'}
       onPress={onShowLanguagePanel}
-      style={{ paddingLeft: 10 }}
     />
   );
 };
