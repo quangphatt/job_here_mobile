@@ -6,8 +6,6 @@ import SearchJobScreen from '@Screen/Job/SearchJobScreen';
 import CompanyInfoScreen from '@Screen/Company/CompanyInfoScreen';
 import CompanyListScreen from '@Screen/Company/CompanyListScreen';
 import TermOfServiceScreen from '@Screen/Common/TermOfServiceScreen';
-import PrivacyPolicyScreen from '@Screen/Common/PrivacyPolicyScreen';
-import AboutUsScreen from '@Screen/Common/AboutUsScreen';
 
 const Stack = createStackNavigator();
 
@@ -26,11 +24,6 @@ const CommonNavigation = () => {
         name="TermOfServiceScreen"
         component={TermOfServiceScreen}
       />
-      <Stack.Screen
-        name="PrivacyPolicyScreen"
-        component={PrivacyPolicyScreen}
-      />
-      <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
     </Stack.Navigator>
   );
 };

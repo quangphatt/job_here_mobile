@@ -4,7 +4,7 @@ import HomeScreen from '@Screen/HomeScreen';
 import JobHereNavigation from './JobHereNavigation';
 import MessageScreen from '@Screen/Message/MessageScreen';
 import NotificationScreen from '@Screen/Notification/NotificationScreen';
-import PersonalScreen from '@Screen/User/PersonalScreen';
+import PersonalNavigation from './PersonalNavigation';
 import Tabbar from './Tabbar';
 
 const Tab = createBottomTabNavigator();
@@ -23,7 +23,7 @@ const BottomNavigation = () => {
       <Tab.Screen name="JobHereNavigation" component={JobHereNavigation} />
       <Tab.Screen name="MessageScreen" component={MessageScreen} />
       <Tab.Screen name="NotificationScreen" component={NotificationScreen} />
-      <Tab.Screen name="PersonalScreen" component={PersonalScreen} />
+      <Tab.Screen name="PersonalNavigation" component={PersonalNavigation} />
     </Tab.Navigator>
   );
 };
