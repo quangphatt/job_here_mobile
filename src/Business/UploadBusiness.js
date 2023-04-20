@@ -9,12 +9,12 @@ class UploadBusiness extends Service {
     return result;
   };
 
-  // uploadImage = async (file) => {
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   let result = await this.upload(uploadImageURL, formData);
-  //   return result;
-  // };
+  uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    let result = await this.upload(uploadImageURL, formData);
+    return result;
+  };
 }
 
 const uploadBusiness = new UploadBusiness();

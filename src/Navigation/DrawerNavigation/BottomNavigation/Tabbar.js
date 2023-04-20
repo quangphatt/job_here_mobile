@@ -21,6 +21,15 @@ const TABS = [
   { name: 'PersonalScreen', icon: false, displayName: 'jh.personal' }
 ];
 
+const PERSONAL_NAV = [
+  'PersonalScreen',
+  'ChangePasswordScreen',
+  'UpdateUserInfoScreen',
+  'TermOfServiceScreen',
+  'PrivacyPolicyScreen',
+  'AboutUsScreen'
+];
+
 const Tabbar = (props) => {
   const { t } = useTranslation();
   const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
@@ -57,7 +66,9 @@ const Tabbar = (props) => {
     >
       {_.map(TABS, ({ name, icon, displayName }, index) => {
         let current_route = getCurrentRoute()?.name ?? ' ';
-        if (
+        if (PERSONAL_NAV.includes(current_route)) {
+          current_route = 'PersonalScreen';
+        } else if (
           current_route !== 'MessageScreen' &&
           current_route !== 'NotificationScreen' &&
           current_route !== 'PersonalScreen'

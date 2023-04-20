@@ -141,7 +141,15 @@ export const en = {
   'jh.privacyPolicy': 'Privacy Policy',
   'jh.aboutJobHere': 'About Job Here',
   'jh.logOut': 'Log Out',
-  'jh.wantToLogOut': 'Do you want to log out?'
+  'jh.wantToLogOut': 'Do you want to log out?',
+  'jh.address': 'Address',
+  'jh.addressPlaceholder': 'Enter address',
+  'jh.discard': 'Discard',
+  'jh.fileTooLarge': 'File Too Large',
+  'jh.uploadLessThan1MB': 'File must be less 1MB!',
+  'jh.discardEdit': 'Discard Edit',
+  'jh.wantToDiscardEdit': 'Do you want to discard edit?',
+  'jh.continue': 'Continue'
 };
 
 export const vn = {
@@ -286,5 +294,13 @@ export const vn = {
   'jh.privacyPolicy': 'Chính Sách Bảo Mật',
   'jh.aboutJobHere': 'Về Job Here',
   'jh.logOut': 'Đăng Xuất',
-  'jh.wantToLogOut': 'Bạn có muốn đăng xuất khỏi tải khoản hiện tại?'
+  'jh.wantToLogOut': 'Bạn có muốn đăng xuất khỏi tải khoản hiện tại?',
+  'jh.address': 'Địa Chỉ',
+  'jh.addressPlaceholder': 'Nhập Địa Chỉ',
+  'jh.discard': 'Loại Bỏ',
+  'jh.fileTooLarge': 'File Quá Nặng',
+  'jh.uploadLessThan1MB': 'File phải có dung lượng nhỏ hơn 1MB!',
+  'jh.discardEdit': 'Loại Bỏ Chỉnh Sửa',
+  'jh.wantToDiscardEdit': 'Bạn có muốn loại bỏ những chỉnh sửa này?',
+  'jh.continue': 'Tiếp Tục'
 };
