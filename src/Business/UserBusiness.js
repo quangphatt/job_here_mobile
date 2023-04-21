@@ -3,7 +3,9 @@ import {
   getAppliedJobURL,
   saveCVURL,
   deleteCVURL,
-  applyJobURL
+  applyJobURL,
+  updateUserInfoURL,
+  changePasswordURL
 } from '@Config/Service/ConfigURL';
 
 class UserBusiness extends Service {
@@ -25,6 +27,35 @@ class UserBusiness extends Service {
   applyJob = async (jobId, cvId, note) => {
     let params = { cvId, jobId, note };
     let result = await this.post(applyJobURL, params);
+    return result;
+  };
+
+  updateUserInfo = async (
+    fullname,
+    address,
+    dateOfBirth,
+    phone,
+    gender,
+    imageUrl
+  ) => {
+    let params = {
+      fullname,
+      address,
+      dateOfBirth,
+      phone,
+      gender,
+      imageUrl
+    };
+    let result = await this.post(updateUserInfoURL, params);
+    return result;
+  };
+
+  changePassword = async (oldPassword, newPassword) => {
+    let params = {
+      oldPassword,
+      newPassword
+    };
+    let result = await this.post(changePasswordURL, params);
     return result;
   };
 }
