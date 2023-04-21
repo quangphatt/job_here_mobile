@@ -37,6 +37,7 @@ export const saveCVURL = '/user/uploadCV';
 export const deleteCVURL = '/user/deleteCV';
 export const applyJobURL = '/user/applyJob';
 export const updateUserInfoURL = '/user/updateInfo';
+export const changePasswordURL = "/user/changePassword";
 
 // CV
 export const getListCVURL = '/cv/getListOwnerCV';

@@ -4,7 +4,8 @@ import {
   saveCVURL,
   deleteCVURL,
   applyJobURL,
-  updateUserInfoURL
+  updateUserInfoURL,
+  changePasswordURL
 } from '@Config/Service/ConfigURL';
 
 class UserBusiness extends Service {
@@ -46,6 +47,15 @@ class UserBusiness extends Service {
       imageUrl
     };
     let result = await this.post(updateUserInfoURL, params);
+    return result;
+  };
+
+  changePassword = async (oldPassword, newPassword) => {
+    let params = {
+      oldPassword,
+      newPassword
+    };
+    let result = await this.post(changePasswordURL, params);
     return result;
   };
 }

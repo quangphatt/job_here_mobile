@@ -149,7 +149,14 @@ export const en = {
   'jh.uploadLessThan1MB': 'File must be less 1MB!',
   'jh.discardEdit': 'Discard Edit',
   'jh.wantToDiscardEdit': 'Do you want to discard edit?',
-  'jh.continue': 'Continue'
+  'jh.continue': 'Continue',
+  'jh.invalidNewPassword': 'Invalid New Password',
+  'jh.wantToChangePassword': 'Do you want to change password?',
+  'jh.change': 'Change',
+  'jh.oldPassword': 'Old Password',
+  'jh.oldPasswordPlaceholder': 'Enter Old Password',
+  'jh.newPassword': 'New Password',
+  'jh.newPasswordPlaceholder': 'Enter New Password'
 };
 
 export const vn = {
@@ -302,5 +309,12 @@ export const vn = {
   'jh.uploadLessThan1MB': 'File phải có dung lượng nhỏ hơn 1MB!',
   'jh.discardEdit': 'Loại Bỏ Chỉnh Sửa',
   'jh.wantToDiscardEdit': 'Bạn có muốn loại bỏ những chỉnh sửa này?',
-  'jh.continue': 'Tiếp Tục'
+  'jh.continue': 'Tiếp Tục',
+  'jh.invalidNewPassword': 'Mật khẩu mới không hợp lệ',
+  'jh.wantToChangePassword': 'Bạn có muốn thay đổi mật khẩu?',
+  'jh.change': 'Thay Đổi',
+  'jh.oldPassword': 'Mật Khẩu Cũ',
+  'jh.oldPasswordPlaceholder': 'Nhập Mật Khẩu Cũ',
+  'jh.newPassword': 'Mật Khẩu Mới',
+  'jh.newPasswordPlaceholder': 'Nhập Mật Khẩu Mới'
 };
