@@ -156,7 +156,8 @@ export const en = {
   'jh.oldPassword': 'Old Password',
   'jh.oldPasswordPlaceholder': 'Enter Old Password',
   'jh.newPassword': 'New Password',
-  'jh.newPasswordPlaceholder': 'Enter New Password'
+  'jh.newPasswordPlaceholder': 'Enter New Password',
+  'jh.aboutUs': 'About Us'
 };
 
 export const vn = {
@@ -316,5 +317,6 @@ export const vn = {
   'jh.oldPassword': 'Mật Khẩu Cũ',
   'jh.oldPasswordPlaceholder': 'Nhập Mật Khẩu Cũ',
   'jh.newPassword': 'Mật Khẩu Mới',
-  'jh.newPasswordPlaceholder': 'Nhập Mật Khẩu Mới'
+  'jh.newPasswordPlaceholder': 'Nhập Mật Khẩu Mới',
+  'jh.aboutUs': 'Về Chúng Tôi'
 };
