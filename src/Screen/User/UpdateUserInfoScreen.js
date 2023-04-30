@@ -137,8 +137,8 @@ const UpdateUserInfoScreen = () => {
 
   const onPressCancel = () => {
     Alert.show({
-      title: t('jh.discardEdit'),
-      body: t('jh.wantToDiscardEdit'),
+      title: t('jh.discard') + ' ' + t('jh.edit'),
+      body: t('jh.wantToDiscard') + ' ' + t('jh.edit') + '?',
       type: Alert.AlertType.WARNING,
       button_primary: t('jh.discard'),
       button_secondary: t('jh.continue'),

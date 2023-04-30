@@ -4,6 +4,7 @@ import CommonNavigation from '@Navigation/CommonNavigation/CommonNavigation';
 import AppliedJobScreen from '@Screen/Job/AppliedJobScreen';
 import SavedJobScreen from '@Screen/Job/SavedJobScreen';
 import CVManageScreen from '@Screen/CV/CVManageScreen';
+import CompanyWriteReviewScreen from '@Screen/Company/CompanyWriteReviewScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const JobHereNavigation = () => {
       <Stack.Screen name="AppliedJobScreen" component={AppliedJobScreen} />
       <Stack.Screen name="SavedJobScreen" component={SavedJobScreen} />
       <Stack.Screen name="CVManageScreen" component={CVManageScreen} />
+      <Stack.Screen name="CompanyWriteReviewScreen" component={CompanyWriteReviewScreen} />
     </Stack.Navigator>
   );
 };
