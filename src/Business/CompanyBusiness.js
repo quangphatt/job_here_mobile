@@ -3,7 +3,10 @@ import {
   getTopCompanyURL,
   getCompanyInfoURL,
   getAllJobOfCompanyURL,
-  getListCompanyURL
+  getListCompanyURL,
+  getCompanyScoreURL,
+  getListCommentURL,
+  addCommentURL
 } from '@Config/Service/ConfigURL';
 
 class CompanyBusiness extends Service {
@@ -25,6 +28,22 @@ class CompanyBusiness extends Service {
 
   getListTopCompany = async () => {
     let result = await this.get(getTopCompanyURL);
+    return result;
+  };
+
+  getCompanyScore = async (companyId) => {
+    let result = await this.get(`${getCompanyScoreURL}/${companyId}`);
+    return result;
+  };
+
+  getListComment = async (companyId, page, size) => {
+    let params = { companyId, page, size };
+    let result = await this.get(getListCommentURL, params);
+    return result;
+  };
+
+  addComment = async (params) => {
+    let result = await this.post(addCommentURL, params);
     return result;
   };
 }

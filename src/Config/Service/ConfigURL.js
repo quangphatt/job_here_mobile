@@ -30,6 +30,9 @@ export const getTopCompanyURL = '/company/getListTopCompanyHome';
 export const getCompanyInfoURL = '/company/getCompanyInfo';
 export const getAllJobOfCompanyURL = '/company/getAllJobOfCompany';
 export const getListCompanyURL = '/company/getListCompany';
+export const getCompanyScoreURL = '/company/getCompanyScore';
+export const getListCommentURL = '/company/getListComment';
+export const addCommentURL = '/company/addComment';
 
 // User
 export const getAppliedJobURL = '/user/getListApplicationHistory';
@@ -37,7 +40,7 @@ export const saveCVURL = '/user/uploadCV';
 export const deleteCVURL = '/user/deleteCV';
 export const applyJobURL = '/user/applyJob';
 export const updateUserInfoURL = '/user/updateInfo';
-export const changePasswordURL = "/user/changePassword";
+export const changePasswordURL = '/user/changePassword';
 
 // CV
 export const getListCVURL = '/cv/getListOwnerCV';
