@@ -48,3 +48,10 @@ export const getListCVURL = '/cv/getListOwnerCV';
 // Upload
 export const uploadCVURL = '/user/upload/uploadCV';
 export const uploadImageURL = '/user/upload/uploadImage';
+
+//Message
+export const getListMessageURL = '/chat';
+export const sendMessageURL = '/chat/send';
+export const countUnreadMessageURL = '/chat/count';
+export const viewAllMessageURL = '/chat/view/user';
+export const deleteMessageURL = '/chat/delete';

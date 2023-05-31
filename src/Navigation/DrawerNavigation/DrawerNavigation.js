@@ -8,7 +8,7 @@ import { AuthContext } from '@Config/Provider/AuthProvider';
 import * as Keychain from 'react-native-keychain';
 import { GetAllSavedJob } from '@ReduxSlice/SavedJobSlice';
 import { getCVList } from '@ReduxSlice/CVSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { store } from '@Config/Redux/store';
 
 const { width } = Dimensions.get('window');
@@ -16,6 +16,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = (props) => {
   const dispatch = useDispatch();
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
   const authContext = useContext(AuthContext);
   const loadJWT = useCallback(async () => {
     try {
@@ -66,7 +67,7 @@ const DrawerNavigation = (props) => {
       initialRouteName="AuthenticationNavigation"
       backBehavior="none"
     >
-      {!isSignIn ? (
+      {!isSignIn || !sessionInfo?.email ? (
         <Drawer.Screen
           name="AuthenticationNavigation"
           component={AuthenticationNavigation}

@@ -2,10 +2,10 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@Screen/HomeScreen';
 import JobHereNavigation from './JobHereNavigation';
-import MessageScreen from '@Screen/Message/MessageScreen';
+import MessageNavigation from './MessageNavigation';
 import NotificationScreen from '@Screen/Notification/NotificationScreen';
 import PersonalNavigation from './PersonalNavigation';
-import Tabbar from './Tabbar';
+import Tabbar from './Tabbar/Tabbar';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +21,7 @@ const BottomNavigation = () => {
       tabBar={renderTabbar}
     >
       <Tab.Screen name="JobHereNavigation" component={JobHereNavigation} />
-      <Tab.Screen name="MessageScreen" component={MessageScreen} />
+      <Tab.Screen name="MessageNavigation" component={MessageNavigation} />
       <Tab.Screen name="NotificationScreen" component={NotificationScreen} />
       <Tab.Screen name="PersonalNavigation" component={PersonalNavigation} />
     </Tab.Navigator>
