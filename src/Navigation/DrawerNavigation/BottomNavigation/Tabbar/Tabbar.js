@@ -5,11 +5,12 @@ import { navigate, getCurrentRoute } from '@NavigationAction';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import personal_img from '@Assets/Images/user.png';
+import MessageIcon from './MessageIcon';
 
 const TABS = [
   { name: 'HomeScreen', icon: 'home', displayName: 'Job Here' },
   {
-    name: 'MessageScreen',
+    name: 'MessageListScreen',
     icon: 'chatbubble-ellipses',
     displayName: 'jh.message'
   },
@@ -42,6 +43,10 @@ const Tabbar = (props) => {
       navigate('BottomNavigation', {
         screen: 'JobHereNavigation'
       });
+    } else if (name === 'MessageListScreen') {
+      navigate('BottomNavigation', {
+        screen: 'MessageNavigation'
+      });
     } else if (name === 'PersonalScreen') {
       navigate('BottomNavigation', {
         screen: 'PersonalNavigation'
@@ -68,8 +73,10 @@ const Tabbar = (props) => {
         let current_route = getCurrentRoute()?.name ?? ' ';
         if (PERSONAL_NAV.includes(current_route)) {
           current_route = 'PersonalScreen';
+        } else if (current_route === 'MessageScreen') {
+          current_route = 'MessageListScreen';
         } else if (
-          current_route !== 'MessageScreen' &&
+          current_route !== 'MessageListScreen' &&
           current_route !== 'NotificationScreen' &&
           current_route !== 'PersonalScreen'
         ) {
@@ -94,40 +101,47 @@ const Tabbar = (props) => {
               onPress={onPress(name)}
               activeOpacity={0.5}
             >
-              <View.Col
-                style={{ justifyContent: 'center', alignItems: 'center' }}
-              >
-                {!!icon ? (
-                  <Icon.VectorIcon
-                    name={icon}
-                    size={28}
-                    color={
-                      is_current_route
-                        ? Theme.text_colors.primary_text_color
-                        : Theme.text_colors.secondary_text_color
-                    }
-                  />
-                ) : (
-                  <Image.ImageCircle
-                    source={avatar}
-                    size={30}
-                    style={{
-                      borderWidth: 0.5,
-                      borderColor: Theme.colors.dark_gray_color
-                    }}
-                  />
-                )}
-                <Text.SubBodyBold
-                  style={{
-                    color: is_current_route
-                      ? Theme.text_colors.primary_text_color
-                      : Theme.text_colors.secondary_text_color,
-                    fontSize: 12
-                  }}
+              {name === 'MessageListScreen' ? (
+                <MessageIcon
+                  is_current_route={is_current_route}
+                  email={sessionInfo?.email ?? ''}
+                />
+              ) : (
+                <View.Col
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
                 >
-                  {t(displayName)}
-                </Text.SubBodyBold>
-              </View.Col>
+                  {!!icon ? (
+                    <Icon.VectorIcon
+                      name={icon}
+                      size={28}
+                      color={
+                        is_current_route
+                          ? Theme.text_colors.primary_text_color
+                          : Theme.text_colors.secondary_text_color
+                      }
+                    />
+                  ) : (
+                    <Image.ImageCircle
+                      source={avatar}
+                      size={30}
+                      style={{
+                        borderWidth: 0.5,
+                        borderColor: Theme.colors.dark_gray_color
+                      }}
+                    />
+                  )}
+                  <Text.SubBodyBold
+                    style={{
+                      color: is_current_route
+                        ? Theme.text_colors.primary_text_color
+                        : Theme.text_colors.secondary_text_color,
+                      fontSize: 12
+                    }}
+                  >
+                    {t(displayName)}
+                  </Text.SubBodyBold>
+                </View.Col>
+              )}
             </Button.ButtonPreventDouble>
           </View.Col>
         );

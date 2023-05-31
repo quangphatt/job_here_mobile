@@ -18,7 +18,10 @@ const JobHereNavigation = () => {
       <Stack.Screen name="AppliedJobScreen" component={AppliedJobScreen} />
       <Stack.Screen name="SavedJobScreen" component={SavedJobScreen} />
       <Stack.Screen name="CVManageScreen" component={CVManageScreen} />
-      <Stack.Screen name="CompanyWriteReviewScreen" component={CompanyWriteReviewScreen} />
+      <Stack.Screen
+        name="CompanyWriteReviewScreen"
+        component={CompanyWriteReviewScreen}
+      />
     </Stack.Navigator>
   );
 };

@@ -3,8 +3,10 @@ import { Linking, StyleSheet } from 'react-native';
 import { View, Text, Icon, Image, Button } from '@Components';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
+import { navigate } from '@NavigationAction';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 import company_default_bg from '@Assets/Images/company_default_background.jpg';
+import { messageBusiness } from '@Business';
 
 const AVATAR_SIZE = 76;
 
@@ -17,6 +19,29 @@ const CompanyHeader = ({ companyData }) => {
 
   const onPressEmail = () => {
     Linking.openURL(`mailto:${companyData.email}`);
+  };
+
+  const onPressSendMessage = async () => {
+    let messageData = false;
+    let result = await messageBusiness.getListMessage();
+    if (result?.data?.httpCode === 200) {
+      let listMessage = result?.data?.objectData || [];
+      messageData = _.find(
+        listMessage,
+        (item) => item.companyId === companyData.companyId
+      );
+    }
+    if (!messageData) {
+      messageData = {
+        companyId: companyData.companyId,
+        companyImageUrl: companyData.avatarUrl,
+        companyName: companyData.companyName,
+        messageId: false
+      };
+    }
+    navigate('MessageScreen', {
+      messageData
+    });
   };
 
   return (
@@ -108,6 +133,22 @@ const CompanyHeader = ({ companyData }) => {
               </Text.Body>
             </View.Row>
           )}
+          <Button.Button
+            onPress={onPressSendMessage}
+            secondary
+            style={{ marginTop: 5, width: 220 }}
+          >
+            <Icon.VectorIcon
+              name={'chatbubble-ellipses'}
+              style={[
+                styles.info_icon,
+                { color: Theme.colors.primary_color, marginRight: 5 }
+              ]}
+            />
+            <Text.Body primary>
+              {t('jh.send')} {t('jh.message')}
+            </Text.Body>
+          </Button.Button>
         </View.Col>
       </View.Row>
     </View.Col>

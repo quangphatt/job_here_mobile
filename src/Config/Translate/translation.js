@@ -177,7 +177,21 @@ export const en = {
   'jh.recommendThisCompany': 'Recommend This Company',
   'jh.writeReview': 'Write Review',
   'jh.titleMustBeAtLeast6': 'Title must be at least 6 characters!',
-  'jh.contentMustBeAtLeast8': 'Content must be at least 8 characters!'
+  'jh.contentMustBeAtLeast8': 'Content must be at least 8 characters!',
+  'time.hour': 'hours ago',
+  'time.minute': 'minutes ago',
+  'time.month': 'months ago',
+  'time.year': 'years ago',
+  'time.day': 'days ago',
+  'jh.allMessage': 'All Messages',
+  'jh.send': 'Send',
+  'jh.enter': 'Enter',
+  'jh.deleteMessage': 'Delete Message',
+  'jh.deleteMessageConfirm': 'Do you want to delete this message?',
+  'jh.confirm': 'Confirm',
+  'jh.sending': 'Sending',
+  'jh.yesterday': 'Yesterday',
+  'jh.noMessage': 'No Message'
 };
 
 export const vn = {
@@ -358,5 +372,19 @@ export const vn = {
   'jh.recommendThisCompany': 'Đề xuất công ty này',
   'jh.writeReview': 'Viết Đánh Giá',
   'jh.titleMustBeAtLeast6': 'Tiêu đề phải có ít nhất 6 ký tự!',
-  'jh.contentMustBeAtLeast8': 'Nội dung phải có ít nhất 8 ký tự!'
+  'jh.contentMustBeAtLeast8': 'Nội dung phải có ít nhất 8 ký tự!',
+  'time.hour': 'giờ trước',
+  'time.minute': 'phút trước',
+  'time.month': 'tháng trước',
+  'time.year': 'năm trước',
+  'time.day': 'ngày trước',
+  'jh.allMessage': 'Tất Cả Tin Nhắn',
+  'jh.send': 'Gửi',
+  'jh.enter': 'Nhập',
+  'jh.deleteMessage': 'Xoá Tin Nhắn',
+  'jh.deleteMessageConfirm': 'Bạn có chắc chắn muốn xoá tin nhắn này?',
+  'jh.confirm': 'Xác Nhận',
+  'jh.sending': 'Đang gửi',
+  'jh.yesterday': 'Hôm qua',
+  'jh.noMessage': 'Không có tin nhắn'
 };

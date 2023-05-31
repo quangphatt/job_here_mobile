@@ -19,7 +19,7 @@ const SplashScreen = () => {
   let isSignIn = authContext?.authState?.authenticated ?? false;
 
   useEffect(() => {
-    if (!(isSignIn || sessionInfo?.email)) {
+    if (!isSignIn || !sessionInfo?.email) {
       setTimeout(() => {
         navigate('CommonAppNavigation', { screen: 'HomeScreen' });
       }, 400);
