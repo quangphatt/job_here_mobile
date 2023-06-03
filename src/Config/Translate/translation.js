@@ -62,7 +62,7 @@ export const en = {
   'jh.signOut': 'Sign Out',
   'jh.home': 'Home',
   'jh.message': 'Message',
-  'jh.notifycation': 'Notifycation',
+  'jh.notification': 'Notification',
   'jh.personal': 'Personal',
   'jh.jobs': 'Jobs',
   'jh.appliedJob': 'Applied Job',
@@ -191,7 +191,9 @@ export const en = {
   'jh.confirm': 'Confirm',
   'jh.sending': 'Sending',
   'jh.yesterday': 'Yesterday',
-  'jh.noMessage': 'No Message'
+  'jh.noMessage': 'No Message',
+  'jh.viewAll': 'View All',
+  'jh.noNotification': 'No Notification'
 };
 
 export const vn = {
@@ -257,7 +259,7 @@ export const vn = {
   'jh.signOut': 'Đăng Xuất',
   'jh.home': 'Trang Chủ',
   'jh.message': 'Tin Nhắn',
-  'jh.notifycation': 'Thông Báo',
+  'jh.notification': 'Thông Báo',
   'jh.personal': 'Cá Nhân',
   'jh.jobs': 'Việc Làm',
   'jh.appliedJob': 'Việc Làm Đã Ứng Tuyển',
@@ -386,5 +388,7 @@ export const vn = {
   'jh.confirm': 'Xác Nhận',
   'jh.sending': 'Đang gửi',
   'jh.yesterday': 'Hôm qua',
-  'jh.noMessage': 'Không có tin nhắn'
+  'jh.noMessage': 'Không có tin nhắn',
+  'jh.viewAll': 'Xem Tất Cả',
+  'jh.noNotification': 'Không có thông báo'
 };

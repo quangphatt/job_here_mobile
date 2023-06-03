@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import personal_img from '@Assets/Images/user.png';
 import MessageIcon from './MessageIcon';
+import NotificationIcon from './NotificationIcon';
 
 const TABS = [
   { name: 'HomeScreen', icon: 'home', displayName: 'Job Here' },
@@ -103,6 +104,11 @@ const Tabbar = (props) => {
             >
               {name === 'MessageListScreen' ? (
                 <MessageIcon
+                  is_current_route={is_current_route}
+                  email={sessionInfo?.email ?? ''}
+                />
+              ) : name === 'NotificationScreen' ? (
+                <NotificationIcon
                   is_current_route={is_current_route}
                   email={sessionInfo?.email ?? ''}
                 />
