@@ -49,9 +49,15 @@ export const getListCVURL = '/cv/getListOwnerCV';
 export const uploadCVURL = '/user/upload/uploadCV';
 export const uploadImageURL = '/user/upload/uploadImage';
 
-//Message
+// Message
 export const getListMessageURL = '/chat';
 export const sendMessageURL = '/chat/send';
 export const countUnreadMessageURL = '/chat/count';
 export const viewAllMessageURL = '/chat/view/user';
 export const deleteMessageURL = '/chat/delete';
+
+// Notification
+export const countNotificationURL = '/notification/user';
+export const getLastsNotificationOfUserURL = '/notification/all/user';
+export const viewNotificationURL = '/notification/view';
+export const viewNotificationOfUserURL = '/notification/view/user';

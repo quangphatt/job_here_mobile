@@ -39,8 +39,11 @@ const CompanyHeader = ({ companyData }) => {
         messageId: false
       };
     }
-    navigate('MessageScreen', {
-      messageData
+    navigate('MessageNavigation', {
+      name: 'MessageScreen',
+      params: {
+        messageData
+      }
     });
   };
 
