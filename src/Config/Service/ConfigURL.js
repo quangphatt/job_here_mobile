@@ -61,3 +61,7 @@ export const countNotificationURL = '/notification/user';
 export const getLastsNotificationOfUserURL = '/notification/all/user';
 export const viewNotificationURL = '/notification/view';
 export const viewNotificationOfUserURL = '/notification/view/user';
+
+// Blog
+export const getBlogByIdURL = '/blog';
+export const blogSearchURL = '/blog/search';

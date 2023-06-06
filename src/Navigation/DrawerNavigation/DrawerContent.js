@@ -38,6 +38,10 @@ const MENU = [
   {
     name: 'jh.companies',
     children: [{ name: 'jh.companyList', route: 'CompanyListScreen', type: 1 }]
+  },
+  {
+    name: 'jh.blog',
+    children: [{ name: 'jh.allBlog', route: 'BlogScreen', type: 1 }]
   }
 ];
 

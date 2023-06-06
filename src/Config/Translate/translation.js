@@ -193,7 +193,11 @@ export const en = {
   'jh.yesterday': 'Yesterday',
   'jh.noMessage': 'No Message',
   'jh.viewAll': 'View All',
-  'jh.noNotification': 'No Notification'
+  'jh.noNotification': 'No Notification',
+  'jh.allBlog': 'All Blog',
+  'jh.blog': 'Blog',
+  'jh.relateBlog': 'Relate Blogs',
+  'jh.searchBlogPlaceholder': 'Blog name ...'
 };
 
 export const vn = {
@@ -390,5 +394,9 @@ export const vn = {
   'jh.yesterday': 'Hôm qua',
   'jh.noMessage': 'Không có tin nhắn',
   'jh.viewAll': 'Xem Tất Cả',
-  'jh.noNotification': 'Không có thông báo'
+  'jh.noNotification': 'Không có thông báo',
+  'jh.allBlog': 'Tất Cả Bài Viết',
+  'jh.blog': 'Bài Viết',
+  'jh.relateBlog': 'Bài Viết Liên Quan',
+  'jh.searchBlogPlaceholder': 'Tên bài viết...'
 };
