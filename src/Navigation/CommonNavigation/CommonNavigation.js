@@ -7,6 +7,8 @@ import CompanyInfoScreen from '@Screen/Company/CompanyInfoScreen';
 import CompanyListScreen from '@Screen/Company/CompanyListScreen';
 import CompanyReviewScreen from '@Screen/Company/CompanyReviewScreen';
 import TermOfServiceScreen from '@Screen/Common/TermOfServiceScreen';
+import BlogScreen from '@Screen/Blog/BlogScreen';
+import BlogDetailScreen from '@Screen/Blog/BlogDetailScreen';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +31,8 @@ const CommonNavigation = () => {
         name="TermOfServiceScreen"
         component={TermOfServiceScreen}
       />
+      <Stack.Screen name="BlogScreen" component={BlogScreen} />
+      <Stack.Screen name="BlogDetailScreen" component={BlogDetailScreen} />
     </Stack.Navigator>
   );
 };

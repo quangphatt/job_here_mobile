@@ -1,4 +1,5 @@
 export { default as authBusiness } from './AuthBusiness';
+export { default as blogBusiness } from './BlogBusiness';
 export { default as companyBusiness } from './CompanyBusiness';
 export { default as cvBusiness } from './CVBusiness';
 export { default as dropdownBusiness } from './DropdownBusiness';
