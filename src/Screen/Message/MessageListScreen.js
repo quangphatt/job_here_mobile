@@ -16,7 +16,7 @@ const MessageListScreen = ({ navigation }) => {
   const email = useSelector((state) => state.Authentication.sessionInfo?.email);
   const [messages, setMessages] = useState([]);
   const [hasChange, setHasChange] = useState(false);
-  const [childMessages, setChildMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
   const topicMessages = `${TOPIC_MESSAGES_USER}/${email}`;
   const currentSocket = useRef();
 
@@ -29,7 +29,7 @@ const MessageListScreen = ({ navigation }) => {
       await getData();
     });
     return unsubscribe;
-  });
+  }, []);
 
   useEffect(() => {
     getData();
@@ -40,6 +40,7 @@ const MessageListScreen = ({ navigation }) => {
     if (result?.data?.httpCode === 200) {
       setMessages(result?.data?.objectData || []);
     }
+    if (loading) setLoading(false);
   };
 
   const onOpenMessage = (messageData) => () => {
@@ -126,7 +127,9 @@ const MessageListScreen = ({ navigation }) => {
         iconLeft={'menu'}
         actionLeft={openDrawer}
       />
-      {messages.length === 0 ? (
+      {loading ? (
+        <Loading placeholder />
+      ) : messages.length === 0 ? (
         <View.Col style={{ alignItems: 'center' }}>
           <Text.Body secondary fontSize={16}>
             {t('jh.noMessage')}!

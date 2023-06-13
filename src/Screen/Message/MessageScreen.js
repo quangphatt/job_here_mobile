@@ -4,7 +4,7 @@ import Popover from 'react-native-popover-view';
 import { View, Text, Icon, Image, Button, Loading } from '@Components';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
-import { goBack } from '@NavigationAction';
+import { navigate } from '@NavigationAction';
 import { messageBusiness } from '@Business';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 import { SOCKET_URL } from '@Config/Service/Host';
@@ -129,6 +129,10 @@ const MessageScreen = ({ route }) => {
     }
   };
 
+  const onPressBack = () => {
+    navigate('MessageListScreen');
+  };
+
   return (
     <View.Col style={{ paddingBottom: 50, flex: 1 }}>
       {!!email && (
@@ -149,7 +153,7 @@ const MessageScreen = ({ route }) => {
         }}
       >
         <View.Row style={{ alignItems: 'center', flex: 1 }}>
-          <Button.ButtonPreventDouble onPress={goBack}>
+          <Button.ButtonPreventDouble onPress={onPressBack}>
             <Icon.VectorIcon
               name={'chevron-back-sharp'}
               color={Theme.colors.white_color}

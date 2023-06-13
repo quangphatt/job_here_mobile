@@ -1,4 +1,4 @@
-import "./ignoreWarnings";
+import './ignoreWarnings';
 import React, { useEffect } from 'react';
 import { AppNavigation } from '@Navigation';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ScrollView } from 'react-native';
 import { View, Text, Common, Button, Loading } from '@Components';
 import Theme from '@Theme';
@@ -13,22 +13,27 @@ import { useSelector } from 'react-redux';
 
 const NotificationScreen = () => {
   const { t } = useTranslation();
-  const [hasChange, setHasChange] = useState(false);
-  const [notifications, setNotifications] = useState([]);
-  const [loading, setLoading] = useState(true);
   const email = useSelector((state) => state.Authentication.sessionInfo?.email);
-  const topicMessages = `${TOPIC_MESSAGES_USER}/${email}`;
+  const [notifications, setNotifications] = useState([]);
+  const [hasChange, setHasChange] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const topicNotification = `${TOPIC_MESSAGES_USER}/notification/${email}`;
+  const currentSocket = useRef();
 
   useEffect(() => {
-    fetchData();
-  }, [hasChange, email]);
+    getData();
+  }, [hasChange]);
 
-  const fetchData = async () => {
+  const getData = async () => {
     let res = await notificationBusiness.getLastsNotificationOfUser();
     if (res.data.httpCode === 200) {
       setNotifications(res.data?.objectData ?? []);
     }
     if (loading) setLoading(false);
+  };
+
+  let onMessageReceived = (msg) => {
+    setHasChange((prev) => !prev);
   };
 
   const viewNotification = (notiId, viewed) => async () => {
@@ -56,9 +61,10 @@ const NotificationScreen = () => {
       {!!email && (
         <SockJsClient
           url={SOCKET_URL}
-          topics={[topicMessages]}
+          topics={[topicNotification]}
           onMessage={(msg) => onMessageReceived(msg)}
           debug={false}
+          ref={currentSocket}
         />
       )}
       <Common.Header
@@ -108,16 +114,16 @@ const NotificationScreen = () => {
                       : Theme.background_colors.page_background_color
                   }}
                 >
-                  <View.Col style={{ flex: 1 }} fontSize={16}>
-                    <Text.BodyBold secondary>
+                  <View.Col style={{ flex: 1 }}>
+                    <Text.BodyBold secondary fontSize={17}>
                       {item.notificationTitle}
                     </Text.BodyBold>
-                    <Text.Body secondary fontSize={16}>
+                    <Text.Body secondary fontSize={17}>
                       {item.notificationContent}
                     </Text.Body>
-                    <Text.Body secondary style={{ fontStyle: 'italic' }}>
+                    <Text.BodyBold secondary style={{ fontStyle: 'italic' }}>
                       {convertToTimeString(item.createdDate, t)}
-                    </Text.Body>
+                    </Text.BodyBold>
                   </View.Col>
                   {!item.viewed && (
                     <View.Col

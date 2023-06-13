@@ -40,7 +40,7 @@ const CompanyHeader = ({ companyData }) => {
       };
     }
     navigate('MessageNavigation', {
-      name: 'MessageScreen',
+      screen: 'MessageScreen',
       params: {
         messageData
       }

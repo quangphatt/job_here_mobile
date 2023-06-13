@@ -7,14 +7,17 @@ import { messageBusiness } from '@Business';
 import { TOPIC_MESSAGES_USER } from '@Config/Support/PathSupport';
 import { SOCKET_URL } from '@Config/Service/Host';
 import SockJsClient from 'react-stomp';
+import notifee from '@notifee/react-native';
 
 const MessageIcon = ({ is_current_route, email }) => {
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
   const [messageCount, setMessageCount] = useState(0);
+  const [messages, setMessages] = useState({});
   const [hasChange, setHasChange] = useState(false);
   const topicMessages = `${TOPIC_MESSAGES_USER}/${email}`;
   const currentSocket = useRef();
+  let prevMess = useRef({ companyId: '', content: '' });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +25,64 @@ const MessageIcon = ({ is_current_route, email }) => {
       if (result.data.httpCode === 200) {
         if (result.data.objectData * 1 > 9) setMessageCount('9+');
         else setMessageCount(result.data.objectData);
+
+        // Push notification
+        let _result = await messageBusiness.getListMessage();
+        if (_result?.data?.httpCode === 200) {
+          prevMess.current = {
+            companyId: messages?.[0]?.companyId ?? '',
+            content: messages?.[0]?.content ?? ''
+          };
+          let _message = _result?.data?.objectData || [];
+          setMessages(_message?.[0] ?? {});
+          if (
+            !_message?.[0]?.fromUser &&
+            (_message?.[0]?.content !== prevMess.current.content ||
+              _message?.[0]?.companyId !== prevMess.current.companyId)
+          ) {
+            onDisplayNotification(
+              _message[0].companyName,
+              _message[0].content,
+              _message[0].companyImageUrl
+            );
+          }
+        }
       }
     };
     fetchData();
   }, [hasChange, email]);
+
+  const onDisplayNotification = async (
+    companyName,
+    content,
+    companyImageUrl = ''
+  ) => {
+    // Request permissions (required for iOS)
+    await notifee.requestPermission();
+
+    // Create a channel (required for Android)
+    const channelId = await notifee.createChannel({
+      id: 'jobhere-message',
+      name: 'Job Here Message',
+      sound: 'jobheresound'
+    });
+
+    // Display a notification
+    await notifee.displayNotification({
+      title: companyName,
+      body: content,
+      android: {
+        channelId,
+        pressAction: {
+          id: 'jobhere-message'
+        },
+        sound: 'jobheresound',
+        largeIcon: companyImageUrl
+          ? companyImageUrl
+          : require('@Assets/Images/logo.png')
+      }
+    });
+  };
 
   let onMessageReceived = (msg) => {
     setHasChange((prev) => !prev);
