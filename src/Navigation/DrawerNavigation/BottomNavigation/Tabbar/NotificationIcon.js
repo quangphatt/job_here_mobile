@@ -18,6 +18,7 @@ const NotificationIcon = ({ is_current_route, email }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log('------- notification count');
       let result = await notificationBusiness.countNotification();
       if (result.data.httpCode === 200) {
         if (result.data.objectData * 1 > 9) setNotificationCount('9+');

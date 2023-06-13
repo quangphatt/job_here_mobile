@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import io.invertase.notifee.NotifeePackage;
 import com.horcrux.svg.SvgPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.reactnativedocumentpicker.DocumentPickerPackage;
@@ -49,6 +50,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new NotifeePackage(),
             new SvgPackage(),
             new RNFetchBlobPackage(),
             new DocumentPickerPackage(),

@@ -61,6 +61,10 @@ target 'job_here_mobile' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'RNNotifee', :path => '../node_modules/@notifee/react-native'
+
+  pod 'react-native-notification-sounds', :path => '../node_modules/react-native-notification-sounds'
+
   target 'job_here_mobileTests' do
     inherit! :complete
     # Pods for testing
