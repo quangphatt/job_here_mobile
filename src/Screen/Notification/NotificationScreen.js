@@ -17,7 +17,7 @@ const NotificationScreen = () => {
   const [notifications, setNotifications] = useState([]);
   const [hasChange, setHasChange] = useState(false);
   const [loading, setLoading] = useState(true);
-  const topicMessages = `${TOPIC_MESSAGES_USER}/${email}`;
+  const topicNotification = `${TOPIC_MESSAGES_USER}/notification/${email}`;
   const currentSocket = useRef();
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const NotificationScreen = () => {
       {!!email && (
         <SockJsClient
           url={SOCKET_URL}
-          topics={[topicMessages]}
+          topics={[topicNotification]}
           onMessage={(msg) => onMessageReceived(msg)}
           debug={false}
           ref={currentSocket}

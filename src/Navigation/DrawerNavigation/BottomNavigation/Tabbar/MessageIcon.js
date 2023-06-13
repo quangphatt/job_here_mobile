@@ -25,6 +25,8 @@ const MessageIcon = ({ is_current_route, email }) => {
       if (result.data.httpCode === 200) {
         if (result.data.objectData * 1 > 9) setMessageCount('9+');
         else setMessageCount(result.data.objectData);
+
+        // Push notification
         let _result = await messageBusiness.getListMessage();
         if (_result?.data?.httpCode === 200) {
           prevMess.current = {
@@ -60,8 +62,8 @@ const MessageIcon = ({ is_current_route, email }) => {
 
     // Create a channel (required for Android)
     const channelId = await notifee.createChannel({
-      id: 'jobhere',
-      name: 'Job Here Channel',
+      id: 'jobhere-message',
+      name: 'Job Here Message',
       sound: 'jobheresound'
     });
 
@@ -72,7 +74,7 @@ const MessageIcon = ({ is_current_route, email }) => {
       android: {
         channelId,
         pressAction: {
-          id: 'jobhere'
+          id: 'jobhere-message'
         },
         sound: 'jobheresound',
         largeIcon: companyImageUrl

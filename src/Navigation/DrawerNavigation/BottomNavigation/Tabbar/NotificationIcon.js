@@ -7,13 +7,14 @@ import { notificationBusiness } from '@Business';
 import { TOPIC_MESSAGES_USER } from '@Config/Support/PathSupport';
 import { SOCKET_URL } from '@Config/Service/Host';
 import SockJsClient from 'react-stomp';
+import notifee from '@notifee/react-native';
 
 const NotificationIcon = ({ is_current_route, email }) => {
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
   const [notificationCount, setNotificationCount] = useState(0);
   const [hasChange, setHasChange] = useState(false);
-  const topicMessages = `${TOPIC_MESSAGES_USER}/${email}`;
+  const topicNotification = `${TOPIC_MESSAGES_USER}/notification/${email}`;
   const currentSocket = useRef();
 
   useEffect(() => {
@@ -23,10 +24,50 @@ const NotificationIcon = ({ is_current_route, email }) => {
       if (result.data.httpCode === 200) {
         if (result.data.objectData * 1 > 9) setNotificationCount('9+');
         else setNotificationCount(result.data.objectData);
+
+        // Push notification
+        let res = await notificationBusiness.getLastsNotificationOfUser();
+        if (res.data.httpCode === 200) {
+          let _notification = res.data?.objectData ?? [];
+          if (!_notification?.[0]?.viewed) {
+            onDisplayNotification(
+              _notification[0].notificationTitle,
+              _notification[0].notificationContent
+            );
+          }
+        }
       }
     };
     fetchData();
   }, [hasChange, email]);
+
+  const onDisplayNotification = async (
+    notificationTitle,
+    notificationContent
+  ) => {
+    // Request permissions (required for iOS)
+    await notifee.requestPermission();
+
+    // Create a channel (required for Android)
+    const channelId = await notifee.createChannel({
+      id: 'jobhere-notification',
+      name: 'Job Here Notification',
+      sound: 'jobheresound'
+    });
+
+    // Display a notification
+    await notifee.displayNotification({
+      title: notificationTitle,
+      body: notificationContent,
+      android: {
+        channelId,
+        pressAction: {
+          id: 'jobhere-notification'
+        },
+        sound: 'jobheresound'
+      }
+    });
+  };
 
   let onMessageReceived = (msg) => {
     setHasChange((prev) => !prev);
@@ -37,7 +78,7 @@ const NotificationIcon = ({ is_current_route, email }) => {
       {!!email && (
         <SockJsClient
           url={SOCKET_URL}
-          topics={[topicMessages]}
+          topics={[topicNotification]}
           onMessage={(msg) => onMessageReceived(msg)}
           debug={false}
           ref={currentSocket}
