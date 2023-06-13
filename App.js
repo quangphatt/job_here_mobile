@@ -13,25 +13,8 @@ import { MagicModalPortal } from 'react-native-magic-modal';
 import NetInfo from '@Config/NetInfo';
 import '@Config/Translate/i18n';
 import RNSplashScreen from 'react-native-splash-screen';
-import notifee, { EventType } from '@notifee/react-native';
 
 import theme from '@Theme';
-
-notifee.onBackgroundEvent(async ({ type, detail }) => {
-  const { notification, pressAction } = detail;
-  console.log('----------background',detail,type)
-
-  // Check if the user pressed the "Mark as read" action
-  // if (type === EventType.ACTION_PRESS && pressAction.id === 'mark-as-read') {
-  //   // Update external API
-  //   await fetch(`https://my-api.com/chat/${notification.data.chatId}/read`, {
-  //     method: 'POST'
-  //   });
-
-  //   // Remove the notification
-  //   await notifee.cancelNotification(notification.id);
-  // }
-});
 
 const App = () => {
   useEffect(() => {

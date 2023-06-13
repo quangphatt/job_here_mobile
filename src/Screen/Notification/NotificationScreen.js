@@ -21,7 +21,6 @@ const NotificationScreen = () => {
   const currentSocket = useRef();
 
   useEffect(() => {
-    console.log('------- notification');
     getData();
   }, [hasChange]);
 
@@ -34,7 +33,6 @@ const NotificationScreen = () => {
   };
 
   let onMessageReceived = (msg) => {
-    console.log('------- notification11');
     setHasChange((prev) => !prev);
   };
 
