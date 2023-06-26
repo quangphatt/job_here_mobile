@@ -197,7 +197,9 @@ export const en = {
   'jh.allBlog': 'All Blog',
   'jh.blog': 'Blog',
   'jh.relateBlog': 'Relate Blogs',
-  'jh.searchBlogPlaceholder': 'Blog name ...'
+  'jh.searchBlogPlaceholder': 'Blog name ...',
+  'jh.topIndustry': 'Top Industry',
+  'jh.job': 'Jobs'
 };
 
 export const vn = {
@@ -398,5 +400,7 @@ export const vn = {
   'jh.allBlog': 'Tất Cả Bài Viết',
   'jh.blog': 'Bài Viết',
   'jh.relateBlog': 'Bài Viết Liên Quan',
-  'jh.searchBlogPlaceholder': 'Tên bài viết...'
+  'jh.searchBlogPlaceholder': 'Tên bài viết...',
+  'jh.topIndustry': 'Lĩnh vực hàng đầu',
+  'jh.job': 'Việc làm'
 };

@@ -65,3 +65,6 @@ export const viewNotificationOfUserURL = '/notification/view/user';
 // Blog
 export const getBlogByIdURL = '/blog';
 export const blogSearchURL = '/blog/search';
+
+// Report
+export const getTotalJobByIndustryURL = '/report/getTotalJobByIndustry';

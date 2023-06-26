@@ -20,7 +20,7 @@ const SearchJobScreen = (props) => {
   const [stateData, setStateData] = useState({
     searchParams: {
       keyword: '',
-      industry: 0,
+      industry: props.route?.params?.industryId ?? 0,
       skill: 0,
       city: 0,
       isChanged: false
