@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useWindowDimensions } from 'react-native';
 import { View, Text, Button, Image } from '@Components';
 import Theme from '@Theme';
 import { reportBusiness } from 'Business';
@@ -10,7 +9,6 @@ import { navigate } from '@NavigationAction';
 
 const JobByIndustry = () => {
   const { t } = useTranslation();
-  const { width } = useWindowDimensions();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -35,7 +33,7 @@ const JobByIndustry = () => {
       <Text.H3_Bold secondary style={{ paddingLeft: 10 }}>
         {t('jh.topIndustry')}
       </Text.H3_Bold>
-      <Slick autoplay autoplayTimeout={8} showsPagination={false}>
+      <Slick autoplay autoplayTimeout={8} showsPagination={false} height={180}>
         {_.map(data, (industry) => (
           <View.Col
             key={industry.industryId}
