@@ -25,6 +25,8 @@ const SavedJobScreen = () => {
     useSelector((state) => state.SavedJob.listSavedJob) || [];
 
   useEffect(() => {
+    stateData.loading = true;
+    setLastUpdate(moment().format('x'));
     getData();
   }, [savedJobList]);
 
@@ -38,9 +40,11 @@ const SavedJobScreen = () => {
       let listJob = result?.data?.objectData?.pageData ?? [];
       for (let i = 0; i < listJob.length; i++) {
         listJob[i].unitName =
-          unitDropdown.find((x) => x.unit === listJob[i].unit)?.unitName ?? '';
+          stateData.unitDropdown.find((x) => x.unit === listJob[i].unit)
+            ?.unitName ?? '';
       }
-      stateData.listData = [...stateData.listData, ...listJob];
+      stateData.listData =
+        currentPage === 0 ? listJob : [...stateData.listData, ...listJob];
       if (listJob.length < SIZE) stateData.shouldLoadMore = false;
     }
     stateData.loading = false;
@@ -68,7 +72,7 @@ const SavedJobScreen = () => {
   const renderItem = ({ item, index }) => {
     return (
       <View.Col key={index} style={{ paddingHorizontal: MARGIN_ITEM }}>
-        <JobItem jobData={item} />
+        <JobItem jobData={item} savedJobScreen />
       </View.Col>
     );
   };

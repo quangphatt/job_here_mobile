@@ -63,7 +63,10 @@ const AppliedJobScreen = () => {
   };
 
   const onChangeMonth = (month) => {
-    stateData.timePicker = { ...stateData.timePicker, month };
+    stateData.timePicker = {
+      ...stateData.timePicker,
+      month
+    };
     setLastUpdate(moment().format('x'));
     Global._hideModal();
   };
