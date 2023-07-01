@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { Dimensions } from 'react-native';
-import { View, Text, Image, Icon, Pagination, Button } from '@Components';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, Icon, Button } from '@Components';
 import { useTranslation } from 'react-i18next';
 import { companyBusiness } from '@Business';
 import { navigate, navigatePush } from '@NavigationAction';
 import Theme from '@Theme';
+import Slick from 'react-native-slick';
+import _ from 'underscore';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
-
-const { width } = Dimensions.get('window');
 
 const CompanyTop = () => {
   const { t } = useTranslation();
@@ -15,14 +14,15 @@ const CompanyTop = () => {
   const [stateData, setStateData] = useState({
     companyData: []
   });
-  const limit = 8;
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const getData = async () => {
     let result = await companyBusiness.getListTopCompany();
     if (result.data.httpCode === 200) {
       let _companyList = result?.data?.objectData ?? [];
-      if (_companyList.length > limit)
-        _companyList = _companyList.slice(-limit);
       stateData.companyData = _companyList;
       setLastUpdate(moment().format('x'));
     }
@@ -36,34 +36,7 @@ const CompanyTop = () => {
     navigatePush('CompanyInfoScreen', { companyId });
   };
 
-  const renderItem = ({ item, index }) => {
-    return (
-      <Button.ButtonPreventDouble
-        key={index}
-        onPress={onPressCompanyItem(item.companyId)}
-        style={{
-          width: width - 20,
-          margin: 10,
-          paddingVertical: 12,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderWidth: 1,
-          borderColor: Theme.border_colors.secondary_border_color,
-          borderRadius: 10,
-          backgroundColor: Theme.colors.white_color
-        }}
-      >
-        <Image.ImageSquare
-          source={
-            item?.avatarUrl ? { uri: item.avatarUrl } : company_default_img
-          }
-          size={72}
-          style={{ borderWidth: 0, backgroundColor: Theme.colors.white_color }}
-        />
-        <Text.Body secondary>{item.companyName}</Text.Body>
-      </Button.ButtonPreventDouble>
-    );
-  };
+  if (!stateData.companyData.length) return null;
 
   return (
     <View.Col style={{ paddingVertical: 10 }}>
@@ -88,12 +61,42 @@ const CompanyTop = () => {
           />
         </Button.ButtonPreventDouble>
       </View.Row>
-      <Pagination
-        listData={stateData.companyData}
-        renderItem={renderItem}
-        getData={getData}
-        dataLength={stateData.companyData.length}
-      />
+      <Slick autoplay autoplayTimeout={8} showsPagination={false} height={180}>
+        {_.map(stateData.companyData, (company) => (
+          <View.Col
+            key={company.companyId}
+            style={{
+              margin: 10,
+              paddingVertical: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+              borderColor: Theme.border_colors.secondary_border_color,
+              borderRadius: 10,
+              backgroundColor: Theme.colors.white_color
+            }}
+          >
+            <Button.ButtonPreventDouble
+              onPress={onPressCompanyItem(company.companyId)}
+              style={{ justifyContent: 'center', alignItems: 'center' }}
+            >
+              <Image.ImageSquare
+                source={
+                  company?.avatarUrl
+                    ? { uri: company.avatarUrl }
+                    : company_default_img
+                }
+                size={72}
+                style={{
+                  borderWidth: 0,
+                  backgroundColor: Theme.colors.white_color
+                }}
+              />
+              <Text.Body secondary>{company.companyName}</Text.Body>
+            </Button.ButtonPreventDouble>
+          </View.Col>
+        ))}
+      </Slick>
     </View.Col>
   );
 };

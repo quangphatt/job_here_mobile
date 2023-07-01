@@ -13,13 +13,13 @@ import {
 } from '@ReduxSlice/SavedJobSlice';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 
-const JobItem = ({ jobData = {} }) => {
+const JobItem = ({ jobData = {}, savedJobScreen = false }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const savedJobList =
     useSelector((state) => state.SavedJob.listSavedJob) || [];
   const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
-  let isSaved = savedJobList.includes(jobData.jobId);
+  let isSaved = savedJobList.includes(jobData.jobId) || savedJobScreen;
 
   let tagData = [
     {

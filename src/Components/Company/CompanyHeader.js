@@ -7,11 +7,13 @@ import { navigate } from '@NavigationAction';
 import company_default_img from '@Assets/Images/company_default_img.jpg';
 import company_default_bg from '@Assets/Images/company_default_background.jpg';
 import { messageBusiness } from '@Business';
+import { useSelector } from 'react-redux';
 
 const AVATAR_SIZE = 76;
 
 const CompanyHeader = ({ companyData }) => {
   const { t } = useTranslation();
+  const sessionInfo = useSelector((state) => state.Authentication.sessionInfo);
 
   const onPressUrl = () => {
     Linking.openURL(companyData.valid_urlCompany);
@@ -89,7 +91,7 @@ const CompanyHeader = ({ companyData }) => {
         <View.Col
           style={{
             marginLeft: (AVATAR_SIZE * 5) / 4 + 3 * 2 + 10,
-            paddingRight: 5,
+            paddingRight: 10,
             paddingBottom: 5,
             flex: 1
           }}
@@ -136,22 +138,24 @@ const CompanyHeader = ({ companyData }) => {
               </Text.Body>
             </View.Row>
           )}
-          <Button.Button
-            onPress={onPressSendMessage}
-            secondary
-            style={{ marginTop: 5, width: 220 }}
-          >
-            <Icon.VectorIcon
-              name={'chatbubble-ellipses'}
-              style={[
-                styles.info_icon,
-                { color: Theme.colors.primary_color, marginRight: 5 }
-              ]}
-            />
-            <Text.Body primary>
-              {t('jh.send')} {t('jh.message')}
-            </Text.Body>
-          </Button.Button>
+          {!!sessionInfo?.email && (
+            <Button.Button
+              onPress={onPressSendMessage}
+              secondary
+              style={{ marginTop: 5, width: 220 }}
+            >
+              <Icon.VectorIcon
+                name={'chatbubble-ellipses'}
+                style={[
+                  styles.info_icon,
+                  { color: Theme.colors.primary_color, marginRight: 5 }
+                ]}
+              />
+              <Text.Body primary>
+                {t('jh.send')} {t('jh.message')}
+              </Text.Body>
+            </Button.Button>
+          )}
         </View.Col>
       </View.Row>
     </View.Col>

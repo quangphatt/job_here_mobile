@@ -10,7 +10,9 @@ import {
 
 class UserBusiness extends Service {
   getAppliedJob = async (month, year) => {
-    let result = await this.get(`${getAppliedJobURL}?month=${year}-${month}`);
+    let result = await this.get(
+      `${getAppliedJobURL}?month=${year}-${month < 10 ? '0' + month : month}`
+    );
     return result;
   };
 

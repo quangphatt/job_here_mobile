@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
-import { View, Text, Loading, Pagination } from '@Components';
+import { View, Text } from '@Components';
 import { JobItem } from '@Components/Job';
 import { useTranslation } from 'react-i18next';
 import { dropdownBusiness, jobBusiness } from '@Business';
+import Slick from 'react-native-slick';
+import _ from 'underscore';
+
+const SIZE = 8;
 
 const JobInteresting = () => {
   const { t } = useTranslation();
   const [__lastUpdate, setLastUpdate] = useState(null);
   const [stateData, setStateData] = useState({
     jobData: [],
-    loading: false,
-    unitDropdown: [],
-    totalJob: 0
+    unitDropdown: []
   });
 
-  const getData = async (page, size) => {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
     if (stateData.unitDropdown.length === 0) {
       await getUnitDropdown();
     }
-    let result = await jobBusiness.getListJobInteresting(page, size);
+    let result = await jobBusiness.getListJobInteresting(0, SIZE);
     if (result.data.httpCode === 200) {
-      if (stateData.totalJob !== result.data.objectData.totalRecord) {
-        stateData.totalJob = result.data.objectData.totalRecord;
-      }
       let listJob = result?.data?.objectData?.pageData ?? [];
       if (listJob.length > 0) {
         for (let i = 0; i < listJob.length; i++) {
@@ -44,26 +47,20 @@ const JobInteresting = () => {
     }
   };
 
-  const renderItem = ({ item }) => {
-    return (
-      <View.Col style={{ width: '100%', paddingHorizontal: 10 }}>
-        <JobItem jobData={item} />
-      </View.Col>
-    );
-  };
+  if (!stateData.jobData.length) return null;
 
   return (
     <View.Col style={{ paddingVertical: 10 }}>
       <Text.H3_Bold secondary style={{ paddingLeft: 10 }}>
         {t('jh.interestingJob')}
       </Text.H3_Bold>
-      <Pagination
-        listData={stateData.jobData}
-        renderItem={renderItem}
-        getData={getData}
-        dataLength={stateData.totalJob}
-        singlePage
-      />
+      <Slick autoplay autoplayTimeout={8} showsPagination={false} height={210}>
+        {_.map(stateData.jobData, (job) => (
+          <View.Col key={job.jobId} style={{ paddingHorizontal: 10 }}>
+            <JobItem jobData={job} />
+          </View.Col>
+        ))}
+      </Slick>
     </View.Col>
   );
 };

@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Dimensions } from 'react-native';
-import { View, Text, Pagination } from '@Components';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Text } from '@Components';
 import { JobHeader } from '@Components/Job';
 import { useTranslation } from 'react-i18next';
 import { jobBusiness, authBusiness } from '@Business';
@@ -10,8 +9,8 @@ import { logOut } from '@ReduxSlice/AuthenticationSlice';
 import { changeHeaderToken } from '@ReduxSlice/HeaderRequestSlice';
 import { useDispatch } from 'react-redux';
 import * as Keychain from 'react-native-keychain';
-
-const { width } = Dimensions.get('window');
+import Slick from 'react-native-slick';
+import _ from 'underscore';
 
 const JobNew = () => {
   const { t } = useTranslation();
@@ -24,7 +23,11 @@ const JobNew = () => {
   const headers = useSelector((state) => state.HeaderRequest.headers);
   const dispatch = useDispatch();
 
-  const getData = async (page, size) => {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
     if (isSignIn) {
       let session = await authBusiness.getSessionInfo();
       if (session.data.httpCode === 401) {
@@ -64,25 +67,18 @@ const JobNew = () => {
     setLastUpdate(moment().format('x'));
   };
 
-  const renderItem = ({ item, index }) => {
-    return (
-      <View.Col key={index} style={{ width }}>
-        <JobHeader jobData={item} />
-      </View.Col>
-    );
-  };
-
   return (
     <View.Col style={{ paddingVertical: 10 }}>
       <Text.H3_Bold secondary style={{ paddingLeft: 10 }}>
         {t('jh.newJob')}
       </Text.H3_Bold>
-      <Pagination
-        listData={stateData.jobData}
-        renderItem={renderItem}
-        getData={getData}
-        dataLength={stateData.jobData.length}
-      />
+      <Slick autoplay autoplayTimeout={8} showsPagination={false} height={240}>
+        {_.map(stateData.jobData, (job) => (
+          <View.Col key={job.jobId}>
+            <JobHeader jobData={job} />
+          </View.Col>
+        ))}
+      </Slick>
     </View.Col>
   );
 };

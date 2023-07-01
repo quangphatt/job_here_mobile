@@ -21,8 +21,7 @@ const NotificationIcon = ({ is_current_route, email }) => {
     const fetchData = async () => {
       let result = await notificationBusiness.countNotification();
       if (result.data.httpCode === 200) {
-        if (result.data.objectData * 1 > 9) setNotificationCount('9+');
-        else setNotificationCount(result.data.objectData);
+        setNotificationCount(result.data.objectData);
 
         // Push notification
         let res = await notificationBusiness.getLastsNotificationOfUser();
@@ -99,7 +98,7 @@ const NotificationIcon = ({ is_current_route, email }) => {
           }}
         >
           <Text.SubBodyBold fontSize={15} style={{ marginTop: -5 }}>
-            {notificationCount}
+            {notificationCount > 9 ? '9+' : notificationCount}
           </Text.SubBodyBold>
         </View.Col>
       )}
