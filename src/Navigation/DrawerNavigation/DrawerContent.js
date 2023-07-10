@@ -26,6 +26,10 @@ const MENU = [
     ]
   },
   {
+    name: 'jh.companies',
+    children: [{ name: 'jh.companyList', route: 'CompanyListScreen', type: 1 }]
+  },
+  {
     name: 'jh.profileAndCV',
     children: [
       {
@@ -34,10 +38,6 @@ const MENU = [
         type: 0
       }
     ]
-  },
-  {
-    name: 'jh.companies',
-    children: [{ name: 'jh.companyList', route: 'CompanyListScreen', type: 1 }]
   },
   {
     name: 'jh.blog',

@@ -6,9 +6,8 @@ import {
   PermissionsAndroid
 } from 'react-native';
 import { View, Text, Icon, Common, Button, Loading } from '@Components';
-import PdfView from 'react-native-pdf';
+import { CVItem } from '@Components/CV';
 import DocumentPicker from 'react-native-document-picker';
-import { NativeModules } from 'react-native';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
 import { goBack, openDrawer } from '@NavigationAction';
@@ -17,8 +16,6 @@ import { getCVList, setCVLoading } from '@ReduxSlice/CVSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Global from '@Global';
 import Alert from '@Alert';
-
-const RNFetchBlob = NativeModules.RNFetchBlob;
 
 const CVManageScreen = (props) => {
   const { width, height } = useWindowDimensions();
@@ -110,190 +107,6 @@ const CVManageScreen = (props) => {
     }
   };
 
-  const onPressCV = (cv) => () => {
-    Global._showModal({
-      label: `${t('jh.viewCV')}: ${cv.cvName}`,
-      closeOnOverlayTap: true,
-      component: (
-        <View.Col style={{ height: height * 0.8 }}>
-          <PdfView
-            source={{ uri: cv.cvUrl }}
-            style={{ flex: 1 }}
-            trustAllCerts={false}
-          />
-        </View.Col>
-      )
-    });
-  };
-
-  const onDeleteCV = (cvId) => () => {
-    Alert.show({
-      title: t('jh.deleteCV'),
-      body: t('jh.wantToDeleteCV'),
-      button_primary: t('jh.delete'),
-      button_secondary: t('jh.cancel'),
-      type: Alert.AlertType.DANGER,
-      action: async (type) => {
-        if (type === Alert.ActionType.PRIMARY) {
-          Alert.hide();
-          let result = await userBusiness.deleteCV(cvId);
-          if (result.data.httpCode === 200) {
-            Alert.show({
-              body: t('jh.deleteCV') + ' ' + t('jh.successfully'),
-              type: Alert.AlertType.SUCCESS
-            });
-            await getCVData();
-          } else {
-            Alert.show({
-              body: t('jh.deleteCV') + ' ' + t('jh.failed'),
-              type: Alert.AlertType.DANGER
-            });
-          }
-        } else Alert.hide();
-      }
-    });
-  };
-
-  const onPressDownloadCV = (cv) => async () => {
-    if (Platform.OS === 'ios') {
-      await onDownloadCV(cv);
-    } else {
-      try {
-        PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-        ).then(async (granted) => {
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            await onDownloadCV(cv);
-          } else {
-            Alert.show({
-              title: t('jh.noAccessPermission'),
-              body: t('jh.youMustGrantPermission'),
-              type: Alert.AlertType.WARNING
-            });
-          }
-        });
-      } catch (err) {
-        console.log('Error while downloading CV:', err);
-      }
-    }
-  };
-
-  const getFileExtention = (fileUrl) => {
-    // To get the file extension
-    return /[.]/.exec(fileUrl) ? /[^.]+$/.exec(fileUrl) : undefined;
-  };
-
-  const onDownloadCV = async (cv) => {
-    // Get today's date to add the time suffix in filename
-    let date = new Date();
-    // File URL which we want to download
-    let FILE_URL = cv.cvUrl;
-    // Function to get extention of the file url
-    let file_ext = getFileExtention(FILE_URL);
-
-    file_ext = '.' + file_ext[0];
-
-    // config: To get response by passing the downloading related options
-    // fs: Root directory path to download
-    const { config, fs } = RNFetchBlob;
-    let RootDir = fs.dirs.PictureDir;
-    let options = {
-      fileCache: true,
-      addAndroidDownloads: {
-        path:
-          RootDir +
-          '/file_' +
-          Math.floor(date.getTime() + date.getSeconds() / 2) +
-          file_ext,
-        description: 'Download from Jobhere',
-        notification: true,
-        // useDownloadManager works with Android only
-        useDownloadManager: true
-      }
-    };
-    config(options)
-      .fetch('GET', FILE_URL)
-      .then((res) => {
-        Alert.show({
-          body: t('jh.download') + ' ' + t('jh.successfully'),
-          type: Alert.AlertType.SUCCESS
-        });
-      });
-  };
-
-  const renderItem = (item, index) => {
-    return (
-      <Button.ButtonPreventDouble
-        key={index}
-        onPress={onPressCV(item)}
-        style={{
-          height: width * 1.2,
-          margin: 5,
-          padding: 8,
-          backgroundColor: Theme.colors.white_color,
-          borderWidth: 0.5,
-          borderColor: Theme.border_colors.secondary_border_color,
-          borderRadius: 10
-        }}
-      >
-        <View.Col
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            zIndex: 1
-          }}
-        >
-          <Button.ButtonPreventDouble
-            style={{
-              height: 40,
-              width: 40,
-              borderRadius: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: Theme.colors.dark_gray_color_blur
-            }}
-            onPress={onDeleteCV(item.cvId)}
-          >
-            <Icon.VectorIcon name={'close'} size={36} />
-          </Button.ButtonPreventDouble>
-          <Button.ButtonPreventDouble
-            style={{
-              height: 40,
-              width: 40,
-              marginTop: 5,
-              borderRadius: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: Theme.colors.dark_gray_color_blur
-            }}
-            onPress={onPressDownloadCV(item)}
-          >
-            <Icon.VectorIcon name={'ios-cloud-download-outline'} size={32} />
-          </Button.ButtonPreventDouble>
-        </View.Col>
-
-        <View.Col style={{ flex: 1, borderRadius: 10, overflow: 'hidden' }}>
-          <PdfView
-            source={{ uri: item.cvUrl }}
-            style={{ flex: 1 }}
-            singlePage
-            trustAllCerts={false}
-          />
-        </View.Col>
-        <Text.BodyBold fontSize={18} secondary>
-          {item.cvName}
-        </Text.BodyBold>
-        <Text.Body fontSize={15} secondary>
-          {t('jh.createDate')}: {moment(item.createDate).format('DD/MM/YYYY')}
-        </Text.Body>
-        <Text.Body fontSize={15} style={{ color: Theme.colors.success }}>
-          {item.cvType}
-        </Text.Body>
-      </Button.ButtonPreventDouble>
-    );
-  };
-
   return (
     <View.Col style={{ flex: 1 }}>
       <ScrollView stickyHeaderIndices={[0]} ref={listRef}>
@@ -357,8 +170,8 @@ const CVManageScreen = (props) => {
             {loading ? (
               <Loading placeholder />
             ) : (
-              _.map(listCV, (item, index) => {
-                return renderItem(item, index);
+              _.map(listCV, (cv, index) => {
+                return <CVItem key={cv.cvId} cvData={cv} />;
               })
             )}
           </View.Col>

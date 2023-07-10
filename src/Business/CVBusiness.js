@@ -1,9 +1,14 @@
 import Service from '@Config/Service';
-import { getListCVURL } from '@Config/Service/ConfigURL';
+import { getListCVURL, getCVContentURL } from '@Config/Service/ConfigURL';
 
 class CVBusiness extends Service {
   getListCV = async () => {
     let result = await this.get(getListCVURL);
+    return result;
+  };
+
+  getCVContent = async (cvId) => {
+    let result = await this.get(`${getCVContentURL}/{cvId}`);
     return result;
   };
 }
