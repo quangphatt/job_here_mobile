@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text } from '@Components';
+import { View, Text, Icon } from '@Components';
 
 const CVExperience = ({ cvData }) => {
-  // console.log('----cvData', cvData);
   // [
   //   {
   //     companyName: 'ABC Company',
@@ -20,10 +19,30 @@ const CVExperience = ({ cvData }) => {
   //   }
   // ];
   return (
-    <View.Col>
-      <Text.Body secondary>CVExperience</Text.Body>
+    <View.Col style={{ marginBottom: 3 }}>
+      {cvData.map((experience, index) => (
+        <ExperienceItem key={index} experience={experience} />
+      ))}
     </View.Col>
   );
 };
+
+const ExperienceItem = ({ experience }) => (
+  <View.Col style={{ marginBottom: 2 }}>
+    <View.Row>
+      <Icon.VectorIcon name="briefcase" size={7} style={{ marginRight: 3 }} />
+      <Text.Body secondary>{experience.companyName}</Text.Body>
+      <Text.Body secondary style={{ fontStyle: 'italic', marginLeft: 3 }}>
+        {experience.timeWork}
+      </Text.Body>
+    </View.Row>
+    <Text.Body secondary style={{ fontStyle: 'italic' }}>
+      {experience.title}
+    </Text.Body>
+    <Text.Body secondary style={{ textAlign: 'justify' }}>
+      {experience.description}
+    </Text.Body>
+  </View.Col>
+);
 
 export default CVExperience;

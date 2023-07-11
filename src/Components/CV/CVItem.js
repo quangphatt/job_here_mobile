@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import {
   ScrollView,
   useWindowDimensions,
@@ -9,10 +9,8 @@ import {
 import { View, Text, Icon, Button } from '@Components';
 import { CVBody } from '@Components/CV';
 import PdfView from 'react-native-pdf';
-import DocumentPicker from 'react-native-document-picker';
 import Theme from '@Theme';
 import { useTranslation } from 'react-i18next';
-import { goBack, openDrawer } from '@NavigationAction';
 import { userBusiness } from '@Business';
 import Global from '@Global';
 import Alert from '@Alert';
@@ -29,19 +27,6 @@ const CVItem = ({ cvData }) => {
       return cvDataForBody;
     } catch (e) {
       return null;
-    }
-  };
-
-  const getTemplateData = () => {
-    try {
-      if (cvData?.cvTemplate?.structure) {
-        let templateDataRe = cvData.cvTemplate;
-        templateDataRe.structure = JSON.parse(templateDataRe?.structure ?? {});
-        return templateDataRe;
-      }
-      return cvData.cvTemplate;
-    } catch (e) {
-      return cvData.cvTemplate;
     }
   };
 

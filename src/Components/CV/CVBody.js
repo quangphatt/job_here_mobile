@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Loading } from '@Components';
+import { View, Loading } from '@Components';
 import {
   CVAward,
   CVContact,
@@ -11,6 +11,7 @@ import {
   CVSkill,
   CVTitle
 } from '@Components/CV';
+import { CVStyle } from './CVStyle';
 
 const CVBody = ({ cvData, templateData }) => {
   const [_templateData, setTemplateData] = useState({});
