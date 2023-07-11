@@ -43,7 +43,7 @@ const CVItem = ({ cvData }) => {
               trustAllCerts={false}
             />
           ) : (
-            <ScrollView>
+            <ScrollView style={{ padding: 10 }}>
               <CVBody
                 cvData={getCvDataForBody()}
                 templateData={cvData.cvTemplate}

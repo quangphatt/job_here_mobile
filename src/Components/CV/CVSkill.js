@@ -1,28 +1,26 @@
 import React from 'react';
-import { View, Text } from '@Components';
+import { View, Text, Icon } from '@Components';
 import { useTranslation } from 'react-i18next';
-import Theme from '@Theme';
 
-const CVSkill = ({ cvData }) => {
+const CVSkill = ({ cvData, elementStyle }) => {
   const { t } = useTranslation();
+  const titleStyle = elementStyle?.title ?? {};
+  const textStyle = elementStyle?.text ?? {};
+  const iconStyle = elementStyle?.icon ?? {};
 
   return (
     <View.Col style={{ marginBottom: 5 }}>
-      <Text.BodyBold fontSize={12} secondary>
+      <Text.BodyBold fontSize={12} secondary style={[textStyle, titleStyle]}>
         {t('jh.skill')}
       </Text.BodyBold>
       {cvData.map((skill, index) => (
-        <View.Row key={index} style={{ alignItems: 'center' }}>
-          <View.Col
-            style={{
-              width: 4,
-              height: 4,
-              borderRadius: 2,
-              backgroundColor: Theme.text_colors.secondary_text_color,
-              marginRight: 3
-            }}
+        <View.Row key={index}>
+          <Icon.VectorIcon
+            name="ellipse"
+            size={7}
+            style={[{ marginRight: 3, marginTop: 4 }, iconStyle]}
           />
-          <Text.Body fontSize={9} secondary>
+          <Text.Body fontSize={9} secondary style={textStyle}>
             {skill}
           </Text.Body>
         </View.Row>

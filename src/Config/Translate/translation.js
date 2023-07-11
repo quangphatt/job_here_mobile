@@ -199,7 +199,12 @@ export const en = {
   'jh.relateBlog': 'Relate Blogs',
   'jh.searchBlogPlaceholder': 'Blog name ...',
   'jh.topIndustry': 'Top Industry',
-  'jh.job': 'Jobs'
+  'jh.job': 'Jobs',
+  'jh.objective': 'Objective',
+  'jh.hobby': 'Hobby',
+  'jh.award': 'Award',
+  'jh.contactInformation': 'Contact Information',
+  'jh.education': 'Education'
 };
 
 export const vn = {
@@ -402,5 +407,10 @@ export const vn = {
   'jh.relateBlog': 'Bài Viết Liên Quan',
   'jh.searchBlogPlaceholder': 'Tên bài viết...',
   'jh.topIndustry': 'Lĩnh vực hàng đầu',
-  'jh.job': 'Việc làm'
+  'jh.job': 'Việc làm',
+  'jh.objective': 'Mục Tiêu',
+  'jh.hobby': 'Sở Thích',
+  'jh.award': 'Giải Thưởng',
+  'jh.contactInformation': 'Thông Tin Liên Hệ',
+  'jh.education': 'Giáo Dục'
 };

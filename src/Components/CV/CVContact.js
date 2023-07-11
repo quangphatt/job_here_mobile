@@ -2,25 +2,49 @@ import React from 'react';
 import { View, Text, Icon } from '@Components';
 import { useTranslation } from 'react-i18next';
 
-const CVContact = ({ cvData }) => {
+const CVContact = ({ cvData, elementStyle }) => {
   const { t } = useTranslation();
-  // {"dateOfBirth": "2022-12-12", "email": "email@gmail.com", "phone": "0909123123"}
+  const titleStyle = elementStyle?.title ?? {};
+  const textStyle = elementStyle?.text ?? {};
+  const iconStyle = elementStyle?.icon ?? {};
+
   return (
-    <View.Col>
-      <Text.BodyBold fontSize={12} secondary>
-        {t('jh.contactInfomation')}
+    <View.Col style={{ marginBottom: 5 }}>
+      <Text.BodyBold fontSize={12} secondary style={[textStyle, titleStyle]}>
+        {t('jh.contactInformation')}
       </Text.BodyBold>
-      <ContactItem icon="mail" data={cvData.email} />
-      <ContactItem icon="call" data={cvData.phone} />
-      <ContactItem icon="calendar" data={cvData.dateOfBirth} />
+      <ContactItem
+        icon="mail"
+        data={cvData.email}
+        textStyle={textStyle}
+        iconStyle={iconStyle}
+      />
+      <ContactItem
+        icon="call"
+        data={cvData.phone}
+        textStyle={textStyle}
+        iconStyle={iconStyle}
+      />
+      <ContactItem
+        icon="calendar"
+        data={cvData.dateOfBirth}
+        textStyle={textStyle}
+        iconStyle={iconStyle}
+      />
     </View.Col>
   );
 };
 
-const ContactItem = ({ icon, data }) => (
-  <View.Row style={{ marginBottom: 5 }}>
-    <Icon.VectorIcon name={icon} size={7} style={{ marginRight: 3 }} />
-    <Text.Body secondary>{data}</Text.Body>
+const ContactItem = ({ icon, data, textStyle, iconStyle }) => (
+  <View.Row style={{ alignItems: 'center' }}>
+    <Icon.VectorIcon
+      name={icon}
+      size={7}
+      style={[{ marginRight: 3, marginTop: 3 }, iconStyle]}
+    />
+    <Text.Body fontSize={9} secondary style={textStyle}>
+      {data}
+    </Text.Body>
   </View.Row>
 );
 

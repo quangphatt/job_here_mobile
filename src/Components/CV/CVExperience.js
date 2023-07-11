@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Text, Icon } from '@Components';
 import { useTranslation } from 'react-i18next';
 
-const CVExperience = ({ cvData }) => {
+const CVExperience = ({ cvData, elementStyle }) => {
   const { t } = useTranslation();
+  const titleStyle = elementStyle?.title ?? {};
+  const textStyle = elementStyle?.text ?? {};
+  const iconStyle = elementStyle?.icon ?? {};
   // [
   //   {
   //     companyName: 'ABC Company',
@@ -22,29 +25,57 @@ const CVExperience = ({ cvData }) => {
   // ];
   return (
     <View.Col style={{ marginBottom: 3 }}>
-      <Text.BodyBold fontSize={12} secondary>
+      <Text.BodyBold fontSize={12} secondary style={[textStyle, titleStyle]}>
         {t('jh.experience')}
       </Text.BodyBold>
       {cvData.map((experience, index) => (
-        <ExperienceItem key={index} experience={experience} />
+        <ExperienceItem
+          key={index}
+          experience={experience}
+          textStyle={textStyle}
+          iconStyle={iconStyle}
+        />
       ))}
     </View.Col>
   );
 };
 
-const ExperienceItem = ({ experience }) => (
+const ExperienceItem = ({ experience, textStyle, iconStyle }) => (
   <View.Col style={{ marginBottom: 2 }}>
     <View.Row>
-      <Icon.VectorIcon name="briefcase" size={7} style={{ marginRight: 3 }} />
-      <Text.Body secondary>{experience.companyName}</Text.Body>
-      <Text.Body secondary style={{ fontStyle: 'italic', marginLeft: 3 }}>
-        {experience.timeWork}
-      </Text.Body>
+      <Icon.VectorIcon
+        name="briefcase"
+        size={7}
+        style={[{ marginRight: 3, marginTop: 4 }, iconStyle]}
+      />
+      <View.Row style={{ flexWrap: 'wrap' }}>
+        <Text.BodyBold fontSize={9} secondary style={textStyle}>
+          {experience.companyName}
+        </Text.BodyBold>
+        <Text.Body
+          fontSize={9}
+          secondary
+          style={[
+            { fontStyle: 'italic', marginLeft: 3, marginTop: 2 },
+            textStyle
+          ]}
+        >
+          ({experience.timeWork})
+        </Text.Body>
+      </View.Row>
     </View.Row>
-    <Text.Body secondary style={{ fontStyle: 'italic' }}>
+    <Text.BodyBold
+      fontSize={8}
+      secondary
+      style={[{ fontStyle: 'italic' }, textStyle]}
+    >
       {experience.title}
-    </Text.Body>
-    <Text.Body secondary style={{ textAlign: 'justify' }}>
+    </Text.BodyBold>
+    <Text.Body
+      fontSize={9}
+      secondary
+      style={[{ textAlign: 'justify' }, textStyle]}
+    >
       {experience.description}
     </Text.Body>
   </View.Col>

@@ -126,18 +126,20 @@ const CVBody = ({ cvData, templateData }) => {
       style={{
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: Theme.border_colors.secondary_border_color
+        borderColor: Theme.border_colors.secondary_border_color,
+        overflow: 'hidden',
+        minHeight: 540
       }}
     >
       <View.Col
-        style={[{ width: '42%', padding: 5 }, cv_style?.left_side ?? {}]}
+        style={[{ width: '42%', padding: 10 }, cv_style?.left_side ?? {}]}
       >
         {_templateData?._structure?.left.map((cvDetailType, index) =>
           getExactElement({ cvDetailType, index })
         )}
       </View.Col>
       <View.Col
-        style={[{ width: '58%', padding: 5 }, cv_style?.right_side ?? {}]}
+        style={[{ width: '58%', padding: 10 }, cv_style?.right_side ?? {}]}
       >
         {_templateData?._structure?.right.map((cvDetailType, index) =>
           getExactElement({ cvDetailType, index, left: false })
