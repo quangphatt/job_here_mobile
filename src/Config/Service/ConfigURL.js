@@ -44,6 +44,7 @@ export const changePasswordURL = '/user/changePassword';
 
 // CV
 export const getListCVURL = '/cv/getListOwnerCV';
+export const getCVContentURL = '/cv/getCVContent';
 
 // Upload
 export const uploadCVURL = '/user/upload/uploadCV';

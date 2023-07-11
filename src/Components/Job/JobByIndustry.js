@@ -13,7 +13,7 @@ const JobByIndustry = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let res = await reportBusiness.getTotalJobByIndustry(4);
+      let res = await reportBusiness.getTotalJobByIndustry(8);
       if (res.data.httpCode === 200) {
         setData(res.data?.objectData ?? []);
       }

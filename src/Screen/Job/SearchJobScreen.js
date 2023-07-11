@@ -244,6 +244,7 @@ const SearchJobScreen = (props) => {
               renderItem={renderItem}
               onEndReached={onEndReached}
               onEndReachedThreshold={0.1}
+              contentContainerStyle={{ paddingBottom: 30 }}
             />
           </View.Col>
         )}

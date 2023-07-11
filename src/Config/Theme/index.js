@@ -3,7 +3,7 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-import { Dimensions, Platform, PixelRatio } from 'react-native';
+import { PixelRatio } from 'react-native';
 
 const normalize_font_size = () => {
   let x_small = '12px';
