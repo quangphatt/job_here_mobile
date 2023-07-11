@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, Icon } from '@Components';
+import { useTranslation } from 'react-i18next';
 
 const CVExperience = ({ cvData }) => {
+  const { t } = useTranslation();
   // [
   //   {
   //     companyName: 'ABC Company',
@@ -20,6 +22,9 @@ const CVExperience = ({ cvData }) => {
   // ];
   return (
     <View.Col style={{ marginBottom: 3 }}>
+      <Text.BodyBold fontSize={12} secondary>
+        {t('jh.experience')}
+      </Text.BodyBold>
       {cvData.map((experience, index) => (
         <ExperienceItem key={index} experience={experience} />
       ))}

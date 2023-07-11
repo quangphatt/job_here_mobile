@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text } from '@Components';
+import { useTranslation } from 'react-i18next';
 
 const CVEducation = ({ cvData }) => {
+  const { t } = useTranslation();
   // [
   //   {
   //     major: 'Business Administration',
@@ -11,6 +13,9 @@ const CVEducation = ({ cvData }) => {
   // ];
   return (
     <View.Col style={{ marginBottom: 5 }}>
+      <Text.BodyBold fontSize={12} secondary>
+        {t('jh.education')}
+      </Text.BodyBold>
       {cvData.map((education, index) => (
         <EducationItem key={index} education={education} />
       ))}

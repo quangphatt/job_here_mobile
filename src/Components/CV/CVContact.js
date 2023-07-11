@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, Text, Icon } from '@Components';
+import { useTranslation } from 'react-i18next';
 
 const CVContact = ({ cvData }) => {
+  const { t } = useTranslation();
   // {"dateOfBirth": "2022-12-12", "email": "email@gmail.com", "phone": "0909123123"}
   return (
     <View.Col>
+      <Text.BodyBold fontSize={12} secondary>
+        {t('jh.contactInfomation')}
+      </Text.BodyBold>
       <ContactItem icon="mail" data={cvData.email} />
       <ContactItem icon="call" data={cvData.phone} />
       <ContactItem icon="calendar" data={cvData.dateOfBirth} />
