@@ -2,18 +2,25 @@ import React from 'react';
 import { View, Text, Icon } from '@Components';
 import { useTranslation } from 'react-i18next';
 
-const CVAward = ({ cvData }) => {
+const CVAward = ({ cvData, elementStyle }) => {
   const { t } = useTranslation();
+  const titleStyle = elementStyle?.title ?? {};
+  const textStyle = elementStyle?.text ?? {};
+  const iconStyle = elementStyle?.icon ?? {};
 
   return (
     <View.Col style={{ marginBottom: 5 }}>
-      <Text.BodyBold fontSize={12} secondary>
+      <Text.BodyBold fontSize={12} secondary style={titleStyle}>
         {t('jh.award')}
       </Text.BodyBold>
       {cvData.map((award, index) => (
-        <View.Row key={index} style={{ alignItems: 'center' }}>
-          <Icon.VectorIcon name="ribbon" size={7} style={{ marginRight: 3 }} />
-          <Text.Body fontSize={9} secondary>
+        <View.Row key={index} style={[{ alignItems: 'center' }, textStyle]}>
+          <Icon.VectorIcon
+            name="ribbon"
+            size={7}
+            style={[{ marginRight: 3 }, iconStyle]}
+          />
+          <Text.Body fontSize={9} secondary style={textStyle}>
             {award}
           </Text.Body>
         </View.Row>

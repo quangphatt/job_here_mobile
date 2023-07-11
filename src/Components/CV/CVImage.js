@@ -6,7 +6,7 @@ const CVImage = ({ cvData }) => {
   const avatar = cvData ? { uri: cvData } : avatar_img;
 
   return (
-    <View.Col style={{ marginBottom: 5 }}>
+    <View.Col style={{ marginBottom: 5, alignItems: 'center' }}>
       <Image.ImageCircle source={avatar} size={100} style={{ marginTop: 6 }} />
     </View.Col>
   );
